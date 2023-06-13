@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     borderRadius: vw * 3,
     alignItems: 'center',
     justifyContent: 'center',
-    width: '90%',
+    width: '100%',
     alignSelf: 'center',
     height: vh * 6.5,
     marginVertical: vh * 2,
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light.secondary,
   },
   title: {
-    color: colors.light.btnText,
+    color: 'white',
     fontSize: vh * 2,
   },
 });

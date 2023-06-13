@@ -5,16 +5,20 @@ import {colors, fontColors} from '../../utils/theme';
 
 const styles = StyleSheet.create({
   input: {
-    borderRadius: vw * 3,
+    borderRadius: vw * 2,
     borderColor: colors.border,
-    backgroundColor: colors.inputBackground,
-    borderWidth: vw * 0.3,
+
     flexDirection: 'row',
     height: vh * 6.5,
     width: '100%',
     paddingLeft: vw * 4,
     alignItems: 'center',
     alignSelf: 'center',
+    shadowColor: '#000',
+    shadowOffset: {width: 1, height: 1},
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    elevation: 5,
   },
   fieldView: {
     borderRadius: vw * 3,

@@ -3,12 +3,15 @@ import {vh} from './units';
 export const colors = {
   dark: {
     primary: 'black',
-    secondary: 'blue',
+    secondary: '#265DC7',
+    inputfield1: '#2E2E2E',
+    inputfield2: '#5B5B5B',
+    btnText: 'white',
   },
   light: {
     primary: 'white',
-    secondary: 'lightblue',
-    btnText: 'white',
+    secondary: '#265DC7',
+    btnText: '#0F0F0F',
   },
 };
 
