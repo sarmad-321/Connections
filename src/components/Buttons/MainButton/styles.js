@@ -1,6 +1,6 @@
-import {StyleSheet} from 'react-native';
-import {colors} from '../../../utils/theme';
-import {vh, vw} from '../../../utils/units';
+import { StyleSheet } from 'react-native';
+import { colors } from '../../../utils/theme';
+import { vh, vw } from '../../../utils/units';
 
 const styles = StyleSheet.create({
   container: {
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.light.secondary,
   },
   title: {
-    color: 'white',
+    color: colors.light.primary,
     fontSize: vh * 2,
   },
 });

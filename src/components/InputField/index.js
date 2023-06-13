@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import {
   View,
   TextInput,
@@ -9,11 +9,11 @@ import {
   useColorScheme,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import {icons} from '../../assets';
-import {colors, fontColors} from '../../utils/theme';
-import {vh, vw} from '../../utils/units';
+import { icons } from '../../assets';
+import { colors, fontColors } from '../../utils/theme';
+import { vh, vw } from '../../utils/units';
 // import OutfitRegular from '../Wrappers/Text/OutfitRegular';
-import styles from './styles';
+import styles, { darkgradient, gradient, lightgradient } from './styles';
 
 const InputField = React.forwardRef((props, ref) => {
   const theme = useColorScheme();
@@ -41,23 +41,19 @@ const InputField = React.forwardRef((props, ref) => {
   tintOut;
 
   return (
-    <View style={[{marginVertical: vh * 1.5}, props?.inputView]}>
+    <View style={[props?.inputView]}>
       {/* {props.label && (
         <Text style={styles.label}>
           {props.label} {props.required && '*'}
         </Text>
       )} */}
       <View
-        style={{
-          overflow: 'hidden',
-          paddingBottom: vh * 0.6,
-          paddingHorizontal: vh * 0.2,
-        }}>
+        style={styles.bottomshadow}>
         <LinearGradient
           colors={
             theme == 'dark'
-              ? ['#2E2E2E', '#2E2E2E', '#5B5B5B']
-              : ['white', 'white']
+              ? darkgradient
+              : lightgradient
           }
           style={[styles.input, props.containerStyle]}>
           {props.icon && (
@@ -87,13 +83,13 @@ const InputField = React.forwardRef((props, ref) => {
               // setFocus(false);
             }}
             autoCapitalize={false}
-            style={{width: '100%', height: '100%', color: activeColors.btnText}}
+            style={{ width: '100%', height: '100%', color: activeColors.btnText }}
             {...props}
             secureTextEntry={showPassword}
           />
           {props.rightIcon && (
             <TouchableOpacity
-              style={[styles.rightIconContainer, {right: 0}]}
+              style={[styles.rightIconContainer, { right: 0 }]}
               onPress={props.onIconPress}>
               <Image source={props.rightIcon} style={[styles.rightIcon2]} />
             </TouchableOpacity>

@@ -1,8 +1,10 @@
-import {vh, vw} from '../../utils/units';
+import { vh, vw } from '../../utils/units';
 
-import {StyleSheet} from 'react-native';
-import {colors, fontColors} from '../../utils/theme';
+import { StyleSheet } from 'react-native';
+import { colors, fontColors } from '../../utils/theme';
 
+export const darkgradient = ['#2E2E2E', '#2E2E2E', 'rgba(91, 91, 91, 0.22)']
+export const lightgradient = ['white', 'white']
 const styles = StyleSheet.create({
   input: {
     borderRadius: vw * 2,
@@ -15,10 +17,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     shadowColor: '#000',
-    shadowOffset: {width: 1, height: 1},
+    shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.4,
     shadowRadius: 3,
-    elevation: 5,
+    elevation: 6,
+  },
+  bottomshadow: {
+    overflow: 'hidden',
+    paddingBottom: vh * 0.6,
+    paddingHorizontal: vh * 0.1,
   },
   fieldView: {
     borderRadius: vw * 3,

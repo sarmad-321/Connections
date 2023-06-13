@@ -1,6 +1,6 @@
-import {StyleSheet, useColorScheme} from 'react-native';
-import {vh, vw} from '../../../utils/units';
-import {colors, fontColors} from '../../../utils/theme';
+import { StyleSheet, useColorScheme } from 'react-native';
+import { vh, vw } from '../../../utils/units';
+import { colors, fontColors } from '../../../utils/theme';
 
 const lightStyles = StyleSheet.create({
   h1: {
@@ -8,10 +8,20 @@ const lightStyles = StyleSheet.create({
     color: fontColors.light.primary,
     marginTop: vh * 4,
   },
-  inputContainer: {
-    marginHorizontal: vw * 5,
-    alignSelf: 'center',
+  button: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
+  info: {
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  inputContainer: {
+    height: vh * 20,
+    justifyContent: 'flex-end',
+    paddingBottom: vh * 1.5,
+  }
 });
 
 const darkStyles = StyleSheet.create({
@@ -29,7 +39,11 @@ const darkStyles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
   },
-  inputContainer: {paddingHorizontal: vw * 5, alignSelf: 'center'},
+  inputContainer: {
+    height: vh * 20,
+    justifyContent: 'flex-end',
+    paddingBottom: vh * 1.5,
+  }
 });
 
 const MyStyles = () => {
