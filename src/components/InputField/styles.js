@@ -3,7 +3,7 @@ import { vh, vw } from '../../utils/units';
 import { StyleSheet } from 'react-native';
 import { colors, fontColors } from '../../utils/theme';
 
-export const darkgradient = ['#2E2E2E', '#2E2E2E', 'rgba(91, 91, 91, 0.22)']
+export const darkgradient = ["#2E2E2E", "#2E2E2E", "#2E2E2E", "#5b5b5b42"]
 export const lightgradient = ['white', 'white']
 const styles = StyleSheet.create({
   input: {
