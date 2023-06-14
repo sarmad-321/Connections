@@ -7,8 +7,12 @@ import { vh, vw } from '../../../utils/units';
 import MyStyles from './styles';
 import InputField from '../../../components/InputField';
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const styles = MyStyles();
+
+  const handleContinue = () => {
+    navigation.navigate("BottomTabNavigator")
+  }
   return (
     <ScreenWraper>
       <View
@@ -22,7 +26,9 @@ const LoginScreen = () => {
       <InputField type="email-address" label="Email" />
 
       <View style={styles.button}>
-        <MainButton>Continue</MainButton>
+        <MainButton
+          onPress={handleContinue}
+        >Continue</MainButton>
       </View>
     </ScreenWraper>
   );

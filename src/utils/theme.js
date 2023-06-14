@@ -1,4 +1,4 @@
-import {vh} from './units';
+import { vh } from './units';
 
 export const colors = {
   dark: {
@@ -15,6 +15,21 @@ export const colors = {
   },
 };
 
+
+
+export const tabActiveIconStyle = {
+  marginTop: vh,
+  width: vh * 4.2,
+  height: vh * 4.2,
+  resizeMode: 'contain',
+};
+
+
+export const tabIconStyle = {
+  width: vh * 3,
+  height: vh * 3,
+  resizeMode: 'contain',
+};
 export const fontColors = {
   light: {
     primary: 'black',
