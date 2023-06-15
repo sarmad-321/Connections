@@ -2,8 +2,16 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "src/assets/fonts/AbhayaLibre-ExtraBold.ttf",
+      "sha1": "9d2a7a176ee329a2f2478858843c614cf57a9472"
+    },
+    {
       "path": "src/assets/fonts/Franklin Gothic Medium Regular.ttf",
       "sha1": "cf773b90330eabd152c5d76705e874590ecc0e37"
+    },
+    {
+      "path": "src/assets/fonts/Poppins-Black.ttf",
+      "sha1": "e247a92158e112f8bf7b638c8d95381d66b00dbb"
     }
   ]
 }
