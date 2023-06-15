@@ -27,9 +27,9 @@ const LoginScreen = ({navigation}) => {
 
       <InputField type="email-address" label="Email" /> */}
       <ProfileCard />
+      {/* <ListProfileCard />
       <ListProfileCard />
-      <ListProfileCard />
-      <ListProfileCard />
+      <ListProfileCard /> */}
       <View style={styles.button}>
         <MainButton onPress={handleContinue}>Continue</MainButton>
       </View>
