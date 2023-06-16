@@ -8,28 +8,27 @@ import MyStyles from './styles';
 import InputField from '../../../components/InputField';
 import ProfileCard from '../../../components/ProfileCard';
 import ListProfileCard from '../../../components/ListProfileCard';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import Question from '../../../components/Question';
 
 const LoginScreen = ({navigation}) => {
   const styles = MyStyles();
 
   const handleContinue = () => {
-    navigation.navigate('BottomTabNavigator');
+    navigation.navigate('Verification');
   };
   return (
     <ScreenWraper>
-      {/* <View
-        style={styles.inputContainer}>
-        <FranklinMedium style={styles.h1}>
-          What's Your Email Address?
-        </FranklinMedium>
-      </View>
+      <SafeAreaView>
+        <Question text={`What's Your Email Address?`} />
 
+        <InputField type="email-address" label="Email" />
 
-      <InputField type="email-address" label="Email" /> */}
-      <ProfileCard />
-      {/* <ListProfileCard />
+        {/* <ProfileCard /> */}
+        {/* <ListProfileCard />
       <ListProfileCard />
       <ListProfileCard /> */}
+      </SafeAreaView>
       <View style={styles.button}>
         <MainButton onPress={handleContinue}>Continue</MainButton>
       </View>

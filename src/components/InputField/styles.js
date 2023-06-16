@@ -1,15 +1,15 @@
-import { vh, vw } from '../../utils/units';
+import {vh, vw} from '../../utils/units';
 
-import { StyleSheet } from 'react-native';
-import { colors, fontColors } from '../../utils/theme';
+import {StyleSheet} from 'react-native';
+import {colors, fontColors} from '../../utils/theme';
 
-export const darkgradient = ["#2E2E2E", "#2E2E2E", "#2E2E2E", "#5b5b5b42"]
-export const lightgradient = ['white', 'white']
+export const darkgradient = ['#2E2E2E', '#2E2E2E', '#2E2E2E', '#5b5b5b42'];
+export const lightgradient = ['white', 'white'];
 const styles = StyleSheet.create({
   input: {
     borderRadius: vw * 2,
     borderColor: colors.border,
-
+    marginVertical: vh * 1,
     flexDirection: 'row',
     height: vh * 6.5,
     width: '100%',
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 1, height: 1 },
+    shadowOffset: {width: 1, height: 1},
     shadowOpacity: 0.4,
     shadowRadius: 3,
     elevation: 6,

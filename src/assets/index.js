@@ -5,6 +5,7 @@ export const icons = {
   heart: require('./icons/heart.png'),
   location: require('./icons/location.png'),
   comment: require('./icons/comment.png'),
+  next: require('./icons/next.png'),
 };
 
 export const images = {

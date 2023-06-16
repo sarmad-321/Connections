@@ -13,7 +13,7 @@ const ScreenWraper = ({children}) => {
       colors={
         theme == 'dark' ? ['black', 'black', '#1E1E1E'] : ['white', 'white']
       }>
-      <ScrollView>{children}</ScrollView>
+      {children}
     </LinearGradient>
   );
 };
