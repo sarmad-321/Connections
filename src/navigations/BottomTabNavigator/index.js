@@ -5,7 +5,6 @@ import {colors, tabActiveIconStyle, tabIconStyle} from '../../utils/theme';
 import {icons} from '../../assets';
 import HomeNavigator from '../HomeNavigator';
 import MyStyles, {darkTabBar, lightTabBar} from './styles';
-import GradientBar from './GradientBar';
 import LinearGradient from 'react-native-linear-gradient';
 
 const BottomTabNavigator = () => {
