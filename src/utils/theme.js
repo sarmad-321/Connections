@@ -1,6 +1,7 @@
-import { vh } from './units';
+import {vh} from './units';
 
 export const colors = {
+  grey: '#858585',
   dark: {
     primary: 'black',
     secondary: '#265DC7',
@@ -15,15 +16,12 @@ export const colors = {
   },
 };
 
-
-
 export const tabActiveIconStyle = {
   marginTop: vh,
   width: vh * 4.2,
   height: vh * 4.2,
   resizeMode: 'contain',
 };
-
 
 export const tabIconStyle = {
   width: vh * 3,

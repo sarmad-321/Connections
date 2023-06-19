@@ -6,6 +6,10 @@ import Step1 from './Step1';
 import Step2 from './Step2';
 import NextButton from '../../../components/Buttons/NextButton';
 import styles from './styles';
+import Step3 from './Step3';
+import Step4 from './Step4';
+import Step5 from './Step5';
+import Step6 from './Step6';
 
 const SignUpScreen = () => {
   const ref = useRef(PagerView);
@@ -25,6 +29,10 @@ const SignUpScreen = () => {
         onPageSelected={onPageSelected}>
         <Step1 key="1" />
         <Step2 key="2" />
+        <Step3 key="3" />
+        <Step4 key="4" />
+        <Step5 key="5" />
+        <Step6 key="6" />
       </PagerView>
       <View style={styles.nextButton}>
         <NextButton onPress={handleContinue} />

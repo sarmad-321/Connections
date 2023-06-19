@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import ScreenWraper from '../../../../components/ScreenWrapper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Question from '../../../../components/Question';
@@ -12,8 +12,8 @@ const Step1 = () => {
     <SafeAreaView>
       {/* <Text>index</Text> */}
       <Question step={'01'} text={`What’s your Full Name?`} />
-      <InputField type="email-address" label="Enter Your First Name" />
-      <InputField type="email-address" label="Enter Your Last Name" />
+      <InputField label="Enter Your First Name" />
+      <InputField label="Enter Your Last Name" />
     </SafeAreaView>
   );
 };

@@ -6,11 +6,12 @@ const lightStyles = StyleSheet.create({
   h1: {
     fontSize: vh * 4,
     color: fontColors.light.primary,
+    width: vw * 60,
     marginTop: vh * 4,
   },
 
   inputContainer: {
-    height: vh * 20,
+    paddingTop: vh * 5,
     justifyContent: 'flex-end',
     paddingBottom: vh * 1.5,
   },
@@ -27,7 +28,7 @@ const darkStyles = StyleSheet.create({
     color: fontColors.dark.primary,
   },
   inputContainer: {
-    height: vh * 20,
+    paddingTop: vh * 5,
     justifyContent: 'flex-end',
     paddingBottom: vh * 1.5,
   },
