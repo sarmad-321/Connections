@@ -11,10 +11,10 @@ const darkStyles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     alignSelf: 'flex-start',
-    marginBottom: vh * 2.5,
     paddingHorizontal: vh * 3,
     height: vh * 10,
     borderRadius: vh * 1,
+    backgroundColor : colors.dark.primary,
     borderColor: colors.light.secondary,
     borderWidth: vh * 0.1,
     borderStyle: 'dashed',
@@ -31,7 +31,7 @@ const darkStyles = StyleSheet.create({
     position: 'absolute',
     zIndex: 1,
     right: 0,
-    top: vh * 0,
+    top: -vh * 2,
     alignItems: 'center',
     backgroundColor: colors.light.secondary,
     borderRadius: 100,
@@ -47,8 +47,10 @@ const darkStyles = StyleSheet.create({
     fontStyle: 'italic',
   },
   bottomShadow: {
-    overflow: 'hidden',
-    paddingBottom: vh * 0.6,
+    backgroundColor :"red",
+    height: vh * 13,
+    width : "100%",
+    paddingTop : vh*1.5
   },
 });
 const lightStyles = StyleSheet.create({
@@ -57,11 +59,11 @@ const lightStyles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     alignSelf: 'flex-start',
-    marginBottom: vh * 2.5,
     paddingHorizontal: vh * 3,
     height: vh * 10,
     borderRadius: vh * 1,
     borderColor: colors.light.secondary,
+    backgroundColor : colors.light.primary,
     borderWidth: vh * 0.1,
     borderStyle: 'dashed',
     shadowColor: '#000',
@@ -69,6 +71,7 @@ const lightStyles = StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 3,
     elevation: 6,
+    overflow : "visible"
   },
   icon: {
     height: '60%',
@@ -80,9 +83,9 @@ const lightStyles = StyleSheet.create({
     width: vh * 2,
     justifyContent: 'center',
     position: 'absolute',
-    zIndex: 1,
+    zIndex: 100,
     right: 0,
-    top: vh * 0,
+    top: - vh * 1,
     alignItems: 'center',
     backgroundColor: colors.light.secondary,
     borderRadius: 100,
@@ -93,8 +96,9 @@ const lightStyles = StyleSheet.create({
     fontStyle: 'italic',
   },
   bottomShadow: {
-    overflow: 'hidden',
-    paddingBottom: vh * 0.6,
+    height: vh * 12.5,
+    width : "100%",
+    paddingTop : vh*1.5
   },
 });
 

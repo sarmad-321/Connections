@@ -22,15 +22,14 @@ const PromptButton = props => {
   };
   return (
     <TouchableOpacity
-      style={styles.bottomShadow}
+      style={[styles.bottomShadow , props?.containerStyle]}
       onPress={handleOnPress}
-      styles={props?.containerStyle}
       activeOpacity={0.7}>
+
+      <LinearGradient colors={colors} style={[styles.container, props.styles]}>
       <View style={styles.iconView}>
         <Image source={icons.plus} style={styles.icon} />
       </View>
-
-      <LinearGradient colors={colors} style={[styles.container, props.styles]}>
         <Poppins style={styles.text}>Select a prompt</Poppins>
         <Poppins style={styles.text}>and write your answer</Poppins>
       </LinearGradient>
