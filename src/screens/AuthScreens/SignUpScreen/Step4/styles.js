@@ -16,6 +16,6 @@ export default styles = StyleSheet.create({
     width: '100%',
   },
   button: {
-    marginHorizontal: '5%',
+    width: '90%',
   },
 });

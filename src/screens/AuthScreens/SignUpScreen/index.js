@@ -11,11 +11,16 @@ import Step4 from './Step4';
 import Step5 from './Step5';
 import Step6 from './Step6';
 
-const SignUpScreen = () => {
+const SignUpScreen = ({navigation}) => {
   const ref = useRef(PagerView);
   const [currentIndex, setCurrentIndex] = useState(0);
   const handleContinue = () => {
+    if (currentIndex == 5) {
+      console.log('navigating');
+      navigation.navigate('PromptScreen');
+    }
     ref.current.setPage(currentIndex + 1);
+    console.log(currentIndex);
   };
   const onPageSelected = e => {
     setCurrentIndex(e.nativeEvent.position);

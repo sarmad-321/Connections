@@ -1,13 +1,15 @@
-import {StyleSheet, Text, View, Image, useColorScheme} from 'react-native';
+import {StyleSheet, Text, View, useColorScheme, Image} from 'react-native';
 import React from 'react';
-import LinearGradient from 'react-native-linear-gradient';
-import MyStyles, {darkGradient, gradient} from './styles';
-import Poppins from '../../TextWrapper/Poppins';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import Poppins from '../../TextWrapper/Poppins';
+import MyStyles, {darkGradient, gradient} from './styles';
+import LinearGradient from 'react-native-linear-gradient';
+import {icons} from '../../../assets';
 
-const SelectButton = props => {
+const PromptButton = props => {
   const styles = MyStyles();
   const theme = useColorScheme();
+
   const colors = props.selectedGradient
     ? props.selectedGradient
     : theme === 'dark'
@@ -24,18 +26,18 @@ const SelectButton = props => {
       onPress={handleOnPress}
       styles={props?.containerStyle}
       activeOpacity={0.7}>
+      <View style={styles.iconView}>
+        <Image source={icons.plus} style={styles.icon} />
+      </View>
+
       <LinearGradient colors={colors} style={[styles.container, props.styles]}>
-        {props?.icon ? (
-          <Image source={props.icon} style={[styles.icon, props.iconStyle]} />
-        ) : null}
-        {props?.text ? (
-          <Poppins style={[styles.text, props.textStyles]}>
-            {props.text}
-          </Poppins>
-        ) : null}
+        <Poppins style={styles.text}>Select a prompt</Poppins>
+        <Poppins style={styles.text}>and write your answer</Poppins>
       </LinearGradient>
     </TouchableOpacity>
   );
 };
 
-export default SelectButton;
+export default PromptButton;
+
+const styles = StyleSheet.create({});

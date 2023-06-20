@@ -26,6 +26,7 @@ const darkStyles = StyleSheet.create({
     fontSize: vh * 4,
     width: vw * 60,
     color: fontColors.dark.primary,
+    marginTop: vh * 4,
   },
   inputContainer: {
     paddingTop: vh * 5,
