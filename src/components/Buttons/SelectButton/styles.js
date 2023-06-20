@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View, useColorScheme} from 'react-native';
 import React from 'react';
-import {vh} from '../../../utils/units';
+import {vh, vw} from '../../../utils/units';
 import {colors} from '../../../utils/theme';
 
 export const gradient = ['white', 'white'];
@@ -11,8 +11,8 @@ const darkStyles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignSelf: 'flex-start',
-    paddingHorizontal: vh * 5,
     height: vh * 5,
+    width : vw*28,
     borderRadius: vh * 1,
     margin: vh * 1,
     shadowColor: '#000',
@@ -45,8 +45,8 @@ const lightStyles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignSelf: 'flex-start',
-    paddingHorizontal: vh * 5,
     height: vh * 5,
+    width : vw*28,
     borderRadius: vh * 1,
     margin: vh * 1,
     shadowColor: '#000',

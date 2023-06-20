@@ -18,7 +18,7 @@ const Step6 = () => {
     <SafeAreaView>
       <Question step={'06'} text={`Pair your pictures & videos with prompts`} />
 
-      <FlatList
+      {/* <FlatList
         contentContainerStyle={styles.container}
         numColumns={3}
         data={[1, 2, 3, 4, 5, 6]}
@@ -29,7 +29,20 @@ const Step6 = () => {
             styles={styles.button}
           />
         )}
-      />
+      /> */}
+        <View  style={styles.promptContainer}>
+      {
+        [1,2,3,4,5,6].map(item => { 
+          return (
+            <SelectButton
+            icon={icons.plus}
+            iconStyle={styles.icon}
+            styles={styles.button}
+            />
+            )
+          })
+      }
+          </View>
       <View style={styles.switchDetail}>
         <Switch
           trackColor={{false: '#767577', true: '#81b0ff'}}

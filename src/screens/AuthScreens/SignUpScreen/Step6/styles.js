@@ -45,6 +45,11 @@ const lightStyles = StyleSheet.create({
     overflow: 'hidden',
     width: vh * 2,
   },
+  promptContainer : { 
+    flexDirection : "row",
+    justifyContent : "space-between",
+    flexWrap : "wrap"
+  },
 });
 
 const darkStyles = StyleSheet.create({
@@ -71,6 +76,9 @@ const darkStyles = StyleSheet.create({
     borderRadius: 100,
     overflow: 'hidden',
     width: vh * 2,
+  },
+  promptContainer : { 
+    flexDirection : "row"
   },
   // container: {
   //   width: '100%',
