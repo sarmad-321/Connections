@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, useColorScheme} from 'react-native';
 import React from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -15,6 +15,7 @@ import Poppins from '../../../components/TextWrapper/Poppins';
 import MainButton from '../../../components/Buttons/MainButton';
 
 const VerificationScreen = ({navigation}) => {
+  const theme = useColorScheme();
   const styles = MyStyles();
   const handleContinue = () => {
     navigation.navigate('SignUp');
@@ -30,8 +31,10 @@ const VerificationScreen = ({navigation}) => {
           containerStyle={styles.textInputContainer}
           textInputStyle={styles.roundedTextInput}
           inputCount={4}
-          offTintColor={colors.light.primary}
-          tintColor={colors.dark.secondary}
+          offTintColor={
+            theme == 'dark' ? colors.dark.primary : colors.light.primary
+          }
+          tintColor={theme == 'dark' ? colors.grey : colors.light.secondary}
           inputCellLength={1}
         />
         <TouchableOpacity activeOpacity={0.7} style={styles.touch}>

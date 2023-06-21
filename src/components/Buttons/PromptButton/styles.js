@@ -14,7 +14,7 @@ const darkStyles = StyleSheet.create({
     paddingHorizontal: vh * 3,
     height: vh * 10,
     borderRadius: vh * 1,
-    backgroundColor : colors.dark.primary,
+    backgroundColor: colors.dark.primary,
     borderColor: colors.light.secondary,
     borderWidth: vh * 0.1,
     borderStyle: 'dashed',
@@ -47,10 +47,10 @@ const darkStyles = StyleSheet.create({
     fontStyle: 'italic',
   },
   bottomShadow: {
-    backgroundColor :"red",
+    backgroundColor: 'red',
     height: vh * 13,
-    width : "100%",
-    paddingTop : vh*1.5
+    width: '100%',
+    paddingTop: vh * 1.5,
   },
 });
 const lightStyles = StyleSheet.create({
@@ -63,7 +63,7 @@ const lightStyles = StyleSheet.create({
     height: vh * 10,
     borderRadius: vh * 1,
     borderColor: colors.light.secondary,
-    backgroundColor : colors.light.primary,
+    backgroundColor: colors.light.primary,
     borderWidth: vh * 0.1,
     borderStyle: 'dashed',
     shadowColor: '#000',
@@ -71,7 +71,7 @@ const lightStyles = StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 3,
     elevation: 6,
-    overflow : "visible"
+    overflow: 'visible',
   },
   icon: {
     height: '60%',
@@ -85,7 +85,7 @@ const lightStyles = StyleSheet.create({
     position: 'absolute',
     zIndex: 100,
     right: 0,
-    top: - vh * 1,
+    top: -vh * 1,
     alignItems: 'center',
     backgroundColor: colors.light.secondary,
     borderRadius: 100,
@@ -97,8 +97,8 @@ const lightStyles = StyleSheet.create({
   },
   bottomShadow: {
     height: vh * 12.5,
-    width : "100%",
-    paddingTop : vh*1.5
+    width: '100%',
+    paddingTop: vh * 1.5,
   },
 });
 
