@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View, useColorScheme, Image} from 'react-native';
-import React, {useState , useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Question from '../../../../components/Question';
 import SelectButton from '../../../../components/Buttons/SelectButton';
@@ -14,24 +14,22 @@ const Step6 = () => {
   const styles = MyStyles();
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  const infoPopup = useRef()
+  const infoPopup = useRef();
   return (
     <SafeAreaView>
       <Question step={'06'} text={`Pair your pictures & videos with prompts`} />
 
-        <View  style={styles.promptContainer}>
-      {
-        [1,2,3,4,5,6].map(item => { 
+      <View style={styles.promptContainer}>
+        {[1, 2, 3, 4, 5, 6].map(item => {
           return (
             <SelectButton
-            icon={icons.plus}
-            iconStyle={styles.icon}
-            styles={styles.button}
+              icon={icons.plus}
+              iconStyle={styles.icon}
+              styles={styles.button}
             />
-            )
-          })
-      }
-          </View>
+          );
+        })}
+      </View>
       <View style={styles.switchDetail}>
         <Switch
           trackColor={{false: '#767577', true: '#81b0ff'}}
@@ -42,14 +40,15 @@ const Step6 = () => {
         />
         <FranklinMedium style={styles.h3}>Blind Matching</FranklinMedium>
         <TouchableOpacity
-        onPress={()=> infoPopup.current.show()}
-        activeOpacity={0.7} style={styles.circle}>
+          onPress={() => infoPopup.current.show()}
+          activeOpacity={0.7}
+          style={styles.circle}>
           <Image source={icons.info} style={styles.img} />
         </TouchableOpacity>
-        <GeneralPopup 
-        reference = {infoPopup}
-        title = {"Title"}
-        message = {"Test Message.."}
+        <GeneralPopup
+          reference={infoPopup}
+          title={'Title'}
+          message={'Test Message..'}
         />
       </View>
     </SafeAreaView>

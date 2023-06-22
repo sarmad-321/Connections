@@ -5,9 +5,10 @@ import ScreenWraper from '../../../../components/ScreenWrapper';
 import Question from '../../../../components/Question';
 import PromptButton from '../../../../components/Buttons/PromptButton';
 
-const Prompt1 = () => {
+const Prompt1 = ({navigation}) => {
   const handleClick = () => {
     console.log('test');
+    navigation.navigate('Prompt2');
   };
   return (
     <ScreenWraper>

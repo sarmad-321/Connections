@@ -13,11 +13,11 @@ const lightStyles = StyleSheet.create({
     marginRight: '1%',
     marginVertical: vh * 1,
   },
-  // container: {
-  //   width: '100%',
-  //   backgroundColor: 'red',
-  //   justifyContent: 'space-evenly',
-  // },
+  container: {
+    width: '100%',
+    backgroundColor: 'red',
+    justifyContent: 'space-evenly',
+  },
   icon: {
     tintColor: colors.light.secondary,
   },
@@ -45,10 +45,10 @@ const lightStyles = StyleSheet.create({
     overflow: 'hidden',
     width: vh * 2,
   },
-  promptContainer : { 
-    flexDirection : "row",
-    justifyContent : "space-between",
-    flexWrap : "wrap"
+  promptContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
 });
 
@@ -77,8 +77,10 @@ const darkStyles = StyleSheet.create({
     overflow: 'hidden',
     width: vh * 2,
   },
-  promptContainer : { 
-    flexDirection : "row"
+  promptContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
   // container: {
   //   width: '100%',

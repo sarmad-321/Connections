@@ -4,9 +4,9 @@ import MyStyles from './styles';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-gesture-handler';
 import LinearGradient from 'react-native-linear-gradient';
-const ScreenWraper = ({children}) => {
+const ViewWraper = ({children}) => {
   const styles = MyStyles();
   return <SafeAreaView style={styles.container}>{children}</SafeAreaView>;
 };
 
-export default ScreenWraper;
+export default ViewWraper;

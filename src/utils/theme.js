@@ -2,6 +2,8 @@ import {vh} from './units';
 
 export const colors = {
   grey: '#858585',
+  greyText: 'rgba(15, 15, 15, 0.8)',
+  offwhite: 'rgba(255, 255, 255, 0.8)',
   transparentShade: '#00000066',
   dark: {
     primary: 'black',

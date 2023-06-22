@@ -11,6 +11,8 @@ export const icons = {
   camera: require('./icons/camera.png'),
   plus: require('./icons/plus.png'),
   info: require('./icons/info.png'),
+  cross: require('./icons/cross.png'),
+  endline: require('./icons/endLine.png'),
 };
 
 export const images = {
