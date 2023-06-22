@@ -16,6 +16,10 @@ export const icons = {
   goBack: require('./icons/return.png'),
   home: require('./icons/home.png'),
   blind: require('./icons/blind.png'),
+  age: require('./icons/age.png'),
+  country: require('./icons/country.png'),
+  graduation: require('./icons/graduation.png'),
+  scale: require('./icons/scale.png'),
 };
 
 export const images = {
