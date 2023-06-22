@@ -13,6 +13,8 @@ export const icons = {
   info: require('./icons/info.png'),
   cross: require('./icons/cross.png'),
   endline: require('./icons/endLine.png'),
+  goBack: require('./icons/return.png'),
+  home: require('./icons/home.png'),
 };
 
 export const images = {

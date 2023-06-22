@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {vh, vw} from '../../utils/units';
 import {colors} from '../../utils/theme';
-
+export const gradient = ['rgba(0,0,0,0) 0', 'black'];
 const styles = StyleSheet.create({
   imageContainer: {
     height: vh * 20,
@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'space-between',
   },
+  fill: {
+    flex: 1,
+  },
 
   iconsContainer: {
     flexDirection: 'row',
@@ -42,7 +45,7 @@ const styles = StyleSheet.create({
   },
   h1: {
     color: colors.light.primary,
-    fontSize: vh * 3.5,
+    fontSize: vh * 3,
   },
   h2: {
     paddingHorizontal: '2%',

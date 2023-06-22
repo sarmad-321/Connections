@@ -33,11 +33,12 @@ const BottomTabNavigator = () => {
           tabBarIcon: ({focused}) => (
             <View style={[styles.tabButton, focused && styles.focusedView]}>
               <Image
-                source={focused ? icons.eye_on : icons.eye_off}
+                source={focused ? icons.home : icons.eye_off}
                 style={
                   focused
                     ? {
                         ...tabActiveIconStyle,
+                        tintColor: colors.dark.primary,
                       }
                     : {
                         ...tabIconStyle,

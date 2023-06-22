@@ -1,7 +1,7 @@
 import {Image, StyleSheet, Text, View, useColorScheme} from 'react-native';
 import React from 'react';
 import ScreenWraper from '../../../../components/ScreenWrapper';
-import ShadowView from '../../../../components/ShadowView.js';
+import ShadowView from '../../../../components/ShadowView/index.js';
 import MyStyles from './styles';
 import FranklinMedium from '../../../../components/TextWrapper/FranklinMedium';
 import Poppins from '../../../../components/TextWrapper/Poppins';

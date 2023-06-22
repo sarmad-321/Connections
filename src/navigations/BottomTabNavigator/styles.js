@@ -13,6 +13,11 @@ const lightStyles = StyleSheet.create({
     // borderTopColor: 'green',
     // width: '80%',
     borderTopWidth: 0,
+    shadowColor: '#000',
+    shadowOffset: {width: 2, height: 2},
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    elevation: 6,
   },
   gradientBar: {
     flex: 1,

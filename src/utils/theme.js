@@ -3,6 +3,7 @@ import {vh} from './units';
 export const colors = {
   grey: '#858585',
   greyText: 'rgba(15, 15, 15, 0.8)',
+  blackheaderbutton: '#202020',
   offwhite: 'rgba(255, 255, 255, 0.8)',
   transparentShade: '#00000066',
   dark: {
@@ -24,6 +25,8 @@ export const tabActiveIconStyle = {
   width: vh * 4.2,
   height: vh * 4.2,
   resizeMode: 'contain',
+
+  borderRadius: 100,
 };
 
 export const tabIconStyle = {
