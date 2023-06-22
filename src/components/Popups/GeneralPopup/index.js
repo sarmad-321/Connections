@@ -1,4 +1,4 @@
-import {Image, View} from 'react-native';
+import {Image, Text, View} from 'react-native';
 import React, {useImperativeHandle, useRef, useState} from 'react';
 import MainButton from '../../Buttons/MainButton';
 import PopupWrapper from '../PopupWrapper';
@@ -9,10 +9,11 @@ import {colors} from '../../../utils/theme';
 import MyStyles from './styles';
 import AbhayaLibre from '../../TextWrapper/AbhayaLibre';
 import FranklinMedium from '../../TextWrapper/FranklinMedium';
+import Poppins from '../../TextWrapper/Poppins';
 
 const GeneralPopup = props => {
   const popup = useRef(null);
-  const styles = MyStyles()
+  const styles = MyStyles();
   const [accept, setAccept] = useState(false);
   useImperativeHandle(props?.reference, () => ({
     hide: hide,
@@ -49,17 +50,17 @@ const GeneralPopup = props => {
       contentContainerStyle={styles.contentContainer}
       reference={popup}>
       <View style={[styles.container]}>
-          <Image
-            source={props.icon ? props.icon : icons.info}
-            style={styles.icon}
-          />
-        {props?.title ?
-          <AbhayaLibre style={styles.title}>{props.title}</AbhayaLibre>
-        :
+        <Image
+          source={props.icon ? props.icon : icons.blind}
+          style={styles.icon}
+        />
+        {props?.title ? (
+          <FranklinMedium style={styles.title}>{props.title}</FranklinMedium>
+        ) : (
           <View style={styles.marginTop} />
-        }
+        )}
         {props.message && (
-          <FranklinMedium style={styles.message}>{props.message}</FranklinMedium>
+          <Poppins style={styles.message}>{props.message}</Poppins>
         )}
         {props.onNo ? (
           <View style={styles.row}>
@@ -74,10 +75,9 @@ const GeneralPopup = props => {
           </View>
         ) : (
           <MainButton style={[styles.yesBtn, props?.yesBtn]} onPress={onYes}>
-            {props.successTitle ? props.successTitle : 'Ok'}
+            {props.successTitle ? props.successTitle : 'Continue'}
           </MainButton>
         )}
-
       </View>
     </PopupWrapper>
   );

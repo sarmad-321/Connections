@@ -47,8 +47,10 @@ const Step6 = () => {
         </TouchableOpacity>
         <GeneralPopup
           reference={infoPopup}
-          title={'Title'}
-          message={'Test Message..'}
+          title={'Blind Date'}
+          message={
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis vestibulum est, a faucibus.. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis vestibulum est, a faucibus.'
+          }
         />
       </View>
     </SafeAreaView>

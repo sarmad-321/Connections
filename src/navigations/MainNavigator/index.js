@@ -9,11 +9,11 @@ const MainNavigator = () => {
       <RootStack.Navigator
         screenOptions={{headerShown: false}}
         initialRouteName="AuthNavigator">
-        {/* <RootStack.Screen
+        <RootStack.Screen
           name="AuthNavigator"
           component={AuthNavigator}
-          options={{ headerShown: false }}
-        /> */}
+          options={{headerShown: false}}
+        />
         <RootStack.Screen
           name="BottomTabNavigator"
           component={BottomTabNavigator}

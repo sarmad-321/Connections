@@ -15,6 +15,7 @@ export const icons = {
   endline: require('./icons/endLine.png'),
   goBack: require('./icons/return.png'),
   home: require('./icons/home.png'),
+  blind: require('./icons/blind.png'),
 };
 
 export const images = {
