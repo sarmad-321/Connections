@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, {useRef, useState} from 'react';
 import {
   View,
   TextInput,
@@ -9,15 +9,20 @@ import {
   useColorScheme,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { icons } from '../../assets';
-import { colors, fontColors } from '../../utils/theme';
-import { vh, vw } from '../../utils/units';
+import {icons} from '../../assets';
+import {colors, fontColors} from '../../utils/theme';
+import {vh, vw} from '../../utils/units';
 // import OutfitRegular from '../Wrappers/Text/OutfitRegular';
-import styles, { darkgradient, gradient, lightgradient } from './styles';
+import styles, {darkgradient, gradient, lightgradient} from './styles';
 
 const InputField = React.forwardRef((props, ref) => {
   const theme = useColorScheme();
   let activeColors = colors[theme];
+  const gradientCombination = props.selectedGradient
+    ? props.selectedGradient
+    : theme === 'dark'
+    ? darkgradient
+    : lightgradient;
   const [showPassword, setShowPassword] = useState(props.secureTextEntry);
   const borderAnimation = useRef(new Animated.Value(0)).current;
   // const [focus, setFocus] = useState();
@@ -47,14 +52,9 @@ const InputField = React.forwardRef((props, ref) => {
           {props.label} {props.required && '*'}
         </Text>
       )} */}
-      <View
-        style={styles.bottomshadow}>
+      <View style={styles.bottomshadow}>
         <LinearGradient
-          colors={
-            theme == 'dark'
-              ? darkgradient
-              : lightgradient
-          }
+          colors={gradientCombination}
           style={[styles.input, props.containerStyle]}>
           {props.icon && (
             <Image
@@ -83,13 +83,13 @@ const InputField = React.forwardRef((props, ref) => {
               // setFocus(false);
             }}
             autoCapitalize={false}
-            style={{ width: '100%', height: '100%', color: activeColors.btnText }}
+            style={{width: '100%', height: '100%', color: activeColors.btnText}}
             {...props}
             secureTextEntry={showPassword}
           />
           {props.rightIcon && (
             <TouchableOpacity
-              style={[styles.rightIconContainer, { right: 0 }]}
+              style={[styles.rightIconContainer, {right: 0}]}
               onPress={props.onIconPress}>
               <Image source={props.rightIcon} style={[styles.rightIcon2]} />
             </TouchableOpacity>

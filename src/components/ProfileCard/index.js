@@ -8,7 +8,12 @@ import ActiveStatus from '../ActiveStatus';
 import TextIcon from '../Buttons/TextIcon';
 import LikeIcon from '../Buttons/LikeIcon';
 
-const ProfileCard = () => {
+const ProfileCard = props => {
+  const handleOnPress = () => {
+    if (props?.onPress) {
+      props.onPress();
+    }
+  };
   return (
     <ImageBackground style={styles.imageContainer} source={images.profileDummy}>
       <View style={styles.margin}>
@@ -22,7 +27,7 @@ const ProfileCard = () => {
         </View>
 
         <View style={styles.iconsContainer}>
-          <TextIcon />
+          <TextIcon onPress={handleOnPress} />
           <LikeIcon />
         </View>
       </View>

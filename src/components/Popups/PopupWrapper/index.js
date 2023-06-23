@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   contentContainer: {
-    backgroundColor: "white",
+    // backgroundColor: "white",
     width: vw * 100,
     position: 'absolute',
   },
