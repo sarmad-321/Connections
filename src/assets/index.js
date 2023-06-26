@@ -20,9 +20,11 @@ export const icons = {
   country: require('./icons/country.png'),
   graduation: require('./icons/graduation.png'),
   scale: require('./icons/scale.png'),
+  blindbutton: require('./icons/blindbutton.png'),
 };
 
 export const images = {
   profileDummy: require('./images/profileDummy.png'),
   map: require('./images/map.png'),
+  likes: require('./images/likes.png'),
 };

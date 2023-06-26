@@ -1,8 +1,12 @@
 import {StyleSheet, useColorScheme} from 'react-native';
 import {vh} from '../../utils/units';
 import {colors} from '../../utils/theme';
-
+export const lightGradient = [colors.light.primary, colors.light.primary];
+export const darkGradient = ['#5B5B5B', '#2E2E2E'];
 const lightStyles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+  },
   header: {
     height: vh * 8,
     alignItems: 'center',
@@ -23,6 +27,7 @@ const lightStyles = StyleSheet.create({
   imgContainer: {
     height: vh * 5,
     width: vh * 5,
+    marginRight: vh * 1,
     // borderRadius: vh * 1,
     borderBottomLeftRadius: vh * 1,
     borderBottomRightRadius: vh * 1,
@@ -39,10 +44,14 @@ const lightStyles = StyleSheet.create({
     resizeMode: 'contain',
     width: '70%',
     height: '70%',
+    tintColor: colors.light.secondary,
   },
 });
 
 const darkStyles = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+  },
   header: {
     height: vh * 8,
     alignItems: 'center',
@@ -64,6 +73,7 @@ const darkStyles = StyleSheet.create({
     height: vh * 5,
     width: vh * 5,
     // borderRadius: vh * 1,
+    marginRight: vh * 1,
     borderRadius: vh * 0.5,
     backgroundColor: colors.blackheaderbutton,
     alignItems: 'center',
@@ -78,6 +88,7 @@ const darkStyles = StyleSheet.create({
     resizeMode: 'contain',
     width: '70%',
     height: '70%',
+    tintColor: colors.light.primary,
   },
 });
 

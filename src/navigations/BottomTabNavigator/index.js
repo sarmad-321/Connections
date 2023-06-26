@@ -6,6 +6,7 @@ import {icons} from '../../assets';
 import HomeNavigator from '../HomeNavigator';
 import MyStyles, {darkTabBar, lightTabBar} from './styles';
 import LinearGradient from 'react-native-linear-gradient';
+import LikeNavigator from '../LikeNavigator';
 
 const BottomTabNavigator = () => {
   const BottomTab = createBottomTabNavigator();
@@ -29,6 +30,30 @@ const BottomTabNavigator = () => {
       <BottomTab.Screen
         name="Home"
         component={HomeNavigator}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View style={[styles.tabButton, focused && styles.focusedView]}>
+              <Image
+                source={focused ? icons.home : icons.eye_off}
+                style={
+                  focused
+                    ? {
+                        ...tabActiveIconStyle,
+                        tintColor: colors.dark.primary,
+                      }
+                    : {
+                        ...tabIconStyle,
+                        tintColor: colors.light.primary,
+                      }
+                }
+              />
+            </View>
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Like"
+        component={LikeNavigator}
         options={{
           tabBarIcon: ({focused}) => (
             <View style={[styles.tabButton, focused && styles.focusedView]}>

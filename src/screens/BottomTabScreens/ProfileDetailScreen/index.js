@@ -23,10 +23,11 @@ const ProfileDetailScreen = () => {
     <ScreenWraper>
       <SafeAreaView>
         <ScrollView>
-          <ProfileCard onPress={HandlePress} />
+          <ProfileCard like comment onPress={HandlePress} />
           <QuoteCard
             text={'Lorem Ipsum is simply dummy text of the printing'}
             heading={'Getting Rid of dead bodies'}
+            like
           />
           <CommentPopup
             reference={infoPopup}

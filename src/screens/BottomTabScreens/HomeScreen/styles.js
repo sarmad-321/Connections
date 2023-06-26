@@ -1,7 +1,8 @@
 import {StyleSheet, useColorScheme} from 'react-native';
 import {vh, vw} from '../../../utils/units';
 import {colors, fontColors} from '../../../utils/theme';
-
+export const lightGradient = [colors.light.secondary, colors.light.secondary];
+export const darkGradient = ['#5B5B5B', '#2E2E2E'];
 const lightStyles = StyleSheet.create({
   header: {
     height: vh * 10,

@@ -27,8 +27,8 @@ const ProfileCard = props => {
         </View>
 
         <View style={styles.iconsContainer}>
-          <TextIcon onPress={handleOnPress} />
-          <LikeIcon />
+          {props?.comment ? <TextIcon onPress={handleOnPress} /> : null}
+          {props?.like ? <LikeIcon /> : null}
         </View>
       </View>
     </ImageBackground>

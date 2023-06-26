@@ -1,9 +1,15 @@
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  useColorScheme,
+} from 'react-native';
 import React from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import HomeHeader from '../../../components/HomeHeader';
-import MyStyles from './styles';
+import MyStyles, {darkGradient, lightGradient} from './styles';
 import {icons} from '../../../assets';
 import ProfileCard from '../../../components/ProfileCard';
 import ListProfileCard from '../../../components/ListProfileCard';
@@ -11,6 +17,7 @@ import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import {vh} from '../../../utils/units';
 
 const HomeScreen = ({navigation}) => {
+  const theme = useColorScheme();
   const styles = MyStyles();
   let data = [
     {name: 'Kelvin', age: '23', city: 'LOS ANGELES', distance: '20 KMS AWAY'},
@@ -26,7 +33,11 @@ const HomeScreen = ({navigation}) => {
   return (
     <ScreenWraper>
       <SafeAreaView>
-        <HomeHeader title={'Welcome John'} />
+        <HomeHeader
+          title={'Welcome John 💖🥰'}
+          back
+          color={theme == 'dark' ? darkGradient : lightGradient}
+        />
         <ScrollView>
           <FlatList
             data={data}
