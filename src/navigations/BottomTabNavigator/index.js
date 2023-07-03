@@ -7,6 +7,7 @@ import HomeNavigator from '../HomeNavigator';
 import MyStyles, {darkTabBar, lightTabBar} from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import LikeNavigator from '../LikeNavigator';
+import InboxNavigator from '../InboxNavigator';
 
 const BottomTabNavigator = () => {
   const BottomTab = createBottomTabNavigator();
@@ -58,7 +59,31 @@ const BottomTabNavigator = () => {
           tabBarIcon: ({focused}) => (
             <View style={[styles.tabButton, focused && styles.focusedView]}>
               <Image
-                source={focused ? icons.home : icons.eye_off}
+                source={focused ? icons.heart : icons.heart}
+                style={
+                  focused
+                    ? {
+                        ...tabActiveIconStyle,
+                        tintColor: colors.dark.primary,
+                      }
+                    : {
+                        ...tabIconStyle,
+                        tintColor: colors.light.primary,
+                      }
+                }
+              />
+            </View>
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="inbox"
+        component={InboxNavigator}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View style={[styles.tabButton, focused && styles.focusedView]}>
+              <Image
+                source={focused ? icons.comment : icons.comment}
                 style={
                   focused
                     ? {

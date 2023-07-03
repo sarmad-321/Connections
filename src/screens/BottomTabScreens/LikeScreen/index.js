@@ -10,7 +10,7 @@ import QuoteCard from '../../../components/QuoteCard';
 import ProfileCard from '../../../components/ProfileCard';
 import {vh} from '../../../utils/units';
 import SelectButton from '../../../components/Buttons/SelectButton';
-import {icons} from '../../../assets';
+import {icons, images} from '../../../assets';
 import MyStyles, {
   darkGradient,
   darkSelectedGradient,
@@ -41,7 +41,7 @@ const LikeScreen = () => {
         {isEmpty ? (
           <>
             <HomeHeader title={'Likes You'} />
-            <EmptyLikes />
+            <EmptyLikes title={'Like'} image={images.likes} />
           </>
         ) : (
           <>

@@ -6,15 +6,15 @@ import ProfileDetailScreen from '../../screens/BottomTabScreens/ProfileDetailScr
 import LikeScreen from '../../screens/BottomTabScreens/LikeScreen';
 
 const LikeNavigator = () => {
-  const HomeStack = createStackNavigator();
+  const LikeStack = createStackNavigator();
 
   return (
-    <HomeStack.Navigator
+    <LikeStack.Navigator
       headerMode="none"
       screenOptions={{headerShown: false}}
       initialRouteName="Like">
-      <HomeStack.Screen name="Like" component={LikeScreen} />
-    </HomeStack.Navigator>
+      <LikeStack.Screen name="Like" component={LikeScreen} />
+    </LikeStack.Navigator>
   );
 };
 

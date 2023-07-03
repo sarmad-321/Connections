@@ -6,16 +6,16 @@ import Poppins from '../TextWrapper/Poppins';
 import MainButton from '../Buttons/MainButton';
 import MyStyles from './styles';
 
-const EmptyLikes = () => {
+const EmptyLikes = props => {
   const styles = MyStyles();
   return (
     <View>
       <View style={styles.imgcontainer}>
-        <Image source={images.likes} style={styles.img} />
+        <Image source={props?.image} style={styles.img} />
       </View>
       <View style={styles.textBox}>
         <FranklinMedium style={styles.h1}>
-          You’re new here! No Like Yet
+          You’re new here! No {props?.title} Yet
         </FranklinMedium>
         <Poppins style={styles.h2}>
           Lorem Ipsum is simply dummy text of the printing and typesetting
