@@ -14,9 +14,10 @@ const lightStyles = StyleSheet.create({
 
 const darkStyles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
+    height: '100%',
+    width : "100%",
     paddingHorizontal: vw * 5,
-    backgroundColor: colors.dark.primary,
   },
 });
 
