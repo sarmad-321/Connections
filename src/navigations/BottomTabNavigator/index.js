@@ -9,6 +9,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import LikeNavigator from '../LikeNavigator';
 import InboxNavigator from '../InboxNavigator';
 import ProfileScreen from '../../screens/BottomTabScreens/ProfileScreen';
+import ProfileNavigator from '../ProfileNavigator';
 
 const BottomTabNavigator = () => {
   const BottomTab = createBottomTabNavigator();
@@ -36,12 +37,12 @@ const BottomTabNavigator = () => {
           tabBarIcon: ({focused}) => (
             <View style={[styles.tabButton, focused && styles.focusedView]}>
               <Image
-                source={focused ? icons.home : icons.eye_off}
+                source={focused ? icons.home : icons.home}
                 style={
                   focused
                     ? {
                         ...tabActiveIconStyle,
-                        tintColor: colors.dark.primary,
+                        tintColor: colors.dark.secondary,
                       }
                     : {
                         ...tabIconStyle,
@@ -65,7 +66,7 @@ const BottomTabNavigator = () => {
                   focused
                     ? {
                         ...tabActiveIconStyle,
-                        tintColor: colors.dark.primary,
+                        tintColor: colors.dark.secondary,
                       }
                     : {
                         ...tabIconStyle,
@@ -89,7 +90,7 @@ const BottomTabNavigator = () => {
                   focused
                     ? {
                         ...tabActiveIconStyle,
-                        tintColor: colors.dark.primary,
+                        tintColor: colors.dark.secondary,
                       }
                     : {
                         ...tabIconStyle,
@@ -103,7 +104,7 @@ const BottomTabNavigator = () => {
       />
       <BottomTab.Screen
         name="profile"
-        component={ProfileScreen}
+        component={ProfileNavigator}
         options={{
           tabBarIcon: ({focused}) => (
             <View style={[styles.tabButton, focused && styles.focusedView]}>
@@ -113,7 +114,7 @@ const BottomTabNavigator = () => {
                   focused
                     ? {
                         ...tabActiveIconStyle,
-                        tintColor: colors.dark.primary,
+                        tintColor: colors.dark.secondary,
                       }
                     : {
                         ...tabIconStyle,

@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, View, useColorScheme} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import ScreenWraper from '../../../../components/ScreenWrapper';
 import ShadowView from '../../../../components/ShadowView/index.js';
 import MyStyles from './styles';
@@ -8,11 +8,16 @@ import Poppins from '../../../../components/TextWrapper/Poppins';
 import MainButton from '../../../../components/Buttons/MainButton';
 import {vh} from '../../../../utils/units';
 import {icons} from '../../../../assets';
+import {TextInput} from 'react-native-gesture-handler';
+import {colors} from '../../../../utils/theme';
+import MultiLineTextInput from '../../../../components/MultiLineTextInput';
 
 const Prompt3 = ({navigation}) => {
   const HandlePress = () => {
-    navigation.navigate('Prompt4');
+    navigation.navigate('BottomTabNavigator');
   };
+
+  const theme = useColorScheme();
   const styles = MyStyles();
   return (
     <ScreenWraper>
@@ -22,9 +27,12 @@ const Prompt3 = ({navigation}) => {
             <FranklinMedium style={styles.h1}>
               Do you Agree Or Disagree That?
             </FranklinMedium>
-            <Poppins style={styles.h2}>
+            <MultiLineTextInput
+              label={'Lorem Ipsum is simply dummy text of the printing.'}
+            />
+            {/* <Poppins style={styles.h2}>
               Lorem Ipsum is simply dummy text of the printing.
-            </Poppins>
+            </Poppins> */}
             <View
               style={{
                 flex: 1,

@@ -8,13 +8,15 @@ import MyStyles from './styles';
 import OTPTextView from 'react-native-otp-textinput';
 import Question from '../../../components/Question';
 import LinearGradient from 'react-native-linear-gradient';
-import {DarkTheme} from '@react-navigation/native';
+import {DarkTheme, useTheme} from '@react-navigation/native';
 import {colors} from '../../../utils/theme';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import Poppins from '../../../components/TextWrapper/Poppins';
 import MainButton from '../../../components/Buttons/MainButton';
 
 const VerificationScreen = ({navigation}) => {
+  // const {colors} = useTheme();
+
   const theme = useColorScheme();
   const styles = MyStyles();
   const handleContinue = () => {
@@ -31,9 +33,7 @@ const VerificationScreen = ({navigation}) => {
           containerStyle={styles.textInputContainer}
           textInputStyle={styles.roundedTextInput}
           inputCount={4}
-          offTintColor={
-            theme == 'dark' ? colors.dark.primary : colors.light.primary
-          }
+          offTintColor={colors.primary}
           tintColor={theme == 'dark' ? colors.grey : colors.light.secondary}
           inputCellLength={1}
         />

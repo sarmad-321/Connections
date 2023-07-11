@@ -1,12 +1,13 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import styles from './styles';
 import FranklinMedium from '../TextWrapper/FranklinMedium';
 import Poppins from '../TextWrapper/Poppins';
 import {images} from '../../assets';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import MyStyles from './styles';
 
 const ChatList = props => {
+  const styles = MyStyles();
   const handleOnPress = () => {
     if (props?.onPress) {
       props.onPress();

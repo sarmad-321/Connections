@@ -2,6 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import ProfileScreen from '../../screens/BottomTabScreens/ProfileScreen';
+import EditProfile from '../../screens/BottomTabScreens/EditProfile';
 
 const ProfileNavigator = () => {
   const ProfileStack = createStackNavigator();
@@ -10,8 +11,9 @@ const ProfileNavigator = () => {
     <ProfileStack.Navigator
       headerMode="none"
       screenOptions={{headerShown: false}}
-      initialRouteName="Inbox">
+      initialRouteName="Profile">
       <ProfileStack.Screen name="Profile" component={ProfileScreen} />
+      <ProfileStack.Screen name="Edit" component={EditProfile} />
     </ProfileStack.Navigator>
   );
 };

@@ -6,6 +6,7 @@ import {vh, vw} from '../utils/units';
 import {icons} from '../assets';
 import {colors} from '../utils/theme';
 import MyStyles from './styles';
+import {useTheme} from '@react-navigation/native';
 const getTitle = {
   Prompt2: 'Select A Prompt',
   Prompt3: 'Select A Prompt',
@@ -22,7 +23,7 @@ const titleRoutes = {
 };
 
 const AuthOptions = navProps => {
-  const theme = useColorScheme;
+  const {colors} = useTheme();
   return {
     headerTitle: () => renderHeaderTitle(navProps),
     headerLeft: () => renderHeaderLeft(navProps),
@@ -31,7 +32,7 @@ const AuthOptions = navProps => {
     headerShown: true,
     headerLeftContainerStyle: {paddingLeft: 2 * vw},
     headerRightContainerStyle: {paddingRight: 2 * vh},
-    // headerStyle: headerStyle(theme),
+    headerStyle: {backgroundColor: colors.primary},
     // headerBackground: props => HeaderBackground(navProps),
     // headerBackVisible: false,
   };
