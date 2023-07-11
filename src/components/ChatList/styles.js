@@ -40,11 +40,16 @@ export default styles = StyleSheet.create({
     height: vh * 8.6,
     width: vh * 8.6,
     borderRadius: 100,
-    backgroundColor: 'white',
+    overflow: 'hidden',
   },
   h3: {
     color: color,
     fontSize: vh * 1.2,
+  },
+  img: {
+    resizeMode: 'contain',
+    height: '100%',
+    width: '100%',
   },
   blueContainer: {
     backgroundColor: colors.light.secondary,

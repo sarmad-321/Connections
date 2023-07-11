@@ -2,6 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import InboxScreen from '../../screens/BottomTabScreens/InboxScreen';
+import ChatScreen from '../../screens/BottomTabScreens/ChatScreen';
 
 const InboxNavigator = () => {
   const InboxStack = createStackNavigator();
@@ -12,6 +13,7 @@ const InboxNavigator = () => {
       screenOptions={{headerShown: false}}
       initialRouteName="Inbox">
       <InboxStack.Screen name="Inbox" component={InboxScreen} />
+      <InboxStack.Screen name="Chat" component={ChatScreen} />
     </InboxStack.Navigator>
   );
 };

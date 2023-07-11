@@ -8,6 +8,7 @@ import MyStyles, {darkTabBar, lightTabBar} from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import LikeNavigator from '../LikeNavigator';
 import InboxNavigator from '../InboxNavigator';
+import ProfileScreen from '../../screens/BottomTabScreens/ProfileScreen';
 
 const BottomTabNavigator = () => {
   const BottomTab = createBottomTabNavigator();
@@ -84,6 +85,30 @@ const BottomTabNavigator = () => {
             <View style={[styles.tabButton, focused && styles.focusedView]}>
               <Image
                 source={focused ? icons.comment : icons.comment}
+                style={
+                  focused
+                    ? {
+                        ...tabActiveIconStyle,
+                        tintColor: colors.dark.primary,
+                      }
+                    : {
+                        ...tabIconStyle,
+                        tintColor: colors.light.primary,
+                      }
+                }
+              />
+            </View>
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="profile"
+        component={ProfileScreen}
+        options={{
+          tabBarIcon: ({focused}) => (
+            <View style={[styles.tabButton, focused && styles.focusedView]}>
+              <Image
+                source={focused ? icons.profile : icons.profile}
                 style={
                   focused
                     ? {

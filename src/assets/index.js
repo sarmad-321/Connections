@@ -1,4 +1,5 @@
 export const icons = {
+  back: require('./icons/back.png'),
   eye_off: require('./icons/eye_off.png'),
   eye_on: require('./icons/eye_on.png'),
   location: require('./icons/location.png'),
@@ -20,7 +21,9 @@ export const icons = {
   country: require('./icons/country.png'),
   graduation: require('./icons/graduation.png'),
   scale: require('./icons/scale.png'),
+  profile: require('./icons/profile.png'),
   blindbutton: require('./icons/blindbutton.png'),
+  edit: require('./icons/edit.png'),
 };
 
 export const images = {
