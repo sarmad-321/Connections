@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, useColorScheme} from 'react-native';
 import React from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -16,12 +16,50 @@ import {colors} from '../../../utils/theme';
 import MainButton from '../../../components/Buttons/MainButton';
 import MyStyles from './styles';
 import RangePicker from '../../../components/RangePicker';
+import RadioButtonRN from 'radio-buttons-react-native';
 
 const EditProfile = () => {
+  const theme = useColorScheme();
   const styles = MyStyles();
   const HandlePress = () => {
     console.log('test');
   };
+  const exercise = [
+    {
+      label: 'Active',
+    },
+    {
+      label: 'Sometimes',
+    },
+    {
+      label: 'Almost never',
+    },
+  ];
+  const education = [
+    {
+      label: 'Undergraduate degree',
+    },
+    {
+      label: 'Postgraduate',
+    },
+    {
+      label: `Master's`,
+    },
+    {
+      label: `Other`,
+    },
+  ];
+  const drink = [
+    {
+      label: 'Undergraduate degree',
+    },
+    {
+      label: 'Postgraduate',
+    },
+    {
+      label: `Master's`,
+    },
+  ];
   return (
     <ScreenWraper>
       <SafeAreaView>
@@ -65,12 +103,26 @@ const EditProfile = () => {
             <RangePicker />
           </View>
           <View style={styles.verticalpad}>
-            <FranklinMedium style={styles.h1}>Do exercise?</FranklinMedium>
-            <Poppins style={styles.h2}>Active</Poppins>
+            <FranklinMedium style={styles.h1}>Do They Exercise?</FranklinMedium>
+            <RadioButtonRN
+              box={false}
+              textStyle={theme == 'dark' ? {color: 'white'} : null}
+              circleSize={10}
+              activeColor={colors.light.secondary}
+              data={exercise}
+              selectedBtn={e => console.log(e)}
+            />
           </View>
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Education</FranklinMedium>
-            <Poppins style={styles.h2}>Masters</Poppins>
+            <RadioButtonRN
+              box={false}
+              textStyle={theme == 'dark' ? {color: 'white'} : null}
+              circleSize={10}
+              activeColor={colors.light.secondary}
+              data={education}
+              selectedBtn={e => console.log(e)}
+            />
           </View>
           <MainButton onPress={HandlePress}>Update</MainButton>
           <View style={styles.gap}></View>
