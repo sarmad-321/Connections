@@ -31,4 +31,5 @@ export const images = {
   map: require('./images/map.png'),
   likes: require('./images/likes.png'),
   inbox: require('./images/emptyInbox.png'),
+  welcome: require('./images/welcome.png')
 };

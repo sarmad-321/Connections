@@ -1,6 +1,6 @@
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import {colors} from '../../../utils/theme';
+import { colors } from '../../../utils/theme';
 
 export default styles = StyleSheet.create({
   balloon: {
@@ -10,13 +10,13 @@ export default styles = StyleSheet.create({
     borderRadius: 20,
   },
   itemsender: {
-    color: '#333',
+    color: 'white',
     fontSize: 14,
     lineHeight: 20,
   },
   itemIn: {
     alignSelf: 'flex-start',
-    backgroundColor: '#EDEDED',
+    backgroundColor: '#212727',
   },
   itemOut: {
     alignSelf: 'flex-end',

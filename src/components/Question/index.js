@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import FranklinMedium from '../TextWrapper/FranklinMedium';
 import MyStyles from './style';
@@ -8,7 +8,7 @@ const Question = props => {
   const styles = MyStyles();
 
   return (
-    <View style={styles.inputContainer}>
+    <View style={[styles.inputContainer, props.style]}>
       {props?.step ? (
         <Poppins style={styles.stepNo}>Step {props.step}/10</Poppins>
       ) : null}

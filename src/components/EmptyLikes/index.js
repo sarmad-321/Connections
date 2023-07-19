@@ -1,6 +1,6 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import React from 'react';
-import {images} from '../../assets';
+import { images } from '../../assets';
 import FranklinMedium from '../TextWrapper/FranklinMedium';
 import Poppins from '../TextWrapper/Poppins';
 import MainButton from '../Buttons/MainButton';
@@ -8,6 +8,11 @@ import MyStyles from './styles';
 
 const EmptyLikes = props => {
   const styles = MyStyles();
+  const handleOnPress = () => {
+    if (props?.onPress) {
+      props.onPress();
+    }
+  };
   return (
     <View>
       <View style={styles.imgcontainer}>
@@ -21,7 +26,7 @@ const EmptyLikes = props => {
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been.
         </Poppins>
-        <MainButton>Wait for Perfect Match</MainButton>
+        <MainButton onPress={handleOnPress}>Wait for Perfect Match</MainButton>
       </View>
     </View>
   );

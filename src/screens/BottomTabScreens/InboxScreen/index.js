@@ -1,14 +1,14 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import HomeHeader from '../../../components/HomeHeader';
 import EmptyLikes from '../../../components/EmptyLikes';
-import {images} from '../../../assets';
+import { images } from '../../../assets';
 import ChatList from '../../../components/ChatList';
-import {FlatList} from 'react-native-gesture-handler';
+import { FlatList } from 'react-native-gesture-handler';
 
-const InboxScreen = ({navigation}) => {
+const InboxScreen = ({ navigation }) => {
   const data = [
     {
       name: 'Sarmad',
@@ -22,19 +22,19 @@ const InboxScreen = ({navigation}) => {
       time: '2 days ago',
       new: '2',
     },
-    {name: 'Sarah', message: 'Wake up dude!!!', time: '3 hours ago'},
+    { name: 'Sarah', message: 'Wake up dude!!!', time: '3 hours ago' },
   ];
   const handlePress = () => {
     navigation.navigate('Chat');
   };
-  const [isEmpty, setIsEmpty] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(true);
   return (
     <ScreenWraper>
       <SafeAreaView>
         {isEmpty ? (
           <>
             <HomeHeader title={'Matches'} />
-            <EmptyLikes title={'Matches'} image={images.inbox} />
+            <EmptyLikes onPress={() => setIsEmpty(false)} title={'Matches'} image={images.inbox} />
           </>
         ) : (
           <>
@@ -42,7 +42,7 @@ const InboxScreen = ({navigation}) => {
             <FlatList
               data={data}
               showsVerticalScrollIndicator={false}
-              renderItem={({item}) => (
+              renderItem={({ item }) => (
                 <ChatList
                   name={item.name}
                   message={item.message}

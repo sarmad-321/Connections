@@ -1,12 +1,14 @@
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import ChatHeader from '../../../components/ChatHeader';
-import {FlatList} from 'react-native-gesture-handler';
+import { FlatList } from 'react-native-gesture-handler';
 import styles from './styles';
+import Poppins from '../../../components/TextWrapper/Poppins';
 
 const ChatScreen = () => {
+
   const data = [
     {
       id: 1,
@@ -76,10 +78,11 @@ const ChatScreen = () => {
     },
   ];
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <ChatHeader />
       <ScreenWraper>
         <FlatList
+          showsVerticalScrollIndicator={false}
           style={styles.list}
           data={data}
           keyExtractor={item => {
@@ -100,7 +103,7 @@ const ChatScreen = () => {
                 </View>
 
                 {!inMessage && (
-                  <Text
+                  <Poppins
                     style={{
                       color: 'white',
                       textAlign: 'right',
@@ -108,11 +111,11 @@ const ChatScreen = () => {
                     }}>
                     {' '}
                     {!inMessage && item.date}
-                  </Text>
+                  </Poppins>
                 )}
 
                 {inMessage && (
-                  <Text
+                  <Poppins
                     style={{
                       color: '#333',
                       textAlign: 'right',
@@ -120,7 +123,7 @@ const ChatScreen = () => {
                     }}>
                     {' '}
                     {inMessage && item.date}{' '}
-                  </Text>
+                  </Poppins>
                 )}
               </View>
             );
