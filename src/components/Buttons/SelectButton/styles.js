@@ -11,6 +11,7 @@ const darkStyles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignSelf: 'flex-start',
+    backgroundColor : "black",
     height: vh * 5,
     width : vw*28,
     borderRadius: vh * 1,
@@ -31,6 +32,7 @@ const darkStyles = StyleSheet.create({
   bottomShadow: {
     overflow: 'hidden',
     paddingBottom: vh * 0.6,
+    backgroundColor : colors.dark.primary
   },
   icon: {
     resizeMode: 'contain',
@@ -46,6 +48,7 @@ const lightStyles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'flex-start',
     height: vh * 5,
+    backgroundColor : "white",
     width : vw*28,
     borderRadius: vh * 1,
     margin: vh * 1,
@@ -65,6 +68,8 @@ const lightStyles = StyleSheet.create({
   bottomShadow: {
     overflow: 'hidden',
     paddingBottom: vh * 0.6,
+    backgroundColor : colors.light.primary
+
   },
   icon: {
     resizeMode: 'contain',
