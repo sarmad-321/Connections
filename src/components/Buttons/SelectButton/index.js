@@ -1,9 +1,9 @@
-import {StyleSheet, Text, View, Image, useColorScheme} from 'react-native';
+import { StyleSheet, Text, View, Image, useColorScheme } from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
-import MyStyles, {darkGradient, gradient} from './styles';
+import MyStyles, { darkGradient, gradient } from './styles';
 import Poppins from '../../TextWrapper/Poppins';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const SelectButton = props => {
   const styles = MyStyles();
@@ -11,8 +11,8 @@ const SelectButton = props => {
   const colors = props.selectedGradient
     ? props.selectedGradient
     : theme === 'dark'
-    ? darkGradient
-    : gradient;
+      ? darkGradient
+      : gradient;
   const handleOnPress = () => {
     if (props?.onPress) {
       props.onPress();
