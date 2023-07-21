@@ -55,7 +55,11 @@ const InputField = React.forwardRef((props, ref) => {
       <View style={styles.bottomshadow}>
         <LinearGradient
           colors={gradientCombination}
-          style={[styles.input, props.containerStyle]}>
+          style={[
+            styles.input,
+            props.containerStyle,
+            props.multi ? {height: vh * 20} : null,
+          ]}>
           {props.icon && (
             <Image
               source={props.icon}
@@ -69,24 +73,55 @@ const InputField = React.forwardRef((props, ref) => {
               ]}
             />
           )}
-          <TextInput
-            ref={ref}
-            keyboardType={props?.type}
-            placeholderTextColor={activeColors.btnText}
-            placeholder={props.label}
-            onFocus={() => {
-              tintColorAnimation();
-              // setFocus(true);
-            }}
-            onBlur={() => {
-              tintOut();
-              // setFocus(false);
-            }}
-            autoCapitalize={false}
-            style={{width: '100%', height: '100%', color: activeColors.btnText}}
-            {...props}
-            secureTextEntry={showPassword}
-          />
+          {props.multi ? (
+            <TextInput
+              multiline
+              numberOfLines={10}
+              ref={ref}
+              keyboardType={props?.type}
+              placeholderTextColor={activeColors.btnText}
+              placeholder={props.label}
+              onFocus={() => {
+                tintColorAnimation();
+                // setFocus(true);
+              }}
+              onBlur={() => {
+                tintOut();
+                // setFocus(false);
+              }}
+              autoCapitalize={false}
+              style={[
+                {width: '100%', height: '100%', color: activeColors.btnText},
+                props.multi
+                  ? {fontSize: vh * 1.5, textAlignVertical: 'top'}
+                  : null,
+              ]}
+              {...props}
+              secureTextEntry={showPassword}
+            />
+          ) : (
+            <TextInput
+              ref={ref}
+              keyboardType={props?.type}
+              placeholderTextColor={activeColors.btnText}
+              placeholder={props.label}
+              onFocus={() => {
+                tintColorAnimation();
+                // setFocus(true);
+              }}
+              onBlur={() => {
+                tintOut();
+                // setFocus(false);
+              }}
+              autoCapitalize={false}
+              style={[
+                {width: '100%', height: '100%', color: activeColors.btnText},
+                props.multi ? {fontSize: vh * 1.5} : null,
+              ]}
+              {...props}
+              secureTextEntry={showPassword}
+            />
+          )}
           {props.rightIcon && (
             <TouchableOpacity
               style={[styles.rightIconContainer, {right: 0}]}

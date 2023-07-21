@@ -33,6 +33,10 @@ const lightStyles = StyleSheet.create({
   },
   focusedView: {
     // borderRadius: vh * 10,
+    width: vh * 4,
+    height: vh * 4,
+    borderRadius: 100,
+    backgroundColor: 'white',
   },
   circleIcon: {
     position: 'absolute',
@@ -65,11 +69,14 @@ const darkStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-evenly',
     position: 'absolute',
-    width: '100%',
-    height: vh * 7,
+    // width: '100%',
   },
   focusedView: {
     // borderRadius: vh * 10,
+    width: vh * 4,
+    height: vh * 4,
+    borderRadius: 100,
+    backgroundColor: 'white',
   },
   circleIcon: {
     position: 'absolute',

@@ -1515,6 +1515,11 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@miblanchard/react-native-slider@^2.3.1":
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/@miblanchard/react-native-slider/-/react-native-slider-2.3.1.tgz#79e0f1f9b1ce43ef25ee51ee9256c012e5dfa412"
+  integrity sha512-J/hZDBWmXq8fJeOnTVHqIUVDHshqMSpJVxJ4WqwuCBKl5Rke9OBYXIdkSlgi75OgtScAr8FKK5KNkDKHUf6JIg==
+
 "@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1":
   version "5.1.1-v1"
   resolved "https://registry.npmjs.org/@nicolo-ribaudo/eslint-scope-5-internals/-/eslint-scope-5-internals-5.1.1-v1.tgz"
@@ -6277,6 +6282,11 @@ queue-microtask@^1.2.2:
   resolved "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
+radio-buttons-react-native@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/radio-buttons-react-native/-/radio-buttons-react-native-1.0.4.tgz#ee450f6e81d8f5c22882f338b0ce979f70ab8980"
+  integrity sha512-5AKM/p3a9mykQ1BCIbBnHrDwXZZ6iJuDEDFaiNb2Pa2Nx9EgUMgU5owcrU9g9eaK7didA5rJ3yAUKGnyfhBqcw==
+
 range-parser@~1.2.1:
   version "1.2.1"
   resolved "https://registry.npmjs.org/range-parser/-/range-parser-1.2.1.tgz"
@@ -6382,6 +6392,11 @@ react-native-screens@^3.18.0:
   dependencies:
     react-freeze "^1.0.0"
     warn-once "^0.1.0"
+
+react-native-splash-screen@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/react-native-splash-screen/-/react-native-splash-screen-3.3.0.tgz#3af71ed17afe50fee69590a45aec399d071ead02"
+  integrity sha512-rGjt6HkoSXxMqH4SQUJ1gnPQlPJV8+J47+4yhgTIan4bVvAwJhEeJH7wWt9hXSdH4+VfwTS0GTaflj1Tw83IhA==
 
 react-native-svg-transformer@^1.0.0:
   version "1.0.0"
