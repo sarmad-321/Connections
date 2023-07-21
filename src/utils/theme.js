@@ -1,42 +1,5 @@
 import {vh} from './units';
 
-export const darkTheme = {
-  colors: {
-    grey: '#858585',
-    greyText: 'rgba(15, 15, 15, 0.8)',
-    blackheaderbutton: '#202020',
-    offwhite: 'rgba(255, 255, 255, 0.8)',
-    transparentShade: '#00000066',
-    primary: 'black',
-    secondary: '#265DC7',
-    inputfield1: '#2E2E2E',
-    inputfield2: '#5B5B5B',
-    btnText: 'white',
-    fontColors: {
-      primary: '#FFFFFF',
-      link: '#55A7E6',
-    },
-  },
-};
-export const lightTheme = {
-  colors: {
-    grey: '#858585',
-    greyText: 'rgba(15, 15, 15, 0.8)',
-    blackheaderbutton: '#202020',
-    offwhite: 'rgba(255, 255, 255, 0.8)',
-    transparentShade: '#00000066',
-    primary: 'white',
-    secondary: '#265DC7',
-    inputfield1: '#2E2E2E',
-    inputfield2: '#5B5B5B',
-    btnText: '#0F0F0F',
-    fontColors: {
-      primary: 'black',
-      link: '#55A7E6',
-    },
-  },
-};
-
 export const colors = {
   grey: '#858585',
   greyText: 'rgba(15, 15, 15, 0.8)',

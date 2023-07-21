@@ -3,7 +3,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 import { useColorScheme } from 'react-native';
 import AuthNavigator from '../AuthNavigator';
 import BottomTabNavigator from '../BottomTabNavigator';
-import {useColorScheme} from 'react-native';
 import {darkTheme, lightTheme} from '../../utils/theme';
 
 const RootStack = createStackNavigator();

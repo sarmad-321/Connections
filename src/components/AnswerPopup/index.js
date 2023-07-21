@@ -60,7 +60,7 @@ const AnswerPopup = props => {
             <ShadowView dashed>
           <View style={styles.padding}>
             <FranklinMedium style={styles.h1}>
-              {props.selectedPrompt.name}
+              {props.selectedPrompt?.name}
             </FranklinMedium>
             {/* <Poppins style={styles.h2}>
               Lorem Ipsum is simply dummy text of the printing.
