@@ -25,8 +25,8 @@ const HomeScreen = ({ navigation }) => {
     { name: 'Kelvin', image: images.anonProfile, age: '23', city: 'LOS ANGELES', distance: '20 KMS AWAY', anon: true },
 
   ];
-  const HandlePress = () => {
-    navigation.navigate('Profile');
+  const HandlePress = (item) => {
+    navigation.navigate('Profile', { isBlind: item.anon });
   };
   return (
     <ScreenWraper>
@@ -40,9 +40,10 @@ const HomeScreen = ({ navigation }) => {
           <FlatList
             data={data}
             showsVerticalScrollIndicator={false}
-            renderItem={({ item }) => (
-              <TouchableOpacity onPress={HandlePress} activeOpacity={0.8}>
+            renderItem={({ item, index }) => (
+              <TouchableOpacity onPress={() => HandlePress(item)} activeOpacity={0.8}>
                 <ListProfileCard
+                  index={index}
                   img={item.image}
                   name={item.name}
                   age={item.age}

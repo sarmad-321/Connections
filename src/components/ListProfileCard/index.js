@@ -7,30 +7,37 @@ import Poppins from '../TextWrapper/Poppins';
 import ActiveStatus from '../ActiveStatus';
 import styles, { gradient } from './style';
 import LinearGradient from 'react-native-linear-gradient';
+import Animated, { SlideInLeft } from 'react-native-reanimated';
 
 const ListProfileCard = props => {
   return (
-    <ImageBackground style={styles.imageContainer} source={props?.img}>
-      <LinearGradient style={styles.fill} colors={gradient}>
-        <View style={styles.margin}>
+    <Animated.View
+      entering={SlideInLeft.duration((props.index + 1) * 300)}
+    >
 
-          <View style={styles.detailContainer}>
-            <FranklinMedium style={styles.h1}>
-              {props?.name}, {props?.age}
-            </FranklinMedium>
-            <View style={styles.detailsText}>
-              <Image source={icons.location} style={styles.icon} />
-              <Poppins style={styles.h2}>
-                {props?.city} • {props?.distance}
-              </Poppins>
+      <ImageBackground style={styles.imageContainer} source={props?.img}>
+        <LinearGradient style={styles.fill} colors={gradient}>
+          <View style={styles.margin}>
+
+            <View style={styles.detailContainer}>
+              <FranklinMedium style={styles.h1}>
+                {props?.name}, {props?.age}
+              </FranklinMedium>
+              <View style={styles.detailsText}>
+                <Image source={icons.location} style={styles.icon} />
+                <Poppins style={styles.h2}>
+                  {props?.city} • {props?.distance}
+                </Poppins>
+              </View>
+            </View>
+            <View style={styles.activity}>
+              <ActiveStatus />
             </View>
           </View>
-          <View style={styles.activity}>
-            <ActiveStatus />
-          </View>
-        </View>
-      </LinearGradient>
-    </ImageBackground>
+        </LinearGradient>
+      </ImageBackground>
+    </Animated.View>
+
   );
 };
 

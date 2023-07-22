@@ -13,8 +13,10 @@ import QuoteCard from '../../../components/QuoteCard';
 import InfoCard from '../../../components/InfoCard';
 import CommentPopup from '../../../components/Popups/CommentPopup';
 
-const ProfileDetailScreen = () => {
+const ProfileDetailScreen = ({ route }) => {
   const data = [1, 2, 3, 4, 5, 6]
+  const isBlind = route.params?.isBlind
+
   const infoPopup = useRef();
   const HandlePress = () => {
     infoPopup.current.show();
@@ -28,10 +30,12 @@ const ProfileDetailScreen = () => {
             data={data}
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => (
+            renderItem={({ item, index }) => (
               <>
-                <ProfileCard like comment onPress={HandlePress} />
+                {!isBlind && <ProfileCard like comment onPress={HandlePress} />}
                 <QuoteCard
+                  item={item}
+                  index={index}
                   text={'Lorem Ipsum is simply dummy text of the printing'}
                   heading={'Getting Rid of dead bodies'}
                   like
@@ -43,7 +47,7 @@ const ProfileDetailScreen = () => {
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis vestibulum est, a faucibus.. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis vestibulum est, a faucibus.'
                   }
                 />
-                <InfoCard />
+                {item == 2 && <InfoCard item={item} />}
               </>
             )}
           />
