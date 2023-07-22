@@ -1,32 +1,31 @@
-import {vh, vw} from '../../utils/units';
+import { vh, vw } from '../../utils/units';
 
-import {StyleSheet} from 'react-native';
-import {colors, fontColors} from '../../utils/theme';
+import { StyleSheet } from 'react-native';
+import { colors, fontColors } from '../../utils/theme';
 
 export const darkgradient = ['#5B5B5B', '#2E2E2E'];
 export const lightgradient = ['white', 'white'];
 const styles = StyleSheet.create({
   input: {
-    borderRadius: vw * 2,
     borderColor: colors.border,
-    marginVertical: vh * 1,
     flexDirection: 'row',
-    height: vh * 6.5,
     width: '100%',
+    height: "100%",
     paddingLeft: vw * 4,
     alignItems: 'center',
-    backgroundColor: 'red',
     alignSelf: 'center',
   },
   bottomshadow: {
     overflow: 'hidden',
-    paddingBottom: vh * 0.6,
-    paddingHorizontal: vh * 0.1,
+    borderRadius: vw * 2,
+    backgroundColor: "white",
+    height: vh * 6.5,
+    marginVertical: vh * 1,
     shadowColor: '#000',
-    shadowOffset: {width: 1, height: 1},
+    shadowOffset: { width: 1, height: 1 },
     shadowOpacity: 0.4,
     shadowRadius: 3,
-    elevation: 6,
+    elevation: 4,
   },
   fieldView: {
     borderRadius: vw * 3,
