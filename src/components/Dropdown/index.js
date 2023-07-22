@@ -1,5 +1,5 @@
-import {View, Modal, FlatList, TouchableOpacity} from 'react-native';
-import React, {useState, useImperativeHandle} from 'react';
+import { View, Modal, FlatList, TouchableOpacity } from 'react-native';
+import React, { useState, useImperativeHandle } from 'react';
 import Animated, {
   SlideInDown
 } from 'react-native-reanimated';
@@ -8,7 +8,7 @@ import Poppins from '../TextWrapper/Poppins';
 import { vh } from '../../utils/units';
 
 const SelectDropDown = props => {
-  const styles =  MyStyles()
+  const styles = MyStyles()
   const [visible, setVisible] = useState(false);
   const [selectedValues, setSelectedValues] = useState([]);
   useImperativeHandle(props?.reference, () => ({
@@ -35,7 +35,7 @@ const SelectDropDown = props => {
         props.onShow();
       }
     }
-  };    
+  };
   const getHeight = () => {
     if (props?.values?.length > 18) {
       return vh * 80;
@@ -72,11 +72,11 @@ const SelectDropDown = props => {
     }
   };
 
-  const renderItem = ({item, index}) => {
+  const renderItem = ({ item, index }) => {
     return (
-        <Animated.View
+      <Animated.View
         entering={
-      SlideInDown.duration((index + 1) * 150)
+          SlideInDown.duration((index + 1) * 150)
         }
         style={styles.field}>
         <TouchableOpacity
@@ -85,13 +85,13 @@ const SelectDropDown = props => {
             width: '100%',
             alignItems: 'center',
             justifyContent: 'center',
-            paddingHorizontal : "4%"
+            paddingHorizontal: "4%"
           }}
           onPress={() => {
-              setVisible(false);
+            setVisible(false);
             props.onChangeValue(item);
           }}>
-          <Poppins style={{fontSize : vh*1.8 , textAlign : "center"}}>{item?.name}</Poppins>
+          <Poppins style={styles.h1}>{item?.name}</Poppins>
         </TouchableOpacity>
       </Animated.View>
     );
@@ -104,7 +104,7 @@ const SelectDropDown = props => {
       onRequestClose={() => setVisible(false)}
       style={styles.modal}>
       <View style={styles.mainContainer}>
-        <View style={[styles.innerContainer, {height: getHeight()}]}>
+        <View style={[styles.innerContainer, { height: getHeight() }]}>
           {/* <View style={styles.heading}>
             <EuclidCircularARegular>{props.heading}</EuclidCircularARegular>
           </View> */}
@@ -116,14 +116,14 @@ const SelectDropDown = props => {
             horizontal={false}
           />
         </View>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => {
             setVisible(false);
             props?.onChangeValue(selectedValues);
           }}
           style={[styles.cancel]}>
-          <Poppins>Done</Poppins>
-        </TouchableOpacity>
+          <Poppins style={styles.poppin}>Done</Poppins>
+        </TouchableOpacity> */}
       </View>
     </Modal>
   );

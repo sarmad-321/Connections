@@ -1,5 +1,5 @@
-import {View, Modal, FlatList, TextInput} from 'react-native';
-import React, {useState, useImperativeHandle} from 'react';
+import { View, Modal, FlatList, TextInput } from 'react-native';
+import React, { useState, useImperativeHandle } from 'react';
 import Animated, {
   SlideInDown
 } from 'react-native-reanimated';
@@ -11,7 +11,7 @@ import FranklinMedium from '../TextWrapper/FranklinMedium';
 import MainButton from '../Buttons/MainButton';
 
 const AnswerPopup = props => {
-  const styles =  MyStyles()
+  const styles = MyStyles()
   const [visible, setVisible] = useState(false);
   const [selectedValues, setSelectedValues] = useState([]);
   useImperativeHandle(props?.reference, () => ({
@@ -38,12 +38,12 @@ const AnswerPopup = props => {
         props.onShow();
       }
     }
-  };    
+  };
 
 
 
 
- 
+
   return (
     <Modal
       transparent={true}
@@ -52,36 +52,36 @@ const AnswerPopup = props => {
       onRequestClose={() => setVisible(false)}
       style={styles.modal}>
       <View style={styles.mainContainer}>
-      <Animated.View 
-           entering={
+        <Animated.View
+          entering={
             SlideInDown.duration(700)
-              }
-      style={[styles.innerContainer]}>
-            <ShadowView dashed>
-          <View style={styles.padding}>
-            <FranklinMedium style={styles.h1}>
-              {props.selectedPrompt?.name}
-            </FranklinMedium>
-            {/* <Poppins style={styles.h2}>
+          }
+          style={[styles.innerContainer]}>
+          <ShadowView dashed>
+            <View style={styles.padding}>
+              <FranklinMedium style={styles.h1}>
+                {props.selectedPrompt?.name}
+              </FranklinMedium>
+              {/* <Poppins style={styles.h2}>
               Lorem Ipsum is simply dummy text of the printing.
             </Poppins> */}
-            <TextInput
-            placeholder='Write your answer here ...'
-            />
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'flex-end',
-              }}>
-              <MainButton
-                onPress={()=>{}}
-                style={{width: '75%', height: vh * 6, borderRadius: vh * 0.8}}>
-                Answer
-              </MainButton>
+              <TextInput
+                placeholder='Write your answer here ...'
+              />
+              <View
+                style={{
+                  flex: 1,
+                  justifyContent: 'flex-end',
+                }}>
+                <MainButton
+                  onPress={() => { setVisible(false) }}
+                  style={{ width: '75%', height: vh * 6, borderRadius: vh * 0.8 }}>
+                  Answer
+                </MainButton>
+              </View>
             </View>
-          </View>
-        </ShadowView>
-      </Animated.View>
+          </ShadowView>
+        </Animated.View>
       </View>
     </Modal>
   );

@@ -1,5 +1,6 @@
 export const icons = {
   back: require('./icons/back.png'),
+  left: require('./icons/left.png'),
   eye_off: require('./icons/eye_off.png'),
   eye_on: require('./icons/eye_on.png'),
   location: require('./icons/location.png'),
@@ -31,5 +32,7 @@ export const images = {
   map: require('./images/map.png'),
   likes: require('./images/likes.png'),
   inbox: require('./images/emptyInbox.png'),
-  welcome: require('./images/welcome.png')
+  welcome: require('./images/welcome.png'),
+  anonProfile: require('./images/anon.png'),
+  profileDummy2: require('./images/dummy2.png')
 };
