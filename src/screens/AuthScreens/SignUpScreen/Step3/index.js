@@ -20,6 +20,11 @@ const Step3 = () => {
   return (
     <SafeAreaView>
       <Question step={'03'} text={`Who Do You Want To Date?`} />
+      {/* <View style={{flexDirection: 'row'}}>
+        {data.map(item => {
+          return <SelectButton text={item} />;
+        })}
+      </View> */}
       <FlatList
         numColumns={2}
         data={data}

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import TextHOC from './TextHOC';
 
@@ -14,6 +14,6 @@ export default FranklinMedium;
 
 const styles = StyleSheet.create({
   font: {
-    fontFamily: 'Franklin Gothic Medium Regular',
+    fontFamily: 'FranklinGothic-Medium',
   },
 });

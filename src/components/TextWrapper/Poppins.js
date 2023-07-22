@@ -14,6 +14,6 @@ export default Poppins;
 
 const styles = StyleSheet.create({
   font: {
-    fontFamily: 'Poppins-Black',
+    fontFamily: 'Poppins-Light',
   },
 });

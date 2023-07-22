@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, useColorScheme } from 'react-native';
+import {StyleSheet, Text, View, useColorScheme} from 'react-native';
 import React from 'react';
-import { vh, vw } from '../../../utils/units';
-import { colors } from '../../../utils/theme';
+import {vh, vw} from '../../../utils/units';
+import {colors} from '../../../utils/theme';
 
 export const gradient = ['white', 'white'];
 export const darkGradient = ['#5B5B5B', '#2E2E2E'];
@@ -11,19 +11,18 @@ const darkStyles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignSelf: 'flex-start',
-    backgroundColor : "black",
+    backgroundColor: 'black',
     height: vh * 5,
     width: vw * 28,
     borderRadius: vh * 1,
     margin: vh * 1,
     shadowColor: '#000',
-    shadowOffset: { width: 1, height: 1 },
+    shadowOffset: {width: 1, height: 1},
     shadowOpacity: 0.4,
     shadowRadius: 3,
     elevation: 6,
   },
   text: {
-    height: vh * 5,
     textAlign: 'center',
     fontSize: vh * 1.8,
     textAlignVertical: 'center',
@@ -32,7 +31,7 @@ const darkStyles = StyleSheet.create({
   bottomShadow: {
     overflow: 'hidden',
     paddingBottom: vh * 0.6,
-    backgroundColor : colors.dark.primary
+    backgroundColor: colors.dark.primary,
   },
   icon: {
     resizeMode: 'contain',
@@ -45,21 +44,15 @@ const lightStyles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: "white",
+    backgroundColor: 'white',
     flexDirection: 'row',
     alignSelf: 'flex-start',
     height: vh * 5,
     width: vw * 28,
     borderRadius: vh * 1,
     margin: vh * 1,
-    shadowColor: '#000',
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.4,
-    shadowRadius: 3,
-    elevation: 6,
   },
   text: {
-    height: vh * 5,
     textAlign: 'center',
     fontSize: vh * 1.8,
     textAlignVertical: 'center',
@@ -68,8 +61,12 @@ const lightStyles = StyleSheet.create({
   bottomShadow: {
     overflow: 'hidden',
     paddingBottom: vh * 0.6,
-    backgroundColor : colors.light.primary
-
+    // backgroundColor: colors.light.primary,
+    shadowColor: '#000',
+    shadowOffset: {width: 1, height: 1},
+    shadowOpacity: 0.4,
+    shadowRadius: 3,
+    elevation: 6,
   },
   icon: {
     resizeMode: 'contain',

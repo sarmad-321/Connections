@@ -89,7 +89,7 @@ const InputField = React.forwardRef((props, ref) => {
                 tintOut();
                 // setFocus(false);
               }}
-              autoCapitalize={false}
+              autoCapitalize={'none'}
               style={[
                 {width: '100%', height: '100%', color: activeColors.btnText},
                 props.multi
@@ -113,7 +113,6 @@ const InputField = React.forwardRef((props, ref) => {
                 tintOut();
                 // setFocus(false);
               }}
-              autoCapitalize={false}
               style={[
                 {width: '100%', height: '100%', color: activeColors.btnText},
                 props.multi ? {fontSize: vh * 1.5} : null,

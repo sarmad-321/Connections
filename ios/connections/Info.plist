@@ -53,10 +53,10 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Franklin Gothic Medium Regular.ttf</string>
 		<string>AbhayaLibre-ExtraBold.ttf</string>
-		<string>Poppins-Black.ttf</string>
 		<string>Mulish-Regular.ttf</string>
+		<string>FranklinGothic-Medium.ttf</string>
+		<string>Poppins-Light.ttf</string>
 	</array>
 </dict>
 </plist>
