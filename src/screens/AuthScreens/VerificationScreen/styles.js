@@ -1,7 +1,7 @@
-import {StyleSheet, useColorScheme} from 'react-native';
-import {vh, vw} from '../../../utils/units';
-import {colors, fontColors} from '../../../utils/theme';
-import {useTheme} from '@react-navigation/native';
+import { StyleSheet, useColorScheme } from 'react-native';
+import { vh, vw } from '../../../utils/units';
+import { colors, fontColors } from '../../../utils/theme';
+import { useTheme } from '@react-navigation/native';
 
 // const lightStyles = StyleSheet.create({
 //   button: {
@@ -82,7 +82,7 @@ import {useTheme} from '@react-navigation/native';
 // });
 
 const MyStyles = () => {
-  const {colors} = useTheme();
+  const { colors } = useTheme();
 
   const styles = StyleSheet.create({
     button: {
@@ -95,12 +95,12 @@ const MyStyles = () => {
       alignContent: 'center',
     },
     roundedTextInput: {
-      color: 'black',
+      color: colors.fontColors.primary,
       borderRadius: vw * 3,
       borderWidth: vw * 0.3,
 
       borderBottomWidth: vw * 0.2,
-      backgroundColor: 'grey',
+      backgroundColor: colors.primary,
       width: vw * 18,
       height: vh * 8,
       marginLeft: 0,
