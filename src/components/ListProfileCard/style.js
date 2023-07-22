@@ -5,7 +5,7 @@ export const gradient = ['rgba(0,0,0,0) 0', 'black'];
 const styles = StyleSheet.create({
   imageContainer: {
     height: vh * 20,
-    backgroundColor: "red",
+
     resizeMode: 'cover',
     width: '100%',
     marginVertical: vh * 2,
