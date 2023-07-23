@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, useColorScheme } from 'react-native';
+import {StyleSheet, Text, View, useColorScheme} from 'react-native';
 import React from 'react';
-import { vh, vw } from '../../../utils/units';
-import { colors } from '../../../utils/theme';
+import {vh, vw} from '../../../utils/units';
+import {colors} from '../../../utils/theme';
 
 export const gradient = ['white', 'white'];
 export const darkGradient = ['#5B5B5B', '#2E2E2E'];
@@ -17,7 +17,7 @@ const darkStyles = StyleSheet.create({
     borderRadius: vh * 1,
     margin: vh * 1,
     shadowColor: '#000',
-    shadowOffset: { width: 1, height: 1 },
+    shadowOffset: {width: 1, height: 1},
     shadowOpacity: 0.4,
     shadowRadius: 3,
     elevation: 6,
@@ -46,8 +46,8 @@ const lightStyles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'white',
     flexDirection: 'row',
-    height: "100%",
-    width: "100%",
+    height: '99%',
+    width: '100%',
     borderRadius: vh * 1,
   },
   text: {
@@ -56,7 +56,7 @@ const lightStyles = StyleSheet.create({
   },
   bottomShadow: {
     overflow: 'hidden',
-    backgroundColor: "white",
+    // backgroundColor: "white",
     height: vh * 6,
     marginRight: vw * 4,
     marginTop: vh * 2,
@@ -64,7 +64,7 @@ const lightStyles = StyleSheet.create({
     borderRadius: vh * 1,
     // backgroundColor: colors.light.primary,
     shadowColor: '#000',
-    shadowOffset: { width: 1, height: 1 },
+    shadowOffset: {width: 1, height: 1},
     shadowOpacity: 0.4,
     shadowRadius: 5,
     elevation: 4,

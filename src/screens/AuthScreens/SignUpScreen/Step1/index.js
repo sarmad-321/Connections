@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
 import ScreenWraper from '../../../../components/ScreenWrapper';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import Question from '../../../../components/Question';
 import InputField from '../../../../components/InputField';
 import Poppins from '../../../../components/TextWrapper/Poppins';

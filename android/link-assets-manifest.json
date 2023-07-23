@@ -6,7 +6,7 @@
       "sha1": "9d2a7a176ee329a2f2478858843c614cf57a9472"
     },
     {
-      "path": "src/assets/fonts/Franklin Gothic Medium Regular.ttf",
+      "path": "src/assets/fonts/FranklinGothic-Medium.ttf",
       "sha1": "cf773b90330eabd152c5d76705e874590ecc0e37"
     },
     {
@@ -14,7 +14,7 @@
       "sha1": "94df6abb8e414095f6af59d936d7a581fe58d468"
     },
     {
-      "path": "src/assets/fonts/Poppins-Black.ttf",
+      "path": "src/assets/fonts/Poppins-Light.ttf",
       "sha1": "e247a92158e112f8bf7b638c8d95381d66b00dbb"
     }
   ]
