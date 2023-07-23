@@ -1,7 +1,7 @@
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import {colors} from '../../../../utils/theme';
-import {vh} from '../../../../utils/units';
+import { colors } from '../../../../utils/theme';
+import { vh } from '../../../../utils/units';
 
 export default styles = StyleSheet.create({
   button: {

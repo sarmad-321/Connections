@@ -20,11 +20,11 @@ const SelectButton = props => {
   };
   return (
     <TouchableOpacity
-      style={[styles.bottomShadow]}
+      style={[styles.bottomShadow, props.styles]}
       onPress={handleOnPress}
       activeOpacity={0.7}>
 
-      <LinearGradient colors={colors} style={[styles.container, props.styles]}>
+      <LinearGradient colors={colors} style={[styles.container]}>
         {props?.icon ? (
           <Image source={props.icon} style={[styles.icon, props.iconStyle]} />
         ) : null}

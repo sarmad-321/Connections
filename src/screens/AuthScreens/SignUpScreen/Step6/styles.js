@@ -1,12 +1,14 @@
-import {StyleSheet, Text, View, useColorScheme} from 'react-native';
+import { StyleSheet, Text, View, useColorScheme } from 'react-native';
 import React from 'react';
-import {vh, vw} from '../../../../utils/units';
-import {colors} from '../../../../utils/theme';
+import { vh, vw } from '../../../../utils/units';
+import { colors } from '../../../../utils/theme';
 
 const lightStyles = StyleSheet.create({
   button: {
-    height: vh * 15,
+    height: vh * 12,
     borderColor: colors.light.secondary,
+    width: vw * 26,
+
     borderWidth: vh * 0.1,
     borderStyle: 'dashed',
     margin: 0,
@@ -55,6 +57,7 @@ const lightStyles = StyleSheet.create({
 const darkStyles = StyleSheet.create({
   button: {
     height: vh * 15,
+    width: vw * 20,
     borderColor: colors.light.secondary,
     borderWidth: vh * 0.1,
     borderStyle: 'dashed',

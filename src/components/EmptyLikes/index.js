@@ -5,6 +5,7 @@ import FranklinMedium from '../TextWrapper/FranklinMedium';
 import Poppins from '../TextWrapper/Poppins';
 import MainButton from '../Buttons/MainButton';
 import MyStyles from './styles';
+import Animated, { BounceInDown, BounceInUp } from 'react-native-reanimated';
 
 const EmptyLikes = props => {
   const styles = MyStyles();
@@ -15,9 +16,11 @@ const EmptyLikes = props => {
   };
   return (
     <View>
-      <View style={styles.imgcontainer}>
+      <Animated.View
+        entering={BounceInDown.duration(600)}
+        style={styles.imgcontainer}>
         <Image source={props?.image} style={styles.img} />
-      </View>
+      </Animated.View>
       <View style={styles.textBox}>
         <FranklinMedium style={styles.h1}>
           You’re new here! No {props?.title} Yet

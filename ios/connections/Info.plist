@@ -58,5 +58,12 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AbhayaLibre-ExtraBold.ttf</string>
+		<string>Mulish-Regular.ttf</string>
+		<string>Franklin Gothic Medium Regular.ttf</string>
+		<string>Poppins-Black.ttf</string>
+	</array>
 </dict>
 </plist>
