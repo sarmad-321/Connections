@@ -5,8 +5,8 @@ import {colors} from '../../../utils/theme';
 
 export default styles = StyleSheet.create({
   container: {
-    height: vh * 6,
-    width: vh * 6,
+    height: vh * 5,
+    width: vh * 5,
     borderRadius: vh * 1,
     justifyContent: 'center',
     alignItems: 'center',

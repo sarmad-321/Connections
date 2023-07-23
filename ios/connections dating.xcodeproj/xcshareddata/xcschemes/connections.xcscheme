@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "connections.app"
-               BlueprintName = "connections (Dating)"
-               ReferencedContainer = "container:connections (Dating).xcodeproj">
+               BuildableName = "connections (Dating).app"
+               BlueprintName = "connections dating"
+               ReferencedContainer = "container:connections dating.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "connections (Dating)Tests.xctest"
-               BlueprintName = "connections (Dating)Tests"
-               ReferencedContainer = "container:connections (Dating).xcodeproj">
+               BuildableName = "connections datingTests.xctest"
+               BlueprintName = "connections datingTests"
+               ReferencedContainer = "container:connections dating.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "connections.app"
-            BlueprintName = "connections (Dating)"
-            ReferencedContainer = "container:connections (Dating).xcodeproj">
+            BuildableName = "connections (Dating).app"
+            BlueprintName = "connections dating"
+            ReferencedContainer = "container:connections dating.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "connections.app"
-            BlueprintName = "connections (Dating)"
-            ReferencedContainer = "container:connections (Dating).xcodeproj">
+            BuildableName = "connections (Dating).app"
+            BlueprintName = "connections dating"
+            ReferencedContainer = "container:connections dating.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

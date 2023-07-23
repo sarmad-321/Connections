@@ -14,8 +14,8 @@ const darkStyles = StyleSheet.create({
     paddingHorizontal: vh * 3,
     height: vh * 10,
     borderRadius: vh * 1,
+    borderColor: colors.dark.secondary,
     backgroundColor: colors.dark.primary,
-    borderColor: colors.light.secondary,
     borderWidth: vh * 0.1,
     borderStyle: 'dashed',
     shadowColor: '#000',
@@ -23,6 +23,7 @@ const darkStyles = StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 3,
     elevation: 6,
+    overflow: 'visible',
   },
   iconView: {
     height: vh * 2,

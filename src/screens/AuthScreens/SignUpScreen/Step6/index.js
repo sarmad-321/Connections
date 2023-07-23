@@ -1,13 +1,20 @@
-import { StyleSheet, Text, View, useColorScheme, Image } from 'react-native';
-import React, { useState, useRef } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Switch,
+  TouchableOpacity,
+  useColorScheme,
+  Image,
+} from 'react-native';
+import React, {useState, useRef} from 'react';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import Question from '../../../../components/Question';
 import SelectButton from '../../../../components/Buttons/SelectButton';
-import { icons } from '../../../../assets';
+import {icons} from '../../../../assets';
 import MyStyles from './styles';
-import { FlatList, Switch, TouchableOpacity } from 'react-native-gesture-handler';
 import FranklinMedium from '../../../../components/TextWrapper/FranklinMedium';
-import { colors } from '../../../../utils/theme';
+import {colors} from '../../../../utils/theme';
 import GeneralPopup from '../../../../components/Popups/GeneralPopup';
 
 const Step6 = () => {
@@ -32,7 +39,7 @@ const Step6 = () => {
       </View>
       <View style={styles.switchDetail}>
         <Switch
-          trackColor={{ false: '#767577', true: '#81b0ff' }}
+          trackColor={{false: '#767577', true: '#81b0ff'}}
           thumbColor={colors.light.secondary}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
