@@ -6,13 +6,13 @@ import {
   useColorScheme,
   TouchableOpacity,
 } from 'react-native';
-import React, {useRef, useState, useImperativeHandle} from 'react';
+import React, { useRef, useState, useImperativeHandle } from 'react';
 import PopupWrapper from '../PopupWrapper';
 import FranklinMedium from '../../TextWrapper/FranklinMedium';
 import Poppins from '../../TextWrapper/Poppins';
 import MainButton from '../../Buttons/MainButton';
-import MyStyles, {darkGradient, lightgradient} from './styles';
-import {icons, images} from '../../../assets';
+import MyStyles, { darkGradient, lightgradient } from './styles';
+import { icons, images } from '../../../assets';
 import InputField from '../../InputField';
 
 const CommentPopup = props => {
@@ -50,6 +50,7 @@ const CommentPopup = props => {
     hide();
   };
   return (
+
     <PopupWrapper
       contentContainerStyle={styles.contentContainer}
       reference={popup}>
