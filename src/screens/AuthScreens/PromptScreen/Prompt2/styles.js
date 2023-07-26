@@ -1,40 +1,62 @@
-import {StyleSheet, Text, useColorScheme, View} from 'react-native';
+import { StyleSheet, Text, useColorScheme, View } from 'react-native';
 import React from 'react';
-import {vh} from '../../../../utils/units';
-import {colors} from '../../../../utils/theme';
+import { vh } from '../../../../utils/units';
+import { colors } from '../../../../utils/theme';
+import { useTheme } from '@react-navigation/native';
 
-const lightStyles = StyleSheet.create({
-  h1: {
-    fontSize: vh * 1.6,
-    color: colors.greyText,
-  },
-  listContainer: {
-    height: vh * 6,
-    justifyContent: 'center',
-    // alignItems: 'center',
-    borderTopWidth: vh * 0.04,
-    borderColor: colors.grey,
-  },
-});
-const darkStyles = StyleSheet.create({
-  h1: {
-    fontSize: vh * 1.6,
-    color: 'white',
-  },
-  listContainer: {
-    height: vh * 6,
-    justifyContent: 'center',
-    // alignItems: 'center',
-    borderTopWidth: vh * 0.04,
-    borderColor: colors.grey,
-  },
-});
+// const lightStyles = StyleSheet.create({
+//   h1: {
+//     fontSize: vh * 1.6,
+//     color: colors.greyText,
+//   },
+//   listContainer: {
+//     height: vh * 6,
+//     justifyContent: 'center',
+//     // alignItems: 'center',
+//     borderTopWidth: vh * 0.04,
+//     borderColor: colors.grey,
+//   },
+// });
+// const darkStyles = StyleSheet.create({
+//   h1: {
+//     fontSize: vh * 1.6,
+//     color: 'white',
+//   },
+//   listContainer: {
+//     height: vh * 6,
+//     justifyContent: 'center',
+//     // alignItems: 'center',
+//     borderTopWidth: vh * 0.04,
+//     borderColor: colors.grey,
+//   },
+// });
+// const MyStyles = () => {
+//   const theme = useColorScheme();
+//   if (theme == 'dark') {
+//     return darkStyles;
+//   } else {
+//     return lightStyles;
+//   }
+// };
+// export default MyStyles;
 const MyStyles = () => {
-  const theme = useColorScheme();
-  if (theme == 'dark') {
-    return darkStyles;
-  } else {
-    return lightStyles;
-  }
+  const { colors } = useTheme();
+
+  const styles = StyleSheet.create({
+    h1: {
+      fontSize: vh * 1.6,
+      color: "red"
+      // color: colors.fontColors.primary,
+    },
+    listContainer: {
+      height: vh * 6,
+      justifyContent: 'center',
+      // alignItems: 'center',
+      borderTopWidth: vh * 0.04,
+      borderColor: colors.grey,
+    },
+  });
+  return styles;
 };
+
 export default MyStyles;

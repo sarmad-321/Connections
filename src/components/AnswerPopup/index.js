@@ -1,9 +1,9 @@
-import {View, Modal, FlatList, TextInput, useColorScheme} from 'react-native';
-import React, {useState, useImperativeHandle} from 'react';
-import Animated, {SlideInDown} from 'react-native-reanimated';
+import { View, Modal, FlatList, TextInput, useColorScheme } from 'react-native';
+import React, { useState, useImperativeHandle } from 'react';
+import Animated, { SlideInDown } from 'react-native-reanimated';
 import MyStyles from './styles';
 import Poppins from '../TextWrapper/Poppins';
-import {vh} from '../../utils/units';
+import { vh } from '../../utils/units';
 import ShadowView from '../ShadowView';
 import FranklinMedium from '../TextWrapper/FranklinMedium';
 import MainButton from '../Buttons/MainButton';

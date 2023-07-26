@@ -1,12 +1,12 @@
-import {StyleSheet, Text, View, useColorScheme} from 'react-native';
-import React, {useState} from 'react';
+import { StyleSheet, Text, View, useColorScheme } from 'react-native';
+import React, { useState } from 'react';
 import ScreenWraper from '../../../../components/ScreenWrapper';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Question from '../../../../components/Question';
 import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
-import {colors} from '../../../../utils/theme';
-import {vh} from '../../../../utils/units';
+import { colors } from '../../../../utils/theme';
+import { vh } from '../../../../utils/units';
 import AbhayaLibre from '../../../../components/TextWrapper/AbhayaLibre';
 import Poppins from '../../../../components/TextWrapper/Poppins';
 import MyStyles from './styles';
@@ -33,7 +33,7 @@ const Step2 = () => {
     <SafeAreaView>
       {/* <Text>index</Text> */}
       <Question step={'02'} text={`What’s Your Date Of Birth?`} />
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
+      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
         <DatePicker
           style={styles.datePicker}
           fadeToColor="none"
