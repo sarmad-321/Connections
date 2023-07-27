@@ -1,9 +1,9 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import FranklinMedium from '../TextWrapper/FranklinMedium';
 import Poppins from '../TextWrapper/Poppins';
-import {images} from '../../assets';
-import {TouchableOpacity} from 'react-native-gesture-handler';
+import { images } from '../../assets';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import MyStyles from './styles';
 
 const ChatList = props => {
