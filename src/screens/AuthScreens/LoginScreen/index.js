@@ -15,7 +15,7 @@ import useLoginController from './useLoginController';
 const LoginScreen = ({navigation, route}) => {
   const receivedData = route.params?.value;
   const styles = MyStyles();
-  const {setPhone, handleContinue} = useLoginController(receivedData);
+  const {setPhone, handleContinue, setEmail} = useLoginController(receivedData);
 
   return (
     <ScreenWraper>
@@ -29,7 +29,11 @@ const LoginScreen = ({navigation, route}) => {
         />
 
         {receivedData == 'Email' ? (
-          <InputField type="email-address" label="Enter Your Email Address" />
+          <InputField
+            onChangeText={setEmail}
+            type="email-address"
+            label="Enter Your Email Address"
+          />
         ) : (
           <InputField
             onChangeText={setPhone}

@@ -93,6 +93,36 @@ export const userLogin = data => {
   };
 };
 
+export const verifyEmailPassword = data => {
+  return async dispatch => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        dispatch({
+          type: types.BTN_LOADING_START,
+        });
+        const response = await post(
+          endpoints.profile.changePassword,
+          data,
+          false,
+        );
+        dispatch({
+          type: types.BTN_LOADING_END,
+        });
+        resolve(response);
+        return Promise.resolve(response);
+      } catch (e) {
+        dispatch({
+          type: types.BTN_LOADING_END,
+        });
+        showToast(e);
+        reject(e);
+
+        return Promise.reject(e);
+      }
+    });
+  };
+};
+
 export const changePassword = data => {
   return async dispatch => {
     return new Promise(async (resolve, reject) => {

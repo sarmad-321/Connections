@@ -4,19 +4,16 @@ import {useEffect, useState} from 'react';
 const useLoginController = type => {
   const navigation = useNavigation();
   const [phone, setPhone] = useState();
-
-  useEffect(() => {
-    console.log(type);
-    console.log(phone);
-  }, [phone]);
+  const [email, setEmail] = useState();
 
   const handleContinue = () => {
-    navigation.navigate('Verification');
+    const searchCriteria = type === 'email' ? {email} : {phone};
   };
 
   return {
     setPhone,
     handleContinue,
+    setEmail,
   };
 };
 
