@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@miblanchard/react-native-slider": "^2.3.1",
+    "@react-native-async-storage/async-storage": "^1.19.1",
     "@react-native-community/blur": "^4.3.2",
     "@react-native-masked-view/masked-view": "^0.2.8",
     "@react-navigation/bottom-tabs": "^6.4.0",
@@ -29,7 +30,13 @@
     "react-native-safe-area-context": "^4.4.1",
     "react-native-screens": "^3.18.0",
     "react-native-splash-screen": "^3.3.0",
-    "react-native-svg": "^13.9.0"
+    "react-native-svg": "^13.9.0",
+    "react-native-toast": "git+https://github.com/Salsoft-Technologies/react-native-toast.git",
+    "react-redux": "^8.0.2",
+    "redux": "^4.2.0",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
