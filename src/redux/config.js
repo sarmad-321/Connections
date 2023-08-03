@@ -1,5 +1,5 @@
 export const urls = {
-  v1: ``,
+  v1: `https://average-stole-fox.cyclic.app/api`,
 };
 
 export const base_url = urls.v1;
@@ -9,6 +9,7 @@ export const endpoints = {
     signup: '/',
     login: '/',
     logout: '/',
+    verifyUser: '/user/verifyUser',
     verifySignUpCode: '/',
     forgotPasswordMail: '/',
     verifyCodeForgotPassword: '/',

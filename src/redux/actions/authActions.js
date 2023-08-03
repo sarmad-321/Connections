@@ -5,6 +5,30 @@ import {showToast} from '../Api/HelperFunction';
 
 // import {console.log} from '../Api/HelperFunction';
 
+export const verifyUser = data => {
+  //console.log(data, 'userSignUpData');
+  return async dispatch => {
+    try {
+      dispatch({
+        type: types.BTN_LOADING_START,
+      });
+      const response = await get(endpoints.auth.verifyUser, data);
+      dispatch({
+        type: types.BTN_LOADING_END,
+      });
+      return Promise.resolve(response);
+    } catch (e) {
+      dispatch({
+        type: types.BTN_LOADING_END,
+      });
+      // console.log(e, 'eeee');
+      setTimeout(() => {
+        showToast(e);
+      }, 1000);
+    }
+  };
+};
+
 export const userSignUp = data => {
   //console.log(data, 'userSignUpData');
   return async dispatch => {

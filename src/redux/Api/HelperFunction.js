@@ -9,7 +9,7 @@ import {
   RESULTS,
 } from 'react-native-permissions';
 import {Linking} from 'react-native';
-import {EventRegister} from 'react-native-event-listeners';
+// import {EventRegister} from 'react-native-event-listeners';
 // import Toast, {DURATION} from 'react-native-easy-toast'
 const TAG = '__API__';
 export const LOG = (label, data) => {
@@ -83,7 +83,7 @@ export const performNetworkRequest = async (url, configs) => {
     console.log('response', response);
     // log('response', response);
     if (response?.status === 403) {
-      EventRegister.emit('force logout');
+      // EventRegister.emit('force logout');
     }
     const jsonResponse = await response.json();
     console.log('performNetworkRequest response', {jsonResponse, url, configs});
