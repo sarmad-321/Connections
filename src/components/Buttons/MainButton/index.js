@@ -1,8 +1,8 @@
-import {Text, TouchableOpacity, Image} from 'react-native';
+import { Text, TouchableOpacity, ActivityIndicator, Image } from 'react-native';
 import React from 'react';
 import styles from './styles';
-import {icons} from '../../../assets';
-import {vh} from '../../../utils/units';
+import { icons } from '../../../assets';
+import { vh } from '../../../utils/units';
 
 const MainButton = props => {
   const handleOnPress = () => {
@@ -16,7 +16,10 @@ const MainButton = props => {
       activeOpacity={0.7}
       onPress={handleOnPress}>
       {props?.icon ? <Image source={props.icon} style={styles.icon} /> : null}
-      <Text style={styles.title}>{props.children}</Text>
+      {props.loading ?
+        <ActivityIndicator size={"small"} color="white" /> :
+        <Text style={styles.title}>{props.children}</Text>
+      }
     </TouchableOpacity>
   );
 };
