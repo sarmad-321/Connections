@@ -9,13 +9,14 @@ import MyStyles from './styles';
 
 let data = ['Men', 'Women', 'Everyone'];
 
-const Step3 = () => {
+const Step3 = ({ handleItem }) => {
   const styles = MyStyles();
 
   const [selected, setSelected] = useState();
   const HandlePress = item => {
-    console.log(item);
+    // console.log(item);
     setSelected(item);
+    handleItem(item)
   };
   return (
     <SafeAreaView>

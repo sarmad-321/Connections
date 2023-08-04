@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, useColorScheme } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ScreenWraper from '../../../../components/ScreenWrapper';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Question from '../../../../components/Question';
@@ -11,7 +11,7 @@ import AbhayaLibre from '../../../../components/TextWrapper/AbhayaLibre';
 import Poppins from '../../../../components/TextWrapper/Poppins';
 import MyStyles from './styles';
 
-const Step2 = () => {
+const Step2 = ({ onDateChange }) => {
   const styles = MyStyles();
   const [date, setDate] = useState(
     new Date(
@@ -29,6 +29,10 @@ const Step2 = () => {
     age--;
   }
 
+  const handleDateSelection = (newDate) => {
+    setDate(newDate);
+    onDateChange(newDate);
+  };
   return (
     <SafeAreaView>
       {/* <Text>index</Text> */}
@@ -41,7 +45,7 @@ const Step2 = () => {
           maximumDate={new Date()}
           mode="date"
           date={date}
-          onDateChange={setDate}
+          onDateChange={handleDateSelection}
         />
         <View style={styles.text}>
           <AbhayaLibre style={styles.age}>{age}</AbhayaLibre>

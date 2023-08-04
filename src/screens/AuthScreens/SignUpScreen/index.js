@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
 import PagerView from 'react-native-pager-view';
 import Step1 from './Step1';
@@ -15,6 +15,14 @@ import { icons } from '../../../assets';
 const SignUpScreen = ({ navigation }) => {
   const ref = useRef(PagerView);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [firstname, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [preference, setPreference] = useState('')
+  const [date, setDate] = useState('')
+  useEffect(() => {
+    console.log(firstname, lastName, date, preference)
+
+  }, [firstname, lastName, date, preference])
   const handleContinue = () => {
     if (currentIndex == 5) {
       console.log('navigating');
@@ -26,11 +34,17 @@ const SignUpScreen = ({ navigation }) => {
   const onPageSelected = e => {
     setCurrentIndex(e.nativeEvent.position);
   };
+  const handleDateSelection = (newDate) => {
+    setDate(newDate)
+  }
   const handleBack = () => {
 
     ref.current.setPage(currentIndex - 1);
     console.log(currentIndex);
   };
+  const handleItem = (item) => {
+    setPreference(item)
+  }
 
   return (
     <ScreenWraper>
@@ -40,9 +54,9 @@ const SignUpScreen = ({ navigation }) => {
         initialPage={0}
         ref={ref}
         onPageSelected={onPageSelected}>
-        <Step1 key="1" />
-        <Step2 key="2" />
-        <Step3 key="3" />
+        <Step1 firstName={setFirstName} lastName={setLastName} key="1" />
+        <Step2 onDateChange={handleDateSelection} key="2" />
+        <Step3 handleItem={handleItem} key="3" />
         <Step4 key="4" />
         <Step5 key="5" />
         <Step6 key="6" />

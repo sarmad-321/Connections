@@ -10,6 +10,7 @@ export const endpoints = {
     login: '/',
     logout: '/',
     verifyUser: '/user/verifyUser',
+    prompts: '/prompts',
     verifySignUpCode: '/',
     forgotPasswordMail: '/',
     verifyCodeForgotPassword: '/',
