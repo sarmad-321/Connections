@@ -9,6 +9,7 @@ import PromptButton from '../../../../components/Buttons/PromptButton';
 import MainButton from '../../../../components/Buttons/MainButton';
 import usePromptController from './usePromptController';
 import {vh} from '../../../../utils/units';
+import {FlatList} from 'react-native-gesture-handler';
 
 const PromptStep = ({navigation, onDataReceived}) => {
   const {
@@ -35,16 +36,15 @@ const PromptStep = ({navigation, onDataReceived}) => {
         selectedPrompt={selectedPrompt}
       />
       <Question step={'05'} text={`Write Your Profile Answers`} />
-      <PromptButton
-        title={promptList[0] ? promptList[0].question : 'Select a prompt'}
-        answer={promptList[0] ? promptList[0].answer : 'and write your answer'}
-        onPress={handleClick}
-      />
-      <PromptButton
-        title={promptList[1] ? promptList[1].question : 'Select a prompt'}
-        answer={promptList[1] ? promptList[1].answer : 'and write your answer'}
-        onPress={handleClick}
-      />
+      {promptList.map((item, index) => {
+        return (
+          <PromptButton
+            title={item.question}
+            answer={item.answer}
+            onPress={() => handleClick(item.id)}
+          />
+        );
+      })}
     </SafeAreaView>
   );
 };

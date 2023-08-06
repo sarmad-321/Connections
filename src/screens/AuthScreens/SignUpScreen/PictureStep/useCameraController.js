@@ -6,6 +6,10 @@ const useCameraController = () => {
   const [images, setImages] = useState([
     {id: 1, image: null},
     {id: 2, image: null},
+    {id: 3, image: null},
+    {id: 4, image: null},
+    {id: 5, image: null},
+    {id: 6, image: null},
   ]);
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
