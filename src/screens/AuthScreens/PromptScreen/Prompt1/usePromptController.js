@@ -5,23 +5,23 @@ import { getPrompt } from '../../../../redux/actions/authActions';
 
 
 const usePromptController = () => {
+    const [promptsReceived, setPromptsReceived] = useState(false)
+    useEffect(() => {
 
+
+        dispatch(getPrompt()).then(res => {
+            console.log("&&&&&&&&&&&")
+            console.log('&&&&&&&&&&&&&&&:', res.message)
+            setPrompts(res)
+        });
+
+    }, [])
     const dispatch = useDispatch();
     const [prompts, setPrompts] = useState()
 
-    const handleContinue = () => {
-        dispatch(getPrompt()).then(res => {
-            console.log("&&&&&&&&&&&")
-            // console.log('&&&&&&&&&&&&&&&:', res)
-
-            setPrompts(res)
-
-
-        });
-    };
 
     return {
-        handleContinue,
+        promptsReceived,
         prompts,
 
     };

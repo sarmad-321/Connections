@@ -91,7 +91,7 @@ const SelectDropDown = props => {
             setVisible(false);
             props.onChangeValue(item);
           }}>
-          <Poppins style={styles.h1}>{item?.name}</Poppins>
+          <Poppins style={styles.h1}>{item?.question}</Poppins>
         </TouchableOpacity>
       </Animated.View>
     );

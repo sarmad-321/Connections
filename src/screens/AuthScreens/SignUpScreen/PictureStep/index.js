@@ -7,30 +7,38 @@ import {
   useColorScheme,
   Image,
 } from 'react-native';
-import React, { useState, useRef } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React, {useState, useRef} from 'react';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import Question from '../../../../components/Question';
 import SelectButton from '../../../../components/Buttons/SelectButton';
-import { icons } from '../../../../assets';
+import {icons} from '../../../../assets';
 import MyStyles from './styles';
 import FranklinMedium from '../../../../components/TextWrapper/FranklinMedium';
-import { colors } from '../../../../utils/theme';
+import {colors} from '../../../../utils/theme';
 import GeneralPopup from '../../../../components/Popups/GeneralPopup';
+import useCameraController from './useCameraController';
 
-const Step6 = () => {
+const PictureStep = () => {
   const styles = MyStyles();
-  const [isEnabled, setIsEnabled] = useState(false);
-  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+
+  const {HandleGallery, HandleCamera, images, isEnabled, toggleSwitch} =
+    useCameraController();
   const infoPopup = useRef();
+  console.log(images);
   return (
     <SafeAreaView>
       <Question step={'06'} text={`Pair your pictures & videos with prompts`} />
 
       <View style={styles.promptContainer}>
-        {[1, 2, 3, 4, 5, 6].map(item => {
+        {images.map((item, index) => {
+          console.log(index);
+          console.log(images);
           return (
             <SelectButton
+              // image={}
+              image={item.image ? item.image : null}
               icon={icons.plus}
+              onPress={() => HandleGallery(item.id)}
               iconStyle={styles.icon}
               styles={styles.button}
             />
@@ -39,7 +47,7 @@ const Step6 = () => {
       </View>
       <View style={styles.switchDetail}>
         <Switch
-          trackColor={{ false: '#767577', true: '#81b0ff' }}
+          trackColor={{false: '#767577', true: '#81b0ff'}}
           thumbColor={colors.light.secondary}
           ios_backgroundColor="#3e3e3e"
           onValueChange={toggleSwitch}
@@ -64,4 +72,4 @@ const Step6 = () => {
   );
 };
 
-export default Step6;
+export default PictureStep;

@@ -15,10 +15,9 @@ const Prompt1 = ({ navigation }) => {
   const dropDownRef = useRef();
   const answerRef = useRef();
   const [selectedPrompt, setSelectedPrompt] = useState()
-  const { handleContinue, prompts } = usePromptController();
-  useEffect(() => {
-    console.log('prompts lol:', prompts)
-  }, [prompts])
+  const { prompts, promptsReceived } = usePromptController();
+  const [promptList, setPromptList] = useState([]);
+
   const handleClick = () => {
     dropDownRef.current.show();
     // navigation.navigate('Prompt2');
@@ -29,13 +28,24 @@ const Prompt1 = ({ navigation }) => {
       answerRef.current.show()
     }, 400);
   }
+  const handleAnswer = (value) => {
+    console.log("received", value)
+    console.log(selectedPrompt._id)
+    setPromptList((prev) => [
+      ...prev, { selectedPrompt: selectedPrompt._id, answer: value }
+    ])
+
+  }
+  useEffect(() => {
+    console.log(promptList)
+  }, [promptList])
   return (
     <ScreenWraper>
       <SafeAreaView>
-        <SelectDropDown reference={dropDownRef} values={staticQuestions} onChangeValue={onPromptSelection} />
-        <AnswerPopup reference={answerRef} selectedPrompt={selectedPrompt} />
+        <SelectDropDown reference={dropDownRef} values={prompts} onChangeValue={onPromptSelection} />
+        <AnswerPopup reference={answerRef} answerReceived={handleAnswer} selectedPrompt={selectedPrompt} />
         <Question text={`Write Your Profile Answers`} />
-        <PromptButton onPress={handleContinue} />
+        <PromptButton onPress={handleClick} />
         <PromptButton onPress={handleClick} />
 
       </SafeAreaView>

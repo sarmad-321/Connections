@@ -1,10 +1,10 @@
-import { StyleSheet, Text, View, useColorScheme, Image } from 'react-native';
+import {StyleSheet, Text, View, useColorScheme, Image} from 'react-native';
 import React from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import Poppins from '../../TextWrapper/Poppins';
-import MyStyles, { darkGradient, gradient } from './styles';
+import MyStyles, {darkGradient, gradient} from './styles';
 import LinearGradient from 'react-native-linear-gradient';
-import { icons } from '../../../assets';
+import {icons} from '../../../assets';
 
 const PromptButton = props => {
   const styles = MyStyles();
@@ -13,8 +13,8 @@ const PromptButton = props => {
   const colors = props.selectedGradient
     ? props.selectedGradient
     : theme === 'dark'
-      ? darkGradient
-      : gradient;
+    ? darkGradient
+    : gradient;
   const handleOnPress = () => {
     if (props?.onPress) {
       props.onPress();
@@ -29,8 +29,8 @@ const PromptButton = props => {
         <View style={styles.iconView}>
           <Image source={icons.plus} style={styles.icon} />
         </View>
-        <Poppins style={styles.text}>Select a prompt</Poppins>
-        <Poppins style={styles.text}>and write your answer</Poppins>
+        <Poppins style={styles.text}>{props?.title}</Poppins>
+        <Poppins style={styles.text}>{props?.answer}</Poppins>
       </LinearGradient>
     </TouchableOpacity>
   );

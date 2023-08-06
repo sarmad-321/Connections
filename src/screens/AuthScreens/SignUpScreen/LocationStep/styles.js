@@ -18,4 +18,7 @@ export default styles = StyleSheet.create({
   button: {
     width: '90%',
   },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
 });

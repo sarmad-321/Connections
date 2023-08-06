@@ -1,7 +1,7 @@
-import { useNavigation } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { userLogin, verifyUser } from '../../../redux/actions/authActions';
+import {useNavigation} from '@react-navigation/native';
+import {useEffect, useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {userLogin, verifyUser} from '../../../redux/actions/authActions';
 
 const useLoginController = type => {
   const navigation = useNavigation();
@@ -9,21 +9,22 @@ const useLoginController = type => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const [alreadyExist, setAlreadyExist] = useState(false)
+  const [alreadyExist, setAlreadyExist] = useState(false);
   const dispatch = useDispatch();
 
   const handleContinue = () => {
-
+    navigation.navigate('Verification', searchCriteria);
     if (alreadyExist && password.length > 6) {
-      return navigation.navigate("Verification", searchCriteria)
+      return navigation.navigate('Verification', searchCriteria);
     }
 
-    const searchCriteria = type === 'Email' ? { email, type: "email" } : { phone, type: "phone" };
+    const searchCriteria =
+      type === 'Email' ? {email, type: 'email'} : {phone, type: 'phone'};
     dispatch(verifyUser(searchCriteria)).then(res => {
       if (res.status) {
-        setAlreadyExist(true)
+        setAlreadyExist(true);
       } else {
-        navigation.navigate("Verification", searchCriteria)
+        navigation.navigate('Verification', searchCriteria);
       }
     });
   };
@@ -33,7 +34,7 @@ const useLoginController = type => {
     handleContinue,
     setEmail,
     setPassword,
-    alreadyExist
+    alreadyExist,
   };
 };
 
