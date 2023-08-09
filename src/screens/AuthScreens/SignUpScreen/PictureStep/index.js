@@ -18,11 +18,11 @@ import {colors} from '../../../../utils/theme';
 import GeneralPopup from '../../../../components/Popups/GeneralPopup';
 import useCameraController from './useCameraController';
 
-const PictureStep = () => {
+const PictureStep = ({onDataReceived}) => {
   const styles = MyStyles();
 
   const {HandleGallery, HandleCamera, images, isEnabled, toggleSwitch} =
-    useCameraController();
+    useCameraController(onDataReceived);
   const infoPopup = useRef();
   console.log(images);
   return (
@@ -31,8 +31,8 @@ const PictureStep = () => {
 
       <View style={styles.promptContainer}>
         {images.map((item, index) => {
-          console.log(index);
-          console.log(images);
+          // console.log(index);
+          // console.log(images);
           return (
             <SelectButton
               // image={}

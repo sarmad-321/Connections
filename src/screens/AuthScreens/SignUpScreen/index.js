@@ -18,7 +18,9 @@ import PromptStep from './PromptStep';
 import QuestionsStep from './QuestionsStep';
 import PictureStep from './PictureStep';
 
-const SignUpScreen = ({navigation}) => {
+const SignUpScreen = ({navigation, route}) => {
+  const LoginMethod = route.params?.value;
+
   const ref = useRef(PagerView);
   const [currentIndex, setCurrentIndex] = useState(0);
   // const [firstname, setFirstName] = useState('')
@@ -26,27 +28,14 @@ const SignUpScreen = ({navigation}) => {
   const [preference, setPreference] = useState('');
   const [date, setDate] = useState('');
 
-  const handleContinue = () => {
-    // if (currentIndex == 5) {
-    //   console.log('navigating');
-    //   navigation.navigate('PromptScreen');
-    // }
-    ref.current.setPage(currentIndex + 1);
-    console.log(currentIndex);
-  };
   const onPageSelected = e => {
     setCurrentIndex(e.nativeEvent.position);
   };
-  // const handleDateSelection = (newDate) => {
-  //   setDate(newDate)
-  // }
+
   const handleBack = () => {
     ref.current.setPage(currentIndex - 1);
     console.log(currentIndex);
   };
-  // const handleItem = (item) => {
-  //   setPreference(item)
-  // }
 
   const {
     setFirstName,
@@ -54,7 +43,10 @@ const SignUpScreen = ({navigation}) => {
     handleDateSelection,
     handleItem,
     setPrompt,
-  } = useRegisterController();
+    handleImages,
+    handleQuestions,
+    handleContinue,
+  } = useRegisterController(LoginMethod, ref, currentIndex);
 
   return (
     <ScreenWraper>
@@ -70,9 +62,9 @@ const SignUpScreen = ({navigation}) => {
         <LocationStep key="4" />
         {/* <Step5 key="5" /> */}
         <PromptStep onDataReceived={setPrompt} key="7" />
-        <PictureStep key="6" />
+        <PictureStep onDataReceived={handleImages} key="6" />
 
-        <QuestionsStep />
+        <QuestionsStep onDataReceived={handleQuestions} />
       </PagerView>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         {currentIndex == 0 ? (

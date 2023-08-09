@@ -14,7 +14,7 @@ const RadioButton = ({label, options, onChange}) => {
     setSelectedKey(item.label);
     onChange(item.value);
   };
-  console.log(selectedKey, 'lol');
+
   return (
     <View>
       <FranklinMedium style={styles.h1}>{label}</FranklinMedium>

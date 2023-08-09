@@ -39,8 +39,8 @@ const PromptStep = ({navigation, onDataReceived}) => {
       {promptList.map((item, index) => {
         return (
           <PromptButton
-            title={item.question}
-            answer={item.answer}
+            title={item.prompt ? item.question : 'Select a prompt'}
+            answer={item.prompt ? item.prompt.answer : 'and write your answers'}
             onPress={() => handleClick(item.id)}
           />
         );

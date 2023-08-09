@@ -1,8 +1,8 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ImagePicker from 'react-native-image-crop-picker';
 
-const useCameraController = () => {
+const useCameraController = onDataReceived => {
   const [images, setImages] = useState([
     {id: 1, image: null},
     {id: 2, image: null},
@@ -13,6 +13,9 @@ const useCameraController = () => {
   ]);
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  useEffect(() => {
+    onDataReceived(images, {blindDating: isEnabled});
+  }, [images, isEnabled]);
   const HandleGallery = id => {
     ImagePicker.openPicker({
       width: 400,

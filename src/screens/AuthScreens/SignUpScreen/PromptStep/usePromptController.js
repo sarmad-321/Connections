@@ -5,9 +5,9 @@ import {getPrompt} from '../../../../redux/actions/authActions';
 
 const usePromptController = onDataReceived => {
   const [promptList, setPromptList] = useState([
-    {id: 1, question: 'Select a prompt', answer: 'and write your answer'},
-    {id: 2, question: 'Select a prompt', answer: 'and write your answer'},
-    {id: 3, question: 'Select a prompt', answer: 'and write your answer'},
+    {id: 1, prompt: null, question: null},
+    {id: 2, prompt: null, question: null},
+    {id: 3, prompt: null, question: null},
   ]);
   const navigation = useNavigation();
   const [promptsReceived, setPromptsReceived] = useState(false);
@@ -18,7 +18,6 @@ const usePromptController = onDataReceived => {
   const answerRef = useRef();
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log(promptList);
     onDataReceived(promptList);
   }, [promptList]);
   useEffect(() => {
@@ -47,8 +46,7 @@ const usePromptController = onDataReceived => {
     let deepCopy = JSON.parse(JSON.stringify(promptList));
     let result = deepCopy.find(item => item.id == selectedId);
     console.log(result);
-    result.selectedPrompt = selectedPrompt._id;
-    result.answer = value;
+    result.prompt = data;
     result.question = selectedPrompt.question;
     console.log('^&&&&RESULT&&&&^::', result);
     setPromptList(deepCopy);

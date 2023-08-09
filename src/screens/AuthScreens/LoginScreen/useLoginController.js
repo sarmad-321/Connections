@@ -13,7 +13,7 @@ const useLoginController = type => {
   const dispatch = useDispatch();
 
   const handleContinue = () => {
-    navigation.navigate('Verification', searchCriteria);
+    // navigation.navigate('Verification', searchCriteria);
     if (alreadyExist && password.length > 6) {
       return navigation.navigate('Verification', searchCriteria);
     }
@@ -24,7 +24,7 @@ const useLoginController = type => {
       if (res.status) {
         setAlreadyExist(true);
       } else {
-        navigation.navigate('Verification', searchCriteria);
+        navigation.navigate('Verification', searchCriteria, {value: email});
       }
     });
   };

@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View, useColorScheme} from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Question from '../../../../components/Question';
 import SelectButton from '../../../../components/Buttons/SelectButton';
@@ -11,12 +11,12 @@ import RadioButtonRN from 'radio-buttons-react-native';
 import {colors} from '../../../../utils/theme';
 import RadioButton from '../../../../components/RadioButton';
 
-const QuestionsStep = ({handleItem}) => {
+const QuestionsStep = ({handleItem, onDataReceived}) => {
   const styles = MyStyles();
   const theme = useColorScheme();
-
-  const [drink, setDrink] = useState(false);
-  const [exercise, setExercise] = useState(false);
+  const [relationship, setRelationShip] = useState();
+  const [exercise, setExercise] = useState();
+  const [drink, setDrink] = useState();
   const data = [
     {
       label: 'Yes',
@@ -41,6 +41,14 @@ const QuestionsStep = ({handleItem}) => {
       value: 'Divorced',
     },
   ];
+  useEffect(() => {
+    onDataReceived({
+      drink: drink,
+      relationStatus: relationship,
+      exercise: exercise,
+    });
+  }, [relationship, drink, exercise]);
+
   return (
     <SafeAreaView>
       <Question step={'07'} text={`Some Final Questions`} />
@@ -51,17 +59,17 @@ const QuestionsStep = ({handleItem}) => {
         <RadioButton
           options={relationshipStatus}
           label={'Relationship Status'}
-          onChange={value => console.log(value)}
+          onChange={value => setRelationShip(value)}
         />
         <RadioButton
           options={data}
           label={'Do You Exercise'}
-          onChange={value => console.log(value)}
+          onChange={value => setExercise(value)}
         />
         <RadioButton
           options={data}
           label={'Do You Drink'}
-          onChange={value => console.log(value)}
+          onChange={value => setDrink(value)}
         />
       </View>
     </SafeAreaView>
