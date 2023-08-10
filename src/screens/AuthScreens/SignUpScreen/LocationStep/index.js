@@ -14,7 +14,7 @@ const LocationStep = () => {
   const pickerRef = useRef();
   return (
     <SafeAreaView>
-      <Question step={'04'} text={`Where Do You Live?`} />
+      <Question step={'05'} text={`Where Do You Live?`} />
       <View style={styles.imgContainer}>
         {/* <ImageBackground source={images.map} style={styles.img}>
           <MainButton style={styles.button} icon={icons.target}>

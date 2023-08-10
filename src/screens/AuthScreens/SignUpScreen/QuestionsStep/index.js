@@ -51,7 +51,7 @@ const QuestionsStep = ({handleItem, onDataReceived}) => {
 
   return (
     <SafeAreaView>
-      <Question step={'07'} text={`Some Final Questions`} />
+      <Question step={'08'} text={`Some Final Questions`} />
 
       <View style={styles.verticalpad}>
         {/* <FranklinMedium style={styles.h1}>Do You Exercise?</FranklinMedium> */}

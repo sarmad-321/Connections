@@ -6,7 +6,7 @@ export const base_url = urls.v1;
 export const image_url = '';
 export const endpoints = {
   auth: {
-    signup: '/',
+    signup: '/register',
     login: '/',
     logout: '/',
     verifyUser: '/user/verifyUser',

@@ -20,7 +20,7 @@ const PreferenceStep = ({handleItem}) => {
   };
   return (
     <SafeAreaView>
-      <Question step={'03'} text={`Who Do You Want To Date?`} />
+      <Question step={'04'} text={`Who Do You Want To Date?`} />
       <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
         {data.map(item => {
           return (

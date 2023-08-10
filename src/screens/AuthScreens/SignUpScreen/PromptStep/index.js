@@ -35,7 +35,7 @@ const PromptStep = ({navigation, onDataReceived}) => {
         answerReceived={handleAnswer}
         selectedPrompt={selectedPrompt}
       />
-      <Question step={'05'} text={`Write Your Profile Answers`} />
+      <Question step={'06'} text={`Write Your Profile Answers`} />
       {promptList.map((item, index) => {
         return (
           <PromptButton

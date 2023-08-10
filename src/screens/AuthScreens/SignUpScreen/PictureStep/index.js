@@ -27,7 +27,7 @@ const PictureStep = ({onDataReceived}) => {
   console.log(images);
   return (
     <SafeAreaView>
-      <Question step={'06'} text={`Pair your pictures & videos with prompts`} />
+      <Question step={'07'} text={`Pair your pictures & videos with prompts`} />
 
       <View style={styles.promptContainer}>
         {images.map((item, index) => {

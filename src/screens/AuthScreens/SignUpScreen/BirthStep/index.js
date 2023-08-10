@@ -38,7 +38,7 @@ const BirthStep = ({onDateChange}) => {
   return (
     <SafeAreaView>
       {/* <Text>index</Text> */}
-      <Question step={'02'} text={`What’s Your Date Of Birth?`} />
+      <Question step={'03'} text={`What’s Your Date Of Birth?`} />
       <View style={{justifyContent: 'center', alignItems: 'center'}}>
         <DatePicker
           style={styles.datePicker}

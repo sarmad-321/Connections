@@ -17,6 +17,7 @@ import LocationStep from './LocationStep';
 import PromptStep from './PromptStep';
 import QuestionsStep from './QuestionsStep';
 import PictureStep from './PictureStep';
+import PassStep from './PassStep';
 
 const SignUpScreen = ({navigation, route}) => {
   const LoginMethod = route.params?.value;
@@ -44,6 +45,7 @@ const SignUpScreen = ({navigation, route}) => {
     handleItem,
     setPrompt,
     handleImages,
+    setPassword,
     handleQuestions,
     handleContinue,
   } = useRegisterController(LoginMethod, ref, currentIndex);
@@ -57,14 +59,15 @@ const SignUpScreen = ({navigation, route}) => {
         ref={ref}
         onPageSelected={onPageSelected}>
         <NameStep firstName={setFirstName} lastName={setLastName} key="1" />
-        <BirthStep onDateChange={handleDateSelection} key="2" />
-        <PreferenceStep handleItem={handleItem} key="3" />
-        <LocationStep key="4" />
+        <PassStep password={setPassword} key="2" />
+        <BirthStep onDateChange={handleDateSelection} key="3" />
+        <PreferenceStep handleItem={handleItem} key="4" />
+        <LocationStep key="5" />
         {/* <Step5 key="5" /> */}
-        <PromptStep onDataReceived={setPrompt} key="7" />
-        <PictureStep onDataReceived={handleImages} key="6" />
+        <PromptStep onDataReceived={setPrompt} key="6" />
+        <PictureStep onDataReceived={handleImages} key="7" />
 
-        <QuestionsStep onDataReceived={handleQuestions} />
+        <QuestionsStep onDataReceived={handleQuestions} key="8" />
       </PagerView>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
         {currentIndex == 0 ? (
