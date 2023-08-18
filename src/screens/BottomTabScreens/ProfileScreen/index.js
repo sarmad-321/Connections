@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useState } from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import HomeHeader from '../../../components/HomeHeader';
 import {
   ScrollView,
@@ -11,24 +11,32 @@ import {
 import ProfilePic from '../../../components/ProfilePic';
 import FranklinMedium from '../../../components/TextWrapper/FranklinMedium';
 import Poppins from '../../../components/TextWrapper/Poppins';
-import { colors } from '../../../utils/theme';
+import {colors} from '../../../utils/theme';
 import InputField from '../../../components/InputField';
 import MainButton from '../../../components/Buttons/MainButton';
 import MyStyles from './styles';
+import {useSelector} from 'react-redux';
 
-const ProfileScreen = ({ navigation, route }) => {
+const ProfileScreen = ({navigation, route}) => {
   const styles = MyStyles();
   const [isEnabled, setIsEnabled] = useState(false);
+  const profile = useSelector(state => state?.profileReducer?.user);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const HandlePress = () => {
     navigation.navigate('Edit');
   };
+  useEffect(() => {
+    console.log(profile, 'profile');
+  }, [profile]);
   return (
     <ScreenWraper>
       <SafeAreaView>
         <ScrollView showsVerticalScrollIndicator={false}>
           <HomeHeader title={'My Profile'} />
-          <ProfilePic />
+          <ProfilePic
+            firstName={profile?.firstName}
+            lastName={profile?.lastName}
+          />
           <View style={styles.rosesContainer}>
             <View style={styles.row}>
               <FranklinMedium style={styles.h1}>No. of Roses 🌹</FranklinMedium>
@@ -58,27 +66,36 @@ const ProfileScreen = ({ navigation, route }) => {
           </View>
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Blind Date</FranklinMedium>
-            <View style={{ alignItems: 'flex-start' }}>
+            <View style={{alignItems: 'flex-start'}}>
               <Switch
-                trackColor={{ false: '#767577', true: '#81b0ff' }}
+                trackColor={{false: '#767577', true: '#81b0ff'}}
                 thumbColor={colors.light.secondary}
                 ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleSwitch}
-                value={isEnabled}
+                disabled
+                // onValueChange={toggleSwitch}
+                value={profile?.isBlindDate}
               />
             </View>
           </View>
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Mobile Number</FranklinMedium>
-            <InputField type="numeric" label="+9* ***********" />
+            <InputField
+              editable={false}
+              type="numeric"
+              label="+9* ***********"
+            />
           </View>
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Email</FranklinMedium>
-            <InputField type="email-address" label="sarmad@gmail.com" />
+            <InputField
+              editable={false}
+              type="email-address"
+              label="sarmad@gmail.com"
+            />
           </View>
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Age</FranklinMedium>
-            <InputField type="numeric" label="24" />
+            <InputField editable={false} type="numeric" label="24" />
           </View>
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Location</FranklinMedium>

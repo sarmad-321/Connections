@@ -62,15 +62,14 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
       console.log('FORM DATA++++++++++++++++++++', formData);
 
       let finalData = {
-        firstname: firstname,
+        firstName: firstname,
         lastName: lastName,
         email: email,
+        password: password,
         dateOfBirth: date,
-        location: {
-          latitude: 24.869096159342195,
-          longitude: 67.09766802041518,
-        },
-        genderPreference: preference,
+        latitude: 24.869096159342195,
+        longitude: 67.09766802041518,
+        gender: 'Male',
         promptAnswers: filteredPrompt,
         // images: filteredImage,
         isBlindDate: isBlindDate.blindDating,

@@ -4,7 +4,7 @@ import {icons, images} from '../../assets';
 import FranklinMedium from '../TextWrapper/FranklinMedium';
 import MyStyles from './styles';
 
-const ProfilePic = () => {
+const ProfilePic = props => {
   const styles = MyStyles();
   return (
     <View>
@@ -16,7 +16,9 @@ const ProfilePic = () => {
           <Image source={icons.edit} style={styles.editimg} />
         </TouchableOpacity>
       </View>
-      <FranklinMedium style={styles.h1}>Sarah John</FranklinMedium>
+      <FranklinMedium style={styles.h1}>
+        {props.firstName ? props.firstName : 'loading...'} {props?.lastName}
+      </FranklinMedium>
     </View>
   );
 };

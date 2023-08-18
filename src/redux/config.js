@@ -6,8 +6,8 @@ export const base_url = urls.v1;
 export const image_url = '';
 export const endpoints = {
   auth: {
-    signup: '/register',
-    login: '/',
+    signup: '/user/register',
+    login: '/user/login',
     logout: '/',
     verifyUser: '/user/verifyUser',
     prompts: '/prompts',
@@ -22,8 +22,12 @@ export const endpoints = {
     resetForgetPassword: '',
     deleteUserAccount: '/',
   },
-
+  home: {
+    myDates: '/date/myDates',
+    addComment: '/date/addComment',
+  },
   profile: {
+    getProfileDetails: '/user/profile',
     createMyProfile: '',
     createPatientProfile: '/',
   },

@@ -1,58 +1,80 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useState, useRef } from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import React, {useState, useRef} from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import ProfileCard from '../../../components/ProfileCard';
 import ShadowView from '../../../components/ShadowView';
 import styles from './styles';
 import Poppins from '../../../components/TextWrapper/Poppins';
 import AbhayaLibre from '../../../components/TextWrapper/AbhayaLibre';
 import LikeIcon from '../../../components/Buttons/LikeIcon';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import QuoteCard from '../../../components/QuoteCard';
 import InfoCard from '../../../components/InfoCard';
 import CommentPopup from '../../../components/Popups/CommentPopup';
+import {addComment} from '../../../redux/actions/homeActions';
+import {useDispatch} from 'react-redux';
 
-const ProfileDetailScreen = ({ route }) => {
-  const data = [1, 2, 3, 4, 5, 6]
-  const isBlind = route.params?.isBlind
-
+const ProfileDetailScreen = ({route}) => {
+  const selectedProfile = route.params?.item;
+  const prompt = route.params?.item?.promptAnswers;
+  const dispatch = useDispatch();
   const infoPopup = useRef();
-  const HandlePress = () => {
+  const [text, setText] = useState();
+  const [selectedPrompt, setSelectedPrompt] = useState();
+  const HandlePress = item => {
+    setSelectedPrompt(item);
     infoPopup.current.show();
-    console.log('test');
   };
+  const HandleAccept = () => {
+    console.log(text);
+    let data = {
+      targetType: 'prompt',
+      targetUser: selectedProfile._id,
+      text: text,
+      promptId: selectedPrompt._id,
+      answer: selectedPrompt.answer,
+    };
+    console.log(data, 'data');
+    dispatch(addComment(data)).then(res => {
+      console.log(res, 'res');
+    });
+  };
+
   return (
     <ScreenWraper>
       <SafeAreaView>
         <ScrollView showsVerticalScrollIndicator={false}>
+          <ProfileCard
+            name={`${selectedProfile.firstName} ${selectedProfile.lastName}`}
+            distance={selectedProfile.distance}
+            like
+            comment
+            // onPress={HandlePress}
+          />
           <FlatList
-            data={data}
+            data={prompt}
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
-            renderItem={({ item, index }) => (
+            renderItem={({item, index}) => (
               <>
-                {!isBlind && <ProfileCard like comment onPress={HandlePress} />}
                 <QuoteCard
-                  item={item}
+                  item={selectedProfile}
                   index={index}
-                  text={'Lorem Ipsum is simply dummy text of the printing'}
-                  heading={'Getting Rid of dead bodies'}
-                  like
+                  text={item?.selectedPrompt.question}
+                  heading={item?.answer}
+                  onPress={() => HandlePress(item)}
+                  comment
                 />
-                <CommentPopup
-                  reference={infoPopup}
-                  title={'Blind Date'}
-                  message={
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis vestibulum est, a faucibus.. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse iaculis vestibulum est, a faucibus.'
-                  }
-                />
-                {item == 2 && <InfoCard item={item} />}
               </>
             )}
           />
-
-
+          <CommentPopup
+            text={setText}
+            onAccept={HandleAccept}
+            reference={infoPopup}
+          />
+          <InfoCard item={selectedProfile} />
         </ScrollView>
       </SafeAreaView>
     </ScreenWraper>

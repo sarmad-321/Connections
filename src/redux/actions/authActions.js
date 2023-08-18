@@ -1,7 +1,7 @@
-import { endpoints } from '../config';
+import {endpoints} from '../config';
 import * as types from '../types';
-import { post, get } from '../Api/index';
-import { showToast } from '../Api/HelperFunction';
+import {post, get} from '../Api/index';
+import {showToast} from '../Api/HelperFunction';
 
 // import {console.log} from '../Api/HelperFunction';
 
@@ -48,8 +48,8 @@ export const getPrompt = data => {
         showToast(e);
       }, 1000);
     }
-  }
-}
+  };
+};
 
 export const userSignUp = data => {
   //console.log(data, 'userSignUpData');
@@ -123,6 +123,10 @@ export const userLogin = data => {
           payload: {
             token: response?.token,
           },
+        });
+        dispatch({
+          type: types.GET_PROFILE_DETAILS,
+          payload: response?.user,
         });
 
         resolve(response);
