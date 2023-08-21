@@ -37,6 +37,7 @@ const useLoginController = type => {
       const searchCriteria =
         type === 'Email' ? {email, type: 'email'} : {phone, type: 'phone'};
       dispatch(verifyUser(searchCriteria)).then(res => {
+        console.log(res, 'response controller');
         if (res.status) {
           setAlreadyExist(true);
         } else {

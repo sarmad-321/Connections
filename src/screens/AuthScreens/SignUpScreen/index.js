@@ -24,10 +24,6 @@ const SignUpScreen = ({navigation, route}) => {
 
   const ref = useRef(PagerView);
   const [currentIndex, setCurrentIndex] = useState(0);
-  // const [firstname, setFirstName] = useState('')
-  // const [lastName, setLastName] = useState('')
-  const [preference, setPreference] = useState('');
-  const [date, setDate] = useState('');
 
   const onPageSelected = e => {
     setCurrentIndex(e.nativeEvent.position);

@@ -1,7 +1,7 @@
 import {endpoints} from '../config';
 import * as types from '../types';
 import {post, get} from '../Api/index';
-import {showToast} from '../Api/HelperFunction';
+import {log, showToast} from '../Api/HelperFunction';
 
 // import {console.log} from '../Api/HelperFunction';
 
@@ -16,15 +16,17 @@ export const verifyUser = data => {
       dispatch({
         type: types.BTN_LOADING_END,
       });
+      console.log(response, 'response');
       return Promise.resolve(response);
     } catch (e) {
       dispatch({
         type: types.BTN_LOADING_END,
       });
-      // console.log(e, 'eeee');
+      console.log(e, 'eeee');
       setTimeout(() => {
         showToast(e);
       }, 1000);
+      return Promise.reject(e);
     }
   };
 };
