@@ -25,6 +25,7 @@ export const endpoints = {
   home: {
     myDates: '/date/myDates',
     addComment: '/date/addComment',
+    myRequest: '/date/myRequests',
   },
   profile: {
     getProfileDetails: '/user/profile',

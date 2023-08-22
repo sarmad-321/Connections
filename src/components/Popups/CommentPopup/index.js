@@ -80,7 +80,9 @@ const CommentPopup = props => {
             {props.successTitle ? props.successTitle : 'Send Rose'}
           </MainButton>
         )}
-        <TouchableOpacity style={styles.cancelContainer}>
+        <TouchableOpacity
+        onPress={hide}
+         style={styles.cancelContainer}>
           <Poppins style={styles.noBtn}>cancel</Poppins>
         </TouchableOpacity>
       </View>

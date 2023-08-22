@@ -14,6 +14,7 @@ import InfoCard from '../../../components/InfoCard';
 import CommentPopup from '../../../components/Popups/CommentPopup';
 import {addComment} from '../../../redux/actions/homeActions';
 import {useDispatch} from 'react-redux';
+import {showToast} from '../../../redux/Api/HelperFunction';
 
 const ProfileDetailScreen = ({route}) => {
   const selectedProfile = route.params?.item;
@@ -37,7 +38,9 @@ const ProfileDetailScreen = ({route}) => {
     };
     console.log(data, 'data');
     dispatch(addComment(data)).then(res => {
-      console.log(res, 'res');
+      console.log(res, 'Response of add comment');
+      showToast();
+      infoPopup.current.hide();
     });
   };
 
@@ -71,6 +74,7 @@ const ProfileDetailScreen = ({route}) => {
           />
           <CommentPopup
             text={setText}
+            successTitle={'Add Comment'}
             onAccept={HandleAccept}
             reference={infoPopup}
           />
