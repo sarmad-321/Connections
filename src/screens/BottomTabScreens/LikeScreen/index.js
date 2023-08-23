@@ -23,7 +23,7 @@ const LikeScreen = () => {
   const theme = useColorScheme();
   const styles = MyStyles();
   const [isEmpty, setIsEmpty] = useState(true);
-  const {matches} = useLikesController();
+  const {matches, myPromptComment, handleReject} = useLikesController();
   const [isBlindMode, setIsBlindMode] = useState(false);
   const handlePress = () => {
     console.log('test');
@@ -59,16 +59,23 @@ const LikeScreen = () => {
               title={'All'}
               back
               blind
+              handleReject={handleReject}
               blindonPress={handlePress}
             />
 
-            <QuoteCard
-              button
-              text={'Lorem Ipsum is simply dummy text of the printing'}
-              heading={'Getting Rid of dead bodies'}
-            />
+            {myPromptComment.map(item => {
+              return (
+                <QuoteCard
+                  button
+                  text={'Lorem Ipsum is simply dummy text of the printing'}
+                  heading={'Getting Rid of dead bodies'}
+                />
+              );
+            })}
             <View style={styles.line} />
-            <ProfileCard />
+            <ProfileCard
+              name={`${matches[0].user?.firstName} ${matches[0].user?.lastName}`}
+            />
           </>
         )}
       </SafeAreaView>

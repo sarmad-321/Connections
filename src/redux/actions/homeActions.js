@@ -74,3 +74,28 @@ export const getMyMatches = data => {
     }
   };
 };
+
+export const getMyPromptComments = data => {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: types.BTN_LOADING_START,
+      });
+      const response = await get(endpoints.home.getPromptComments, data);
+      dispatch({
+        type: types.BTN_LOADING_END,
+      });
+      return Promise.resolve(response);
+    } catch (e) {
+      dispatch({
+        type: types.BTN_LOADING_END,
+      });
+      // console.log(e, 'eeee');
+
+      setTimeout(() => {
+        showToast(e);
+      }, 1000);
+      return Promise.reject(e);
+    }
+  };
+};

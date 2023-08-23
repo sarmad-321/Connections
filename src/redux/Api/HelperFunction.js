@@ -167,7 +167,7 @@ export const jsonToFormdata = data => {
   return form_data;
 };
 
-export const getConfigs = (method, body, formData = true) => {
+export const getConfigs = (method, body, formData = false) => {
   var headers = {
     Accept: 'application/json',
     // 'X-Requested-With': 'XMLHttpRequest',
