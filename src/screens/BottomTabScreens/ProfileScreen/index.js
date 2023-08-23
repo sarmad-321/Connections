@@ -15,15 +15,20 @@ import {colors} from '../../../utils/theme';
 import InputField from '../../../components/InputField';
 import MainButton from '../../../components/Buttons/MainButton';
 import MyStyles from './styles';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {logout} from '../../../redux/actions/authActions';
 
 const ProfileScreen = ({navigation, route}) => {
   const styles = MyStyles();
   const [isEnabled, setIsEnabled] = useState(false);
   const profile = useSelector(state => state?.profileReducer?.user);
+  const dispatch = useDispatch();
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-  const HandlePress = () => {
+  const handleEdit = () => {
     navigation.navigate('Edit');
+  };
+  const handleLogout = () => {
+    dispatch(logout());
   };
   useEffect(() => {
     console.log(profile, 'profile');
@@ -116,7 +121,9 @@ const ProfileScreen = ({navigation, route}) => {
             <FranklinMedium style={styles.h1}>Education</FranklinMedium>
             <Poppins style={styles.h2}>Masters</Poppins>
           </View>
-          <MainButton onPress={HandlePress}>Edit Profile</MainButton>
+          <MainButton onPress={handleEdit}>Edit Profile</MainButton>
+          <MainButton onPress={handleLogout}>Logout</MainButton>
+
           <View style={styles.gap}></View>
         </ScrollView>
       </SafeAreaView>

@@ -1,27 +1,29 @@
-import { StyleSheet, Text, Image, View, useColorScheme } from 'react-native';
-import React, { useState } from 'react';
+import {StyleSheet, Text, Image, View, useColorScheme} from 'react-native';
+import React, {useState} from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
 import HomeHeader from '../../../components/HomeHeader';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 import EmptyLikes from '../../../components/EmptyLikes';
 
 import QuoteCard from '../../../components/QuoteCard';
 import ProfileCard from '../../../components/ProfileCard';
-import { vh } from '../../../utils/units';
+import {vh} from '../../../utils/units';
 import SelectButton from '../../../components/Buttons/SelectButton';
-import { icons, images } from '../../../assets';
+import {icons, images} from '../../../assets';
 import MyStyles, {
   darkGradient,
   darkSelectedGradient,
   lightGradient,
   lightSelectedGradient,
 } from './styles';
+import useLikesController from './useLikeScreenController';
 
 const LikeScreen = () => {
   const theme = useColorScheme();
   const styles = MyStyles();
   const [isEmpty, setIsEmpty] = useState(true);
+  const {matches} = useLikesController();
   const [isBlindMode, setIsBlindMode] = useState(false);
   const handlePress = () => {
     console.log('test');
@@ -33,15 +35,21 @@ const LikeScreen = () => {
         ? darkSelectedGradient
         : darkGradient
       : isBlindMode
-        ? lightSelectedGradient
-        : lightGradient;
+      ? lightSelectedGradient
+      : lightGradient;
   return (
     <ScreenWraper>
       <SafeAreaView>
-        {isEmpty ? (
+        {!matches.length ? (
           <>
             <HomeHeader title={'Likes You'} />
-            <EmptyLikes title={'Like'} onPress={() => { setIsEmpty(false) }} image={images.likes} />
+            <EmptyLikes
+              title={'Like'}
+              onPress={() => {
+                setIsEmpty(false);
+              }}
+              image={images.likes}
+            />
           </>
         ) : (
           <>
@@ -67,7 +75,7 @@ const LikeScreen = () => {
       {isEmpty ? null : (
         <View style={styles.fixedButtonContainer}>
           <SelectButton
-            iconStyle={[styles.fixedIcon, { height: '30%' }]}
+            iconStyle={[styles.fixedIcon, {height: '30%'}]}
             styles={styles.fixedbtn}
             icon={icons.cross}
           />

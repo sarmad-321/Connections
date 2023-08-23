@@ -1,16 +1,22 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {getMyMatches} from '../../../redux/actions/homeActions';
 
-const useHomeController = () => {
+const useLikesController = () => {
   const dispatch = useDispatch();
-  const [matches, setMatches] = useState();
+  const [matches, setMatches] = useState([]);
   const profile = useSelector(state => state?.profileReducer?.user);
 
   useEffect(() => {
-    dispatch();
+    dispatch(getMyMatches()).then(res => {
+      console.log(res);
+      setMatches(res.matchRequests);
+    });
   }, []);
 
-  return {};
+  return {
+    matches,
+  };
 };
 
-export default useHomeController;
+export default useLikesController;
