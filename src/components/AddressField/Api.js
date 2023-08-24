@@ -1,7 +1,7 @@
 const googleBaseUrl =
   'https://maps.googleapis.com/maps/api/place/autocomplete/json?input=';
 const geoBase = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
-const googleApiKey = 'AIzaSyB2hxNhJCBwaHoQ2eggJmLR4pfDYAN93cY';
+const googleApiKey = 'AIzaSyCL2XFs2hqb_aQFKtcUVf9xyhdxLBSFdp0';
 const geocodeUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address=';
 
 export const AddressApi = {

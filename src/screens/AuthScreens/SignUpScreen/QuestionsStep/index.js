@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, useColorScheme} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, useColorScheme} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Question from '../../../../components/Question';
@@ -17,6 +17,9 @@ const QuestionsStep = ({handleItem, onDataReceived}) => {
   const [relationship, setRelationShip] = useState();
   const [exercise, setExercise] = useState();
   const [drink, setDrink] = useState();
+  const [movies, setMovies] = useState();
+  const [videoGames, setVideoGames] = useState();
+
   const data = [
     {
       label: 'Yes',
@@ -46,14 +49,16 @@ const QuestionsStep = ({handleItem, onDataReceived}) => {
       drink: drink,
       relationStatus: relationship,
       exercise: exercise,
+      watchMovies: movies,
+      playVideoGames: videoGames,
     });
-  }, [relationship, drink, exercise]);
+  }, [relationship, drink, exercise, movies, videoGames]);
 
   return (
     <SafeAreaView>
       <Question step={'08'} text={`Some Final Questions`} />
 
-      <View style={styles.verticalpad}>
+      <ScrollView style={styles.verticalpad}>
         {/* <FranklinMedium style={styles.h1}>Do You Exercise?</FranklinMedium> */}
 
         <RadioButton
@@ -71,7 +76,17 @@ const QuestionsStep = ({handleItem, onDataReceived}) => {
           label={'Do You Drink'}
           onChange={value => setDrink(value)}
         />
-      </View>
+        <RadioButton
+          options={data}
+          label={'Do You Watch Movies'}
+          onChange={value => setMovies(value)}
+        />
+        <RadioButton
+          options={data}
+          label={'Do You Play Video Games'}
+          onChange={value => setVideoGames(value)}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 };

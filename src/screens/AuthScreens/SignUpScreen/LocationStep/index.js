@@ -9,23 +9,16 @@ import useMapController from './useMapController';
 import MapView from 'react-native-maps';
 import AddressPicker from '../../../../components/AddressField/AddressPicker';
 
-const LocationStep = () => {
-  const {position, mapRef} = useMapController();
+const LocationStep = ({setLocation}) => {
+  const {position, mapRef, onLocationSelect} = useMapController(setLocation);
   const pickerRef = useRef();
   return (
     <SafeAreaView>
       <Question step={'05'} text={`Where Do You Live?`} />
       <View style={styles.imgContainer}>
-        {/* <ImageBackground source={images.map} style={styles.img}>
-          <MainButton style={styles.button} icon={icons.target}>
-            Go to Current Location
-          </MainButton>
-        </ImageBackground> */}
         <MapView
           style={styles.map}
-          //specify our coordinates.
           ref={mapRef}
-          // onRegionChange={test => setPosition(test)}
           initialRegion={position}></MapView>
         <MainButton
           onPress={() => pickerRef.current.modalShow()}
@@ -37,7 +30,7 @@ const LocationStep = () => {
           ref={pickerRef}
           onValueChange={item => {
             if (item?.found) {
-              console.log(item);
+              onLocationSelect(item);
             }
           }}
         />

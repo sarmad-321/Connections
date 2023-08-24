@@ -44,6 +44,7 @@ const SignUpScreen = ({navigation, route}) => {
     setPassword,
     handleQuestions,
     handleContinue,
+    setLocation,
   } = useRegisterController(LoginMethod, ref, currentIndex);
 
   return (
@@ -58,11 +59,11 @@ const SignUpScreen = ({navigation, route}) => {
         <PassStep password={setPassword} key="2" />
         <BirthStep onDateChange={handleDateSelection} key="3" />
         <PreferenceStep handleItem={handleItem} key="4" />
-        <LocationStep key="5" />
+        <LocationStep setLocation={setLocation} key="5" />
         {/* <Step5 key="5" /> */}
         <PromptStep onDataReceived={setPrompt} key="6" />
-        <PictureStep onDataReceived={handleImages} key="7" />
 
+        <PictureStep onDataReceived={handleImages} key="7" />
         <QuestionsStep onDataReceived={handleQuestions} key="8" />
       </PagerView>
       <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>

@@ -31,6 +31,10 @@ const BirthStep = ({onDateChange}) => {
     age--;
   }
 
+  useEffect(() => {
+    onDateChange(new Date());
+  }, []);
+
   const handleDateSelection = newDate => {
     setDate(newDate);
     onDateChange(newDate);

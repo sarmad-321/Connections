@@ -328,7 +328,10 @@ export const completeProfile = data => {
         dispatch({
           type: types.LOADING_START,
         });
-        const response = await post(endpoints.auth.completeProfile, data, true);
+        const response = await post(
+          endpoints.auth.completeProfile + '/' + data.user,
+          data,
+        );
 
         dispatch({
           type: types.LOADING_END,

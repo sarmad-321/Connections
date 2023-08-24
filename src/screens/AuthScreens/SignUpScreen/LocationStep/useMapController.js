@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 
-const useMapController = () => {
+const useMapController = setLocation => {
   const mapRef = useRef();
 
   const [position, setPosition] = useState({
@@ -10,9 +10,15 @@ const useMapController = () => {
     latitudeDelta: 0.01,
     longitudeDelta: 0.01,
   });
+
+  const onLocationSelect = coords => {
+    setLocation(coords);
+  };
+
   return {
     position,
     mapRef,
+    onLocationSelect,
   };
 };
 

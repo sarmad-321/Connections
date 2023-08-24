@@ -2,6 +2,7 @@ import {StyleSheet, Text, View, useColorScheme} from 'react-native';
 import React from 'react';
 import {colors} from '../../../../utils/theme';
 import {useTheme} from '@react-navigation/native';
+import {vh} from '../../../../utils/units';
 
 const MyStyles = () => {
   const {colors} = useTheme();
@@ -17,6 +18,7 @@ const MyStyles = () => {
     },
     verticalpad: {
       paddingVertical: vh * 1,
+      height: vh * 50,
     },
   });
   return styles;

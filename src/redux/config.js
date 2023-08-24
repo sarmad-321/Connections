@@ -16,7 +16,7 @@ export const endpoints = {
     verifyCodeForgotPassword: '/',
     resetPassword: '/',
     changePassword: '/',
-    completeProfile: '/',
+    completeProfile: '/user/completeProfile',
     resentCodeEmail: '/',
     userverifyRecoverCode: '/',
     resetForgetPassword: '',
