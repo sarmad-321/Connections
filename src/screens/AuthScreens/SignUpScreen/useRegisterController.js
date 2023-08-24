@@ -7,9 +7,8 @@ import {showToast} from '../../../redux/Api/HelperFunction';
 
 const useRegisterController = (LoginMethod, ref, currentIndex) => {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState(
-    LoginMethod.type == 'email' ? LoginMethod.email : null,
-  );
+  const [email, setEmail] = useState(LoginMethod.email);
+  const [phone, setPhone] = useState(LoginMethod.phone);
   const [firstname, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
@@ -101,6 +100,7 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
       firstName: firstname,
       lastName: lastName,
       email: email,
+      phone: phone,
       password: password,
       dateOfBirth: date,
       latitude: location.location.lat,

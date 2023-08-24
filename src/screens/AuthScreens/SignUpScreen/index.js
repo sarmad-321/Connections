@@ -21,7 +21,7 @@ import PassStep from './PassStep';
 
 const SignUpScreen = ({navigation, route}) => {
   const LoginMethod = route.params?.value;
-
+  console.log(LoginMethod, 'login method parameter');
   const ref = useRef(PagerView);
   const [currentIndex, setCurrentIndex] = useState(0);
 
