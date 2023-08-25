@@ -64,8 +64,8 @@ const ProfileDetailScreen = ({route}) => {
                 <QuoteCard
                   item={selectedProfile}
                   index={index}
-                  text={item?.selectedPrompt.question}
-                  heading={item?.answer}
+                  question={item?.selectedPrompt.question}
+                  answer={item?.answer}
                   onPress={() => HandlePress(item)}
                   comment
                 />

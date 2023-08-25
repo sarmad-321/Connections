@@ -1,5 +1,12 @@
-import {StyleSheet, Text, Image, View, useColorScheme} from 'react-native';
-import React, {useState} from 'react';
+import {
+  StyleSheet,
+  Text,
+  Image,
+  View,
+  useColorScheme,
+  ScrollView,
+} from 'react-native';
+import React, {useRef, useState} from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
 import HomeHeader from '../../../components/HomeHeader';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -18,17 +25,48 @@ import MyStyles, {
   lightSelectedGradient,
 } from './styles';
 import useLikesController from './useLikeScreenController';
+import {addComment} from '../../../redux/actions/homeActions';
+import CommentPopup from '../../../components/Popups/CommentPopup';
+import {useDispatch} from 'react-redux';
+import {showToast} from '../../../redux/Api/HelperFunction';
 
 const LikeScreen = () => {
   const theme = useColorScheme();
   const styles = MyStyles();
   const [isEmpty, setIsEmpty] = useState(true);
   const {matches, myPromptComment, handleReject} = useLikesController();
+  const [text, setText] = useState();
+  const dispatch = useDispatch();
+  const [selectedPrompt, setSelectedPrompt] = useState();
   const [isBlindMode, setIsBlindMode] = useState(false);
-  const handlePress = () => {
+  const infoPopup = useRef();
+
+  const HandleAccept = () => {
+    console.log(selectedPrompt, 'selected prompt');
+    let selectedProfile = matches[0].user;
+    let data = {
+      targetType: 'prompt',
+      targetUser: selectedProfile._id,
+      text: text,
+      promptId: selectedPrompt?.selectedPrompt?._id,
+      answer: selectedPrompt.answer,
+    };
+    console.log(data, 'data');
+    dispatch(addComment(data)).then(res => {
+      infoPopup.current.hide();
+    });
+  };
+
+  const handlePromptReply = item => {
+    setSelectedPrompt(item);
+    infoPopup.current.show();
+  };
+
+  const handleBlindPress = () => {
     console.log('test');
     setIsBlindMode(!isBlindMode);
   };
+
   const gradientcolors =
     theme === 'dark'
       ? isBlindMode
@@ -40,44 +78,59 @@ const LikeScreen = () => {
   return (
     <ScreenWraper>
       <SafeAreaView>
-        {!matches.length ? (
-          <>
-            <HomeHeader title={'Likes You'} />
-            <EmptyLikes
-              title={'Like'}
-              onPress={() => {
-                setIsEmpty(false);
-              }}
-              image={images.likes}
-            />
-          </>
-        ) : (
-          <>
-            <HomeHeader
-              color={gradientcolors}
-              isBlindMode={isBlindMode}
-              title={'All'}
-              back
-              blind
-              handleReject={handleReject}
-              blindonPress={handlePress}
-            />
+        <ScrollView
+          contentContainerStyle={{paddingBottom: vh * 10}}
+          showsVerticalScrollIndicator={false}>
+          {!matches.length ? (
+            <>
+              <HomeHeader title={'Likes You'} />
+              <EmptyLikes
+                title={'Like'}
+                onPress={() => {
+                  setIsEmpty(false);
+                }}
+                image={images.likes}
+              />
+            </>
+          ) : (
+            <>
+              <HomeHeader
+                color={gradientcolors}
+                isBlindMode={isBlindMode}
+                title={'All'}
+                back
+                blind
+                handleReject={handleReject}
+                blindonPress={handleBlindPress}
+              />
 
-            {myPromptComment.map(item => {
-              return (
-                <QuoteCard
-                  button
-                  text={'Lorem Ipsum is simply dummy text of the printing'}
-                  heading={'Getting Rid of dead bodies'}
-                />
-              );
-            })}
-            <View style={styles.line} />
-            <ProfileCard
-              name={`${matches[0].user?.firstName} ${matches[0].user?.lastName}`}
-            />
-          </>
-        )}
+              {myPromptComment.map(item => {
+                return (
+                  <QuoteCard
+                    reply={item.text}
+                    answer={item.promptAnswer}
+                    question={item?.promptId?.question}
+                  />
+                );
+              })}
+
+              <View style={styles.line} />
+              <ProfileCard
+                name={`${matches[0].user?.firstName} ${matches[0].user?.lastName}`}
+              />
+              {matches[0]?.user?.promptAnswers?.map(item => {
+                return (
+                  <QuoteCard
+                    answer={item?.answer}
+                    question={item?.selectedPrompt?.question}
+                    comment
+                    onPress={() => handlePromptReply(item)}
+                  />
+                );
+              })}
+            </>
+          )}
+        </ScrollView>
       </SafeAreaView>
       {isEmpty ? null : (
         <View style={styles.fixedButtonContainer}>
@@ -93,6 +146,12 @@ const LikeScreen = () => {
           />
         </View>
       )}
+      <CommentPopup
+        text={setText}
+        successTitle={'Add Comment'}
+        onAccept={HandleAccept}
+        reference={infoPopup}
+      />
     </ScreenWraper>
   );
 };

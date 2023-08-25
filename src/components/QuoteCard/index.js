@@ -30,8 +30,8 @@ const QuoteCard = props => {
         <ShadowView dashed>
           <View style={styles.padding}>
             <View style={styles.textContainer}>
-              <Poppins style={styles.text}>{props?.text}</Poppins>
-              <AbhayaLibre style={styles.h1}>{props?.heading}</AbhayaLibre>
+              <Poppins style={styles.text}>{props?.question}</Poppins>
+              <AbhayaLibre style={styles.h1}>{props?.answer}</AbhayaLibre>
             </View>
             {props?.comment ? (
               <View style={styles.iconContainer}>
@@ -41,10 +41,10 @@ const QuoteCard = props => {
           </View>
         </ShadowView>
       </View>
-      {props?.button ? (
+      {props?.reply ? (
         <LinearGradient colors={darkGradient} style={styles.button}>
           <TouchableOpacity>
-            <Poppins style={styles.buttontext}>Lorem ipsum</Poppins>
+            <Poppins style={styles.buttontext}>{props.reply}</Poppins>
           </TouchableOpacity>
         </LinearGradient>
       ) : null}

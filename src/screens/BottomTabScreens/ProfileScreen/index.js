@@ -29,6 +29,9 @@ const ProfileScreen = ({navigation, route}) => {
   };
   const handleLogout = () => {
     dispatch(logout());
+    setTimeout(() => {
+      navigation.navigate('AuthNavigator');
+    }, 300);
   };
   useEffect(() => {
     console.log(profile, 'profile');
