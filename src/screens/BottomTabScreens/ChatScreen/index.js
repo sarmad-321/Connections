@@ -1,84 +1,87 @@
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import ChatHeader from '../../../components/ChatHeader';
-import { FlatList } from 'react-native-gesture-handler';
+import {FlatList} from 'react-native-gesture-handler';
 import styles from './styles';
 import Poppins from '../../../components/TextWrapper/Poppins';
+import useChatController from './useChatController';
+
+const data = [
+  {
+    id: 1,
+    date: '9:50 am',
+    day: '',
+    type: 'in',
+    message:
+      'ye aj ka pehla lamba message, ye aj ka pehla lamba message, ye aj ka pehla lamba message, ye aj ka pehla lamba message',
+  },
+  {
+    id: 2,
+    date: '9:50 am',
+    day: '',
+    type: 'out',
+    message:
+      'ye aj ka pehla lamba message, ye aj ka pehla lamba message, ye aj ka pehla lamba message, ye aj ka pehla lamba message',
+  },
+  {
+    id: 3,
+    date: '9:50 am',
+    day: '',
+    type: 'in',
+    message: 'Lorem ipsum dolor sit a met',
+  },
+  {
+    id: 4,
+    date: '9:50 am',
+    day: '',
+    type: 'in',
+    message: 'Lorem ipsum dolor sit a met',
+  },
+  {
+    id: 5,
+    date: '9:50 am',
+    day: '',
+    type: 'out',
+    message: 'Lorem ipsum dolor sit a met',
+  },
+  {
+    id: 6,
+    date: '9:50 am',
+    day: '',
+    type: 'out',
+    message: 'Lorem ipsum dolor sit a met',
+  },
+  {
+    id: 7,
+    date: '9:50 am',
+    day: '',
+    type: 'in',
+    message: 'Lorem ipsum dolor sit a met',
+  },
+  {
+    id: 8,
+    date: '9:50 am',
+    day: '',
+    type: 'in',
+    message: 'Lorem ipsum dolor sit a met',
+  },
+  {
+    id: 9,
+    date: '9:50 am',
+    day: '',
+    type: 'in',
+    message:
+      'ye aj ka pehla lamba message, ye aj ka pehla lamba message, ye aj ka pehla lamba message, ye aj ka pehla lamba message',
+  },
+];
 
 const ChatScreen = () => {
+  const {matches} = useChatController();
 
-  const data = [
-    {
-      id: 1,
-      date: '9:50 am',
-      day: '',
-      type: 'in',
-      message:
-        'ye aj ka pehla lamba message, ye aj ka pehla lamba message, ye aj ka pehla lamba message, ye aj ka pehla lamba message',
-    },
-    {
-      id: 2,
-      date: '9:50 am',
-      day: '',
-      type: 'out',
-      message:
-        'ye aj ka pehla lamba message, ye aj ka pehla lamba message, ye aj ka pehla lamba message, ye aj ka pehla lamba message',
-    },
-    {
-      id: 3,
-      date: '9:50 am',
-      day: '',
-      type: 'in',
-      message: 'Lorem ipsum dolor sit a met',
-    },
-    {
-      id: 4,
-      date: '9:50 am',
-      day: '',
-      type: 'in',
-      message: 'Lorem ipsum dolor sit a met',
-    },
-    {
-      id: 5,
-      date: '9:50 am',
-      day: '',
-      type: 'out',
-      message: 'Lorem ipsum dolor sit a met',
-    },
-    {
-      id: 6,
-      date: '9:50 am',
-      day: '',
-      type: 'out',
-      message: 'Lorem ipsum dolor sit a met',
-    },
-    {
-      id: 7,
-      date: '9:50 am',
-      day: '',
-      type: 'in',
-      message: 'Lorem ipsum dolor sit a met',
-    },
-    {
-      id: 8,
-      date: '9:50 am',
-      day: '',
-      type: 'in',
-      message: 'Lorem ipsum dolor sit a met',
-    },
-    {
-      id: 9,
-      date: '9:50 am',
-      day: '',
-      type: 'in',
-      message:
-        'ye aj ka pehla lamba message, ye aj ka pehla lamba message, ye aj ka pehla lamba message, ye aj ka pehla lamba message',
-    },
-  ];
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
       <ChatHeader />
       <ScreenWraper>
         <FlatList

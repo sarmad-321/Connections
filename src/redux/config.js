@@ -27,6 +27,7 @@ export const endpoints = {
     addComment: '/date/addComment',
     myRequest: '/date/myRequests',
     getPromptComments: '/date/promptComments',
+    myMatches: '/date/myMatches',
   },
   profile: {
     getProfileDetails: '/user/profile',
