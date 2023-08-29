@@ -17,6 +17,7 @@ import MainButton from '../../../components/Buttons/MainButton';
 import MyStyles from './styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {logout} from '../../../redux/actions/authActions';
+import {CommonActions} from '@react-navigation/native';
 
 const ProfileScreen = ({navigation, route}) => {
   const styles = MyStyles();
@@ -31,6 +32,11 @@ const ProfileScreen = ({navigation, route}) => {
     dispatch(logout());
     setTimeout(() => {
       navigation.navigate('AuthNavigator');
+      const resetAction = CommonActions.reset({
+        index: 0,
+        routes: [{name: 'AuthNavigator'}],
+      });
+      navigation.dispatch(resetAction);
     }, 300);
   };
   useEffect(() => {

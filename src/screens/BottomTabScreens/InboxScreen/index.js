@@ -8,6 +8,7 @@ import {images} from '../../../assets';
 import ChatList from '../../../components/ChatList';
 import {FlatList} from 'react-native-gesture-handler';
 import useChatController from '../ChatScreen/useChatController';
+import useInboxController from './useInboxController';
 const data = [
   {
     name: 'Sarmad',
@@ -24,7 +25,7 @@ const data = [
   {name: 'Sarah', message: 'Wake up dude!!!', time: '3 hours ago'},
 ];
 const InboxScreen = ({navigation}) => {
-  const {matches} = useChatController();
+  const {matches} = useInboxController();
 
   const handlePress = () => {
     navigation.navigate('Chat');

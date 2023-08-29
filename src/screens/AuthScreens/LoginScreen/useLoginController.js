@@ -2,7 +2,6 @@ import {CommonActions, useNavigation} from '@react-navigation/native';
 import {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {userLogin, verifyUser} from '../../../redux/actions/authActions';
-import BottomTabNavigator from '../../../navigations/BottomTabNavigator';
 
 const useLoginController = type => {
   const navigation = useNavigation();
@@ -22,10 +21,8 @@ const useLoginController = type => {
           : {phone: phone, password: password};
       dispatch(userLogin(loginData)).then(res => {
         if (res == 200) {
-          console.log('navigation');
-          CommonActions.reset({
-            index: 0,
-            routes: [{name: BottomTabNavigator}],
+          navigation.navigate('BottomTabNavigator', {
+            screen: 'Home',
           });
         }
       });
