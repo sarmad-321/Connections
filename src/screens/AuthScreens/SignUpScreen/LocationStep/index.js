@@ -17,11 +17,7 @@ const LocationStep = ({setLocation}) => {
     <SafeAreaView>
       <Question step={'05'} text={`Where Do You Live?`} />
       <View style={styles.imgContainer}>
-        <MapView
-          ges
-          style={styles.map}
-          ref={mapRef}
-          initialRegion={initialRegion}>
+        <MapView style={styles.map} ref={mapRef} initialRegion={initialRegion}>
           <Marker coordinate={position} />
         </MapView>
         <MainButton
