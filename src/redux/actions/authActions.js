@@ -1,7 +1,7 @@
 import {endpoints} from '../config';
 import * as types from '../types';
 import {post, get} from '../Api/index';
-import {showToast} from '../Api/HelperFunction';
+import {log, showToast} from '../Api/HelperFunction';
 
 // import {console.log} from '../Api/HelperFunction';
 
@@ -13,6 +13,30 @@ export const verifyUser = data => {
         type: types.BTN_LOADING_START,
       });
       const response = await get(endpoints.auth.verifyUser, data);
+      dispatch({
+        type: types.BTN_LOADING_END,
+      });
+      console.log(response, 'response');
+      return Promise.resolve(response);
+    } catch (e) {
+      dispatch({
+        type: types.BTN_LOADING_END,
+      });
+      console.log(e, 'eeee');
+      setTimeout(() => {
+        showToast(e);
+      }, 1000);
+      return Promise.reject(e);
+    }
+  };
+};
+export const getPrompt = data => {
+  return async dispatch => {
+    try {
+      dispatch({
+        type: types.BTN_LOADING_START,
+      });
+      const response = await get(endpoints.auth.prompts, data);
       dispatch({
         type: types.BTN_LOADING_END,
       });
@@ -101,6 +125,10 @@ export const userLogin = data => {
           payload: {
             token: response?.token,
           },
+        });
+        dispatch({
+          type: types.GET_PROFILE_DETAILS,
+          payload: response?.user,
         });
 
         resolve(response);
@@ -300,7 +328,10 @@ export const completeProfile = data => {
         dispatch({
           type: types.LOADING_START,
         });
-        const response = await post(endpoints.auth.completeProfile, data, true);
+        const response = await post(
+          endpoints.auth.completeProfile + '/' + data.user,
+          data,
+        );
 
         dispatch({
           type: types.LOADING_END,

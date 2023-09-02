@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View, useColorScheme } from 'react-native';
+import {StyleSheet, Text, View, useColorScheme} from 'react-native';
 import React from 'react';
-import { vh, vw } from '../../../utils/units';
-import { colors } from '../../../utils/theme';
-import { useTheme } from '@react-navigation/native';
+import {vh, vw} from '../../../utils/units';
+import {colors} from '../../../utils/theme';
+import {useTheme} from '@react-navigation/native';
 
 export const gradient = ['white', 'white'];
 export const darkGradient = ['#5B5B5B', '#2E2E2E'];
@@ -90,7 +90,7 @@ export const darkGradient = ['#5B5B5B', '#2E2E2E'];
 // };
 
 const MyStyles = () => {
-  const { colors } = useTheme();
+  const {colors} = useTheme();
 
   const styles = StyleSheet.create({
     container: {
@@ -116,7 +116,7 @@ const MyStyles = () => {
       borderRadius: vh * 1,
       // backgroundColor: colors.light.primary,
       shadowColor: '#000',
-      shadowOffset: { width: 1, height: 1 },
+      shadowOffset: {width: 1, height: 1},
       shadowOpacity: 0.4,
       shadowRadius: 5,
       elevation: 4,

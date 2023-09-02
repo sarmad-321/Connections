@@ -12,6 +12,7 @@ const AnswerPopup = props => {
   const styles = MyStyles();
   const [visible, setVisible] = useState(false);
   const [selectedValues, setSelectedValues] = useState([]);
+  const [answer, setAnswer] = useState()
   useImperativeHandle(props?.reference, () => ({
     hide: hide,
     show: show,
@@ -52,12 +53,13 @@ const AnswerPopup = props => {
           <ShadowView dashed>
             <View style={styles.padding}>
               <FranklinMedium style={styles.h1}>
-                {props.selectedPrompt?.name}
+                {props.selectedPrompt?.question}
               </FranklinMedium>
               {/* <Poppins style={styles.h2}>
               Lorem Ipsum is simply dummy text of the printing.
             </Poppins> */}
               <TextInput
+                onChangeText={(text) => setAnswer(text)}
                 placeholderTextColor={
                   useColorScheme() == 'light' ? 'gray' : 'white'
                 }
@@ -71,6 +73,7 @@ const AnswerPopup = props => {
                 <MainButton
                   onPress={() => {
                     setVisible(false);
+                    props.answerReceived(answer)
                   }}
                   style={{
                     width: '75%',

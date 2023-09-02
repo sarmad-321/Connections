@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenWraper from '../../../../components/ScreenWrapper';
 import Question from '../../../../components/Question';
@@ -9,11 +9,14 @@ import AnswerPopup from '../../../../components/AnswerPopup';
 import { staticQuestions } from '../../../../utils/dummyData';
 import MainButton from '../../../../components/Buttons/MainButton';
 import { vh } from '../../../../utils/units';
+import usePromptController from './usePromptController';
 
 const Prompt1 = ({ navigation }) => {
   const dropDownRef = useRef();
   const answerRef = useRef();
   const [selectedPrompt, setSelectedPrompt] = useState()
+  const { prompts, promptsReceived } = usePromptController();
+  const [promptList, setPromptList] = useState([]);
 
   const handleClick = () => {
     dropDownRef.current.show();
@@ -25,14 +28,26 @@ const Prompt1 = ({ navigation }) => {
       answerRef.current.show()
     }, 400);
   }
+  const handleAnswer = (value) => {
+    console.log("received", value)
+    console.log(selectedPrompt._id)
+    setPromptList((prev) => [
+      ...prev, { selectedPrompt: selectedPrompt._id, answer: value }
+    ])
+
+  }
+  useEffect(() => {
+    console.log(promptList)
+  }, [promptList])
   return (
     <ScreenWraper>
       <SafeAreaView>
-        <SelectDropDown reference={dropDownRef} values={staticQuestions} onChangeValue={onPromptSelection} />
-        <AnswerPopup reference={answerRef} selectedPrompt={selectedPrompt} />
+        <SelectDropDown reference={dropDownRef} values={prompts} onChangeValue={onPromptSelection} />
+        <AnswerPopup reference={answerRef} answerReceived={handleAnswer} selectedPrompt={selectedPrompt} />
         <Question text={`Write Your Profile Answers`} />
         <PromptButton onPress={handleClick} />
         <PromptButton onPress={handleClick} />
+
       </SafeAreaView>
       <MainButton
         onPress={() => navigation.navigate("BottomTabNavigator")}

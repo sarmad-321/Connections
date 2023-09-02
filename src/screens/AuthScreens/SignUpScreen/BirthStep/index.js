@@ -1,18 +1,20 @@
-import { StyleSheet, Text, View, useColorScheme } from 'react-native';
-import React, { useState } from 'react';
+import {StyleSheet, Text, View, useColorScheme} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import ScreenWraper from '../../../../components/ScreenWrapper';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import Question from '../../../../components/Question';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import DatePicker from 'react-native-date-picker';
 import moment from 'moment';
-import { colors } from '../../../../utils/theme';
-import { vh } from '../../../../utils/units';
+import {colors} from '../../../../utils/theme';
+import {vh} from '../../../../utils/units';
 import AbhayaLibre from '../../../../components/TextWrapper/AbhayaLibre';
 import Poppins from '../../../../components/TextWrapper/Poppins';
 import MyStyles from './styles';
+import Question from '../../../../components/Question';
+import {useTheme} from '@react-navigation/native';
 
-const Step2 = () => {
+const BirthStep = ({onDateChange}) => {
   const styles = MyStyles();
+  const theme = useColorScheme();
   const [date, setDate] = useState(
     new Date(
       new Date().getFullYear() - 18,
@@ -29,19 +31,27 @@ const Step2 = () => {
     age--;
   }
 
+  useEffect(() => {
+    onDateChange(new Date());
+  }, []);
+
+  const handleDateSelection = newDate => {
+    setDate(newDate);
+    onDateChange(newDate);
+  };
   return (
     <SafeAreaView>
       {/* <Text>index</Text> */}
-      <Question step={'02'} text={`What’s Your Date Of Birth?`} />
-      <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+      <Question step={'03'} text={`What’s Your Date Of Birth?`} />
+      <View style={{justifyContent: 'center', alignItems: 'center'}}>
         <DatePicker
           style={styles.datePicker}
           fadeToColor="none"
-          textColor={colors.light.secondary}
+          textColor={theme == 'dark' ? 'white' : 'black'}
           maximumDate={new Date()}
           mode="date"
           date={date}
-          onDateChange={setDate}
+          onDateChange={handleDateSelection}
         />
         <View style={styles.text}>
           <AbhayaLibre style={styles.age}>{age}</AbhayaLibre>
@@ -52,4 +62,4 @@ const Step2 = () => {
   );
 };
 
-export default Step2;
+export default BirthStep;

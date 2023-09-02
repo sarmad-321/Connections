@@ -1,26 +1,28 @@
-import { StyleSheet, Text, View, useColorScheme } from 'react-native';
+import {StyleSheet, Text, View, useColorScheme} from 'react-native';
 import React from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import InputField from '../../../components/InputField';
 import FranklinMedium from '../../../components/TextWrapper/FranklinMedium';
 import MyStyles from './styles';
 import OTPTextView from 'react-native-otp-textinput';
 import Question from '../../../components/Question';
 import LinearGradient from 'react-native-linear-gradient';
-import { DarkTheme, useTheme } from '@react-navigation/native';
-import { colors } from '../../../utils/theme';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {DarkTheme, useTheme} from '@react-navigation/native';
+import {colors} from '../../../utils/theme';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import Poppins from '../../../components/TextWrapper/Poppins';
 import MainButton from '../../../components/Buttons/MainButton';
 
-const VerificationScreen = ({ navigation }) => {
+const VerificationScreen = ({navigation, route}) => {
+  const receivedData = route?.params;
+
   // const {colors} = useTheme();
 
   const theme = useColorScheme();
   const styles = MyStyles();
   const handleContinue = () => {
-    navigation.navigate('SignUp');
+    navigation.navigate('SignUp', {value: receivedData});
   };
 
   return (

@@ -12,7 +12,7 @@ const HomeNavigator = () => {
       headerMode="none"
       screenOptions={{headerShown: false}}
       initialRouteName="Login">
-      <HomeStack.Screen name="Home" component={HomeScreen} />
+      <HomeStack.Screen name="MainHome" component={HomeScreen} />
       <HomeStack.Screen name="Profile" component={ProfileDetailScreen} />
     </HomeStack.Navigator>
   );

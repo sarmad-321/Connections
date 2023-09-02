@@ -6,12 +6,12 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Mulish from '../TextWrapper/Mulish';
-import { icons } from '../../assets';
-import MyStyles, { darkGradient, lightGradient } from './styles';
+import {icons} from '../../assets';
+import MyStyles, {darkGradient, lightGradient} from './styles';
 import LinearGradient from 'react-native-linear-gradient';
-import { colors } from '../../utils/theme';
+import {colors} from '../../utils/theme';
 
 const HomeHeader = props => {
   const theme = useColorScheme();
@@ -34,7 +34,7 @@ const HomeHeader = props => {
                   style={[
                     styles.img,
                     props.isBlindMode
-                      ? { tintColor: colors.light.primary }
+                      ? {tintColor: colors.light.primary}
                       : null,
                   ]}
                   source={icons.blindbutton}
@@ -45,7 +45,7 @@ const HomeHeader = props => {
         ) : null}
         {props?.back ? (
           <View style={styles.bottomshadow}>
-            <TouchableOpacity activeOpacity={0.7}>
+            <TouchableOpacity onPress={props?.handleReject} activeOpacity={0.7}>
               <LinearGradient
                 style={styles.imgContainer}
                 colors={theme == 'dark' ? darkGradient : lightGradient}>

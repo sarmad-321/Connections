@@ -18,10 +18,12 @@ const ProfileCard = props => {
     <ImageBackground style={styles.imageContainer} source={images.profileDummy}>
       <View style={styles.margin}>
         <View style={styles.detailContainer}>
-          <AbhayaLibre style={styles.h1}>Kelvin, 23</AbhayaLibre>
+          <AbhayaLibre style={styles.h1}>
+            {props?.name}, {props?.age}
+          </AbhayaLibre>
           <View style={styles.detailsText}>
             <Image source={icons.location} style={styles.icon} />
-            <Poppins style={styles.h2}>LOS ANGELES • 20 KMS AWAY</Poppins>
+            <Poppins style={styles.h2}>LOS ANGELES • {props?.distance}</Poppins>
           </View>
           <ActiveStatus />
         </View>

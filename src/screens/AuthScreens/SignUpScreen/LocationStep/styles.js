@@ -12,10 +12,13 @@ export default styles = StyleSheet.create({
     overflow: 'hidden',
   },
   imgContainer: {
-    height: vh * 30,
+    height: vh * 45,
     width: '100%',
   },
   button: {
     width: '90%',
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
   },
 });

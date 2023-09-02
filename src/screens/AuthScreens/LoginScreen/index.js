@@ -1,22 +1,22 @@
-import { View, Text, ActivityIndicator } from 'react-native';
+import {View, Text, ActivityIndicator} from 'react-native';
 import React from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
 import MainButton from '../../../components/Buttons/MainButton';
 import MyStyles from './styles';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import Question from '../../../components/Question';
 import useLoginController from './useLoginController';
 import InputField from '../../../components/InputField';
-import { useSelector } from 'react-redux';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import {useSelector} from 'react-redux';
+import Animated, {FadeInDown} from 'react-native-reanimated';
 
-const LoginScreen = ({ navigation, route }) => {
+const LoginScreen = ({navigation, route}) => {
   const receivedData = route.params?.value;
   const styles = MyStyles();
-  const { setPhone, handleContinue, setEmail, setPassword, alreadyExist } = useLoginController(receivedData);
-  const loading = useSelector(state => state.commonReducer.btnLoader)
+  const {setPhone, handleContinue, setEmail, setPassword, alreadyExist} =
+    useLoginController(receivedData);
+  const loading = useSelector(state => state.commonReducer.btnLoader);
 
-  console.log(loading, "loading")
   return (
     <ScreenWraper>
       <SafeAreaView>
@@ -40,24 +40,20 @@ const LoginScreen = ({ navigation, route }) => {
             label="Enter Your Phone Number"
           />
         )}
-        {
-          alreadyExist &&
-          <Animated.View
-            entering={FadeInDown.duration(500)}
-          >
+        {alreadyExist && (
+          <Animated.View entering={FadeInDown.duration(500)}>
             <InputField
               onChangeText={setPassword}
               secureTextEntry={true}
               label="Enter Password"
             />
           </Animated.View>
-        }
+        )}
       </SafeAreaView>
       <View style={styles.button}>
-        <MainButton
-          loading={loading}
-          onPress={handleContinue}>Continue</MainButton>
-
+        <MainButton loading={loading} onPress={handleContinue}>
+          Continue
+        </MainButton>
       </View>
     </ScreenWraper>
   );

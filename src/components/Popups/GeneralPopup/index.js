@@ -1,13 +1,9 @@
-import { Image, Text, View } from 'react-native';
-import React, { useImperativeHandle, useRef, useState } from 'react';
+import {Image, Text, View} from 'react-native';
+import React, {useImperativeHandle, useRef, useState} from 'react';
 import MainButton from '../../Buttons/MainButton';
 import PopupWrapper from '../PopupWrapper';
-import { icons } from '../../../assets';
-
-import LinearGradient from 'react-native-linear-gradient';
-import { colors } from '../../../utils/theme';
+import {icons} from '../../../assets';
 import MyStyles from './styles';
-import AbhayaLibre from '../../TextWrapper/AbhayaLibre';
 import FranklinMedium from '../../TextWrapper/FranklinMedium';
 import Poppins from '../../TextWrapper/Poppins';
 

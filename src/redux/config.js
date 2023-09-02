@@ -6,23 +6,31 @@ export const base_url = urls.v1;
 export const image_url = '';
 export const endpoints = {
   auth: {
-    signup: '/',
-    login: '/',
+    signup: '/user/register',
+    login: '/user/login',
     logout: '/',
     verifyUser: '/user/verifyUser',
+    prompts: '/prompts',
     verifySignUpCode: '/',
     forgotPasswordMail: '/',
     verifyCodeForgotPassword: '/',
     resetPassword: '/',
     changePassword: '/',
-    completeProfile: '/',
+    completeProfile: '/user/completeProfile',
     resentCodeEmail: '/',
     userverifyRecoverCode: '/',
     resetForgetPassword: '',
     deleteUserAccount: '/',
   },
-
+  home: {
+    myDates: '/date/myDates',
+    addComment: '/date/addComment',
+    myRequest: '/date/myRequests',
+    getPromptComments: '/date/promptComments',
+    myMatches: '/date/myMatches',
+  },
   profile: {
+    getProfileDetails: '/user/profile',
     createMyProfile: '',
     createPatientProfile: '/',
   },

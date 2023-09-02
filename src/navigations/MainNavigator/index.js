@@ -4,20 +4,26 @@ import {useColorScheme} from 'react-native';
 import AuthNavigator from '../AuthNavigator';
 import BottomTabNavigator from '../BottomTabNavigator';
 import {darkTheme, lightTheme} from '../../utils/theme';
+import {useSelector} from 'react-redux';
 
 const RootStack = createStackNavigator();
 const MainNavigator = () => {
+  const token = useSelector(state => state?.authReducer?.token);
+  console.log(token, 'token ');
   const theme = useColorScheme();
   return (
     <NavigationContainer theme={theme == 'dark' ? darkTheme : lightTheme}>
       <RootStack.Navigator
         screenOptions={{headerShown: false}}
         initialRouteName="AuthNavigator">
-        <RootStack.Screen
-          name="AuthNavigator"
-          component={AuthNavigator}
-          options={{headerShown: false}}
-        />
+        {!token && (
+          <RootStack.Screen
+            name="AuthNavigator"
+            component={AuthNavigator}
+            options={{headerShown: false}}
+          />
+        )}
+
         <RootStack.Screen
           name="BottomTabNavigator"
           component={BottomTabNavigator}

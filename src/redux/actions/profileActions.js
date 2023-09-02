@@ -73,10 +73,10 @@ export const getProfileDetails = data => {
       dispatch({
         type: types.LOADING_END,
       });
-      // console.log(response, 'Profile Data');
+      console.log(response, 'Profile Data');
       dispatch({
         type: types.GET_PROFILE_DETAILS,
-        payload: response?.user,
+        payload: response,
       });
 
       return Promise.resolve(response);
