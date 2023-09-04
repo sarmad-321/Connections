@@ -1,8 +1,9 @@
 export const urls = {
   v1: `https://average-stole-fox.cyclic.app/api`,
+  v2: 'http://143.198.64.59/api',
 };
 
-export const base_url = urls.v1;
+export const base_url = urls.v2;
 export const image_url = '';
 export const endpoints = {
   auth: {
