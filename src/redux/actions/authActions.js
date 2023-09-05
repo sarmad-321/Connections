@@ -408,3 +408,33 @@ export const deleteUserAccount = data => {
     });
   };
 };
+
+export const uploadImages = (data, userId) => {
+  return async dispatch => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        dispatch({
+          type: types.LOADING_START,
+        });
+        const response = await post(
+          endpoints.general.uploadImages + userId,
+          data,
+          true,
+        );
+        dispatch({
+          type: types.LOADING_END,
+        });
+        resolve(response);
+        return Promise.resolve(response);
+      } catch (e) {
+        dispatch({
+          type: types.LOADING_END,
+        });
+        showToast(e);
+        reject(e);
+
+        return Promise.reject(e);
+      }
+    });
+  };
+};

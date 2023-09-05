@@ -35,13 +35,22 @@ const useCameraController = onDataReceived => {
       setImages(deepCopy);
     });
   };
-  const HandleCamera = () => {
+  const HandleCamera = id => {
     ImagePicker.openCamera({
       width: 400,
       height: 400,
       cropping: true,
     }).then(image => {
-      setImages(image);
+      let data = {
+        name: `image${id}`,
+        type: image.mime,
+        uri: image.path,
+      };
+      let deepCopy = JSON.parse(JSON.stringify(images));
+      let result = deepCopy.find(item => item.id == id);
+      result.image = data;
+
+      setImages(deepCopy);
     });
   };
   return {

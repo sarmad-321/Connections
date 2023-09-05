@@ -35,6 +35,9 @@ export const endpoints = {
     createMyProfile: '',
     createPatientProfile: '/',
   },
+  general: {
+    uploadImages: '/user/images/',
+  },
 };
 
 const configs = {

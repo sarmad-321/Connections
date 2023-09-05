@@ -2,7 +2,11 @@ import {useNavigation} from '@react-navigation/native';
 import moment from 'moment';
 import {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {completeProfile, userSignUp} from '../../../redux/actions/authActions';
+import {
+  completeProfile,
+  uploadImages,
+  userSignUp,
+} from '../../../redux/actions/authActions';
 import {showToast} from '../../../redux/Api/HelperFunction';
 
 const useRegisterController = (LoginMethod, ref, currentIndex) => {
@@ -77,12 +81,17 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
         }
         break;
 
-      case 5:
-      case 7:
-        if (promptList.length < 3) {
-          showToast('Please provide all prompt answers');
+      case 6:
+        if (images.length) {
+          handleImageUpload();
           return false;
         }
+        break;
+      case 7:
+        // if (promptList.length < 3) {
+        //   showToast('Please provide all prompt answers');
+        //   return false;
+        // }
         break;
 
       default:
@@ -131,6 +140,20 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
       navigation.navigate('Welcome');
     });
     console.log(data);
+  };
+  console.log(userId, 'userid ');
+  const handleImageUpload = () => {
+    console.log(images, 'handle images');
+    let data = [];
+    images.forEach(element => {
+      let obj = {
+        images: element.image,
+      };
+      data.push(obj, userId);
+    });
+    dispatch(uploadImages(data, userId)).then(res => {
+      console.log(res, 'response of upload images.');
+    });
   };
 
   return {

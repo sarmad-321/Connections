@@ -152,7 +152,7 @@ export const jsonToFormdata = data => {
 
           i++;
         } else {
-          form_data.append(key + `[${i}]`, datakey[newkey]);
+          form_data.append(key, datakey[newkey]);
 
           i++;
         }
