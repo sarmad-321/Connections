@@ -104,7 +104,7 @@ const ProfileScreen = ({navigation, route}) => {
             <InputField
               editable={false}
               type="email-address"
-              label="sarmad@gmail.com"
+              label={profile?.email}
             />
           </View>
           <View style={styles.verticalpad}>

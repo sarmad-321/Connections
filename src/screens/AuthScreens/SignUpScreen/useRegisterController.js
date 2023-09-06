@@ -19,6 +19,7 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
   const [preference, setPreference] = useState('Any');
   const [isBlindDate, setIsBlindDate] = useState('');
   const [promptList, setPromptList] = useState([]);
+  const [uploadedImages, setUploadedImages] = useState();
   const [extraQuestions, setExtraQuestions] = useState();
   const [location, setLocation] = useState();
   const [images, setImages] = useState();
@@ -51,6 +52,13 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
         handleRegistration();
         return;
       }
+      if (currentIndex == 6) {
+        handleImageUpload();
+        ref.current.setPage(currentIndex + 1);
+
+        return;
+      }
+
       if (currentIndex == 7) {
         handleCompleteProfile();
         return;
@@ -84,7 +92,6 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
       case 6:
         if (images.length) {
           handleImageUpload();
-          return false;
         }
         break;
       case 7:
@@ -131,6 +138,7 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
   const handleCompleteProfile = () => {
     let data = {
       user: userId,
+      images: uploadedImages,
       personality: {
         ...extraQuestions,
       },
@@ -142,17 +150,21 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
     console.log(data);
   };
   console.log(userId, 'userid ');
+
   const handleImageUpload = () => {
     console.log(images, 'handle images');
     let data = [];
     images.forEach(element => {
-      let obj = {
-        images: element.image,
-      };
-      data.push(obj, userId);
+      if (element.image) {
+        let obj = {
+          images: element.image,
+        };
+        data.push(obj);
+      }
     });
+    console.log(data);
     dispatch(uploadImages(data, userId)).then(res => {
-      console.log(res, 'response of upload images.');
+      setUploadedImages(res.images);
     });
   };
 

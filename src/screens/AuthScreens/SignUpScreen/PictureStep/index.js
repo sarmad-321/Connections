@@ -38,7 +38,7 @@ const PictureStep = ({onDataReceived}) => {
               // image={}
               image={item.image ? item.image : null}
               icon={icons.plus}
-              onPress={() => HandleCamera(item.id)}
+              onPress={() => HandleGallery(item.id)}
               iconStyle={styles.icon}
               styles={styles.button}
             />

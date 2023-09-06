@@ -1,7 +1,8 @@
-import {endpoints} from '../config';
+import {base_url, endpoints} from '../config';
 import * as types from '../types';
 import {post, get} from '../Api/index';
 import {log, showToast} from '../Api/HelperFunction';
+import axios from 'axios';
 
 // import {console.log} from '../Api/HelperFunction';
 
@@ -371,7 +372,6 @@ export const resetForgetPassword = data => {
         });
         showToast(e);
         reject(e);
-
         return Promise.reject(e);
       }
     });
@@ -416,11 +416,27 @@ export const uploadImages = (data, userId) => {
         dispatch({
           type: types.LOADING_START,
         });
-        const response = await post(
-          endpoints.general.uploadImages + userId,
-          data,
-          true,
-        );
+
+        // const response = await post(
+        //   endpoints.general.uploadImages + userId,
+        //   data,
+        //   true,
+        // );
+
+        const formData = jsonToFormData(data);
+
+        const response = await fetch(
+          base_url + endpoints.general.uploadImages + userId,
+          {
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'multipart/form-data',
+            },
+            method: 'POST',
+            body: formData,
+          },
+        ).then(res => res.json());
+        console.log(response, 'response');
         dispatch({
           type: types.LOADING_END,
         });
@@ -432,9 +448,20 @@ export const uploadImages = (data, userId) => {
         });
         showToast(e);
         reject(e);
+        console.log(e);
 
         return Promise.reject(e);
       }
     });
   };
 };
+
+function jsonToFormData(jsonArray) {
+  const formData = new FormData();
+
+  jsonArray.forEach((item, index) => {
+    // Append the file to the FormData with the key "images"
+    formData.append('images', item.images);
+  });
+  return formData;
+}
