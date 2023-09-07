@@ -52,8 +52,6 @@ const ProfileDetailScreen = ({route}) => {
           <ProfileCard
             name={`${selectedProfile.firstName} ${selectedProfile.lastName}`}
             distance={selectedProfile.distance}
-            like
-            comment
             img={
               selectedProfile?.images?.length
                 ? {
@@ -88,8 +86,6 @@ const ProfileDetailScreen = ({route}) => {
             renderItem={({item, index}) => (
               <>
                 <ProfileCard
-                  like
-                  comment
                   img={{
                     uri: image_url + item.path,
                   }}
