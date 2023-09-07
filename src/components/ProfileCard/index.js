@@ -7,6 +7,8 @@ import Poppins from '../TextWrapper/Poppins';
 import ActiveStatus from '../ActiveStatus';
 import TextIcon from '../Buttons/TextIcon';
 import LikeIcon from '../Buttons/LikeIcon';
+import LinearGradient from 'react-native-linear-gradient';
+import {gradient} from '../ListProfileCard/style';
 
 const ProfileCard = props => {
   const handleOnPress = () => {
@@ -15,24 +17,30 @@ const ProfileCard = props => {
     }
   };
   return (
-    <ImageBackground style={styles.imageContainer} source={images.profileDummy}>
-      <View style={styles.margin}>
-        <View style={styles.detailContainer}>
-          <AbhayaLibre style={styles.h1}>
-            {props?.name}, {props?.age}
-          </AbhayaLibre>
-          <View style={styles.detailsText}>
-            <Image source={icons.location} style={styles.icon} />
-            <Poppins style={styles.h2}>LOS ANGELES • {props?.distance}</Poppins>
+    <ImageBackground style={styles.imageContainer} source={props?.img}>
+      <LinearGradient style={{flex: 1}} colors={gradient}>
+        <View style={styles.margin}>
+          <View style={styles.detailContainer}>
+            <AbhayaLibre style={styles.h1}>
+              {props?.name}, {props?.age}
+            </AbhayaLibre>
+            <View style={styles.detailsText}>
+              <Image source={icons.location} style={styles.icon} />
+              {props?.distance ? (
+                <Poppins style={styles.h2}>
+                  Distance - {props?.distance}
+                </Poppins>
+              ) : null}
+            </View>
+            <ActiveStatus />
           </View>
-          <ActiveStatus />
-        </View>
 
-        <View style={styles.iconsContainer}>
-          {props?.comment ? <TextIcon onPress={handleOnPress} /> : null}
-          {props?.like ? <LikeIcon /> : null}
+          <View style={styles.iconsContainer}>
+            {props?.comment ? <TextIcon onPress={handleOnPress} /> : null}
+            {props?.like ? <LikeIcon /> : null}
+          </View>
         </View>
-      </View>
+      </LinearGradient>
     </ImageBackground>
   );
 };

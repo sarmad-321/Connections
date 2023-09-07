@@ -16,6 +16,7 @@ import ListProfileCard from '../../../components/ListProfileCard';
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
 import {vh} from '../../../utils/units';
 import useHomeController from './useHomeController';
+import {image_url} from '../../../redux/config';
 
 const HomeScreen = ({navigation}) => {
   const theme = useColorScheme();
@@ -42,7 +43,13 @@ const HomeScreen = ({navigation}) => {
                 activeOpacity={0.8}>
                 <ListProfileCard
                   index={index}
-                  // img={item.image}
+                  img={
+                    item?.images?.length
+                      ? {
+                          uri: image_url + item?.images[0].path,
+                        }
+                      : images.noImage
+                  }
                   name={item.firstName}
                   age={item.age}
                   city={'California'}

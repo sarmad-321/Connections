@@ -15,6 +15,7 @@ import CommentPopup from '../../../components/Popups/CommentPopup';
 import {addComment} from '../../../redux/actions/homeActions';
 import {useDispatch} from 'react-redux';
 import {showToast} from '../../../redux/Api/HelperFunction';
+import {image_url} from '../../../redux/config';
 
 const ProfileDetailScreen = ({route}) => {
   const selectedProfile = route.params?.item;
@@ -53,6 +54,13 @@ const ProfileDetailScreen = ({route}) => {
             distance={selectedProfile.distance}
             like
             comment
+            img={
+              selectedProfile?.images?.length
+                ? {
+                    uri: image_url + selectedProfile?.images[0].path,
+                  }
+                : images.noImage
+            }
             // onPress={HandlePress}
           />
           <FlatList
@@ -72,6 +80,25 @@ const ProfileDetailScreen = ({route}) => {
               </>
             )}
           />
+
+          <FlatList
+            data={selectedProfile.images}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({item, index}) => (
+              <>
+                <ProfileCard
+                  like
+                  comment
+                  img={{
+                    uri: image_url + item.path,
+                  }}
+                  // onPress={HandlePress}
+                />
+              </>
+            )}
+          />
+
           <CommentPopup
             text={setText}
             successTitle={'Add Comment'}

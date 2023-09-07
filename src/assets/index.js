@@ -34,5 +34,6 @@ export const images = {
   inbox: require('./images/emptyInbox.png'),
   welcome: require('./images/welcome.png'),
   anonProfile: require('./images/anon.png'),
-  profileDummy2: require('./images/dummy2.png')
+  profileDummy2: require('./images/dummy2.png'),
+  noImage: require('./images/no-image.png'),
 };
