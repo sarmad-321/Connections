@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, useColorScheme } from 'react-native';
+import {StyleSheet, Text, View, useColorScheme} from 'react-native';
 import React from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {
   ScrollView,
   Switch,
@@ -12,14 +12,17 @@ import ProfilePic from '../../../components/ProfilePic';
 import FranklinMedium from '../../../components/TextWrapper/FranklinMedium';
 import Poppins from '../../../components/TextWrapper/Poppins';
 import InputField from '../../../components/InputField';
-import { colors } from '../../../utils/theme';
+import {colors} from '../../../utils/theme';
 import MainButton from '../../../components/Buttons/MainButton';
 import MyStyles from './styles';
 import RangePicker from '../../../components/RangePicker';
 import RadioButtonRN from 'radio-buttons-react-native';
+import {useSelector} from 'react-redux';
 
 const EditProfile = () => {
   const theme = useColorScheme();
+  const profile = useSelector(state => state?.profileReducer?.user);
+
   const styles = MyStyles();
   const HandlePress = () => {
     console.log('test');
@@ -80,11 +83,11 @@ const EditProfile = () => {
           </View>
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Email</FranklinMedium>
-            <InputField type="email-address" label="sarmad@gmail.com" />
+            <InputField type="email-address" label={profile?.email} />
           </View>
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Age</FranklinMedium>
-            <InputField type="numeric" label="24" />
+            <InputField type="numeric" label={profile?.dateOfBirth} />
           </View>
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Location</FranklinMedium>
@@ -106,7 +109,7 @@ const EditProfile = () => {
             <FranklinMedium style={styles.h1}>Do They Exercise?</FranklinMedium>
             <RadioButtonRN
               box={false}
-              textStyle={theme == 'dark' ? { color: 'white' } : null}
+              textStyle={theme == 'dark' ? {color: 'white'} : null}
               circleSize={10}
               activeColor={colors.light.secondary}
               data={exercise}
@@ -117,22 +120,19 @@ const EditProfile = () => {
             <FranklinMedium style={styles.h1}>Education</FranklinMedium>
             <RadioButtonRN
               box={false}
-              textStyle={theme == 'dark' ? { color: 'white' } : null}
+              textStyle={theme == 'dark' ? {color: 'white'} : null}
               circleSize={10}
               activeColor={colors.light.secondary}
               data={education}
               selectedBtn={e => console.log(e)}
             />
-            <InputField
-              multi
-              label="Write Other"
-            />
+            <InputField multi label="Write Other" />
           </View>
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Do They drink?</FranklinMedium>
             <RadioButtonRN
               box={false}
-              textStyle={theme == 'dark' ? { color: 'white' } : null}
+              textStyle={theme == 'dark' ? {color: 'white'} : null}
               circleSize={10}
               activeColor={colors.light.secondary}
               data={drink}

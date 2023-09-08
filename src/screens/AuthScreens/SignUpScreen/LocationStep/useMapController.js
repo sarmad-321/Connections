@@ -17,6 +17,7 @@ const useMapController = setLocation => {
   });
 
   const onLocationSelect = coords => {
+    console.log(coords, 'location');
     setLocation(coords);
     let data = {
       latitude: coords.location.lat,

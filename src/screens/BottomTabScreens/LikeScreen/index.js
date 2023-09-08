@@ -29,6 +29,7 @@ import {addComment} from '../../../redux/actions/homeActions';
 import CommentPopup from '../../../components/Popups/CommentPopup';
 import {useDispatch} from 'react-redux';
 import {showToast} from '../../../redux/Api/HelperFunction';
+import {image_url} from '../../../redux/config';
 
 const LikeScreen = () => {
   const theme = useColorScheme();
@@ -40,7 +41,7 @@ const LikeScreen = () => {
   const [selectedPrompt, setSelectedPrompt] = useState();
   const [isBlindMode, setIsBlindMode] = useState(false);
   const infoPopup = useRef();
-
+  console.log(matches[0], 'my match');
   const HandleAccept = () => {
     console.log(selectedPrompt, 'selected prompt');
     let selectedProfile = matches[0].user;
@@ -117,6 +118,11 @@ const LikeScreen = () => {
               <View style={styles.line} />
               <ProfileCard
                 name={`${matches[0].user?.firstName} ${matches[0].user?.lastName}`}
+                img={
+                  matches[0]?.user?.images?.length > 0
+                    ? {uri: image_url + matches[0]?.user?.images[0].path}
+                    : images.noImage
+                }
               />
               {matches[0]?.user?.promptAnswers?.map(item => {
                 return (

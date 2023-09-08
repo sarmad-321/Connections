@@ -5,7 +5,7 @@ import {userLogin, verifyUser} from '../../../redux/actions/authActions';
 
 const useLoginController = type => {
   const navigation = useNavigation();
-  const [phone, setPhone] = useState();
+  const [phone, setPhone] = useState('+1');
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
@@ -44,11 +44,17 @@ const useLoginController = type => {
     }
   };
 
+  const handlePhoneChange = text => {
+    if (text.length > 2) {
+      setPhone(text);
+    }
+  };
   return {
-    setPhone,
+    phone,
     handleContinue,
     setEmail,
     setPassword,
+    handlePhoneChange,
     alreadyExist,
   };
 };

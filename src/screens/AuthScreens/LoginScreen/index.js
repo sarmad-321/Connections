@@ -13,8 +13,14 @@ import Animated, {FadeInDown} from 'react-native-reanimated';
 const LoginScreen = ({navigation, route}) => {
   const receivedData = route.params?.value;
   const styles = MyStyles();
-  const {setPhone, handleContinue, setEmail, setPassword, alreadyExist} =
-    useLoginController(receivedData);
+  const {
+    phone,
+    handleContinue,
+    handlePhoneChange,
+    setEmail,
+    setPassword,
+    alreadyExist,
+  } = useLoginController(receivedData);
   const loading = useSelector(state => state.commonReducer.btnLoader);
 
   return (
@@ -35,7 +41,8 @@ const LoginScreen = ({navigation, route}) => {
           />
         ) : (
           <InputField
-            onChangeText={setPhone}
+            onChangeText={handlePhoneChange}
+            value={phone}
             type="numeric"
             label="Enter Your Phone Number"
           />

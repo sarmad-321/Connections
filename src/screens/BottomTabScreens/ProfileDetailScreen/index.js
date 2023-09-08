@@ -24,6 +24,7 @@ const ProfileDetailScreen = ({route}) => {
   const infoPopup = useRef();
   const [text, setText] = useState();
   const [selectedPrompt, setSelectedPrompt] = useState();
+
   const HandlePress = item => {
     setSelectedPrompt(item);
     infoPopup.current.show();

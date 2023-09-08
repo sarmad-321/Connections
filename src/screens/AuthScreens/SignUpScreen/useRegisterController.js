@@ -121,6 +121,7 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
       dateOfBirth: date,
       latitude: location.location.lat,
       longitude: location.location.lng,
+      address: location.formatted_address,
       gender: 'Male',
       promptAnswers: filteredPrompt,
       genderPreference: preference,

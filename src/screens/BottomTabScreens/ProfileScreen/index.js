@@ -18,6 +18,7 @@ import MyStyles from './styles';
 import {useDispatch, useSelector} from 'react-redux';
 import {logout} from '../../../redux/actions/authActions';
 import {CommonActions} from '@react-navigation/native';
+import {calculateAge} from '../../../utils/helperFunction';
 
 const ProfileScreen = ({navigation, route}) => {
   const styles = MyStyles();
@@ -109,7 +110,11 @@ const ProfileScreen = ({navigation, route}) => {
           </View>
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Age</FranklinMedium>
-            <InputField editable={false} type="numeric" label="24" />
+            <InputField
+              editable={false}
+              type="numeric"
+              label={String(calculateAge(profile?.dateOfBirth))}
+            />
           </View>
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Location</FranklinMedium>
