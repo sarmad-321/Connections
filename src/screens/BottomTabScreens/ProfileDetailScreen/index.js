@@ -16,6 +16,8 @@ import {addComment} from '../../../redux/actions/homeActions';
 import {useDispatch} from 'react-redux';
 import {showToast} from '../../../redux/Api/HelperFunction';
 import {image_url} from '../../../redux/config';
+import {vh} from '../../../utils/units';
+import {images} from '../../../assets';
 
 const ProfileDetailScreen = ({route}) => {
   const selectedProfile = route.params?.item;
@@ -41,7 +43,7 @@ const ProfileDetailScreen = ({route}) => {
     console.log(data, 'data');
     dispatch(addComment(data)).then(res => {
       console.log(res, 'Response of add comment');
-      showToast();
+      showToast(res.message);
       infoPopup.current.hide();
     });
   };
@@ -49,7 +51,9 @@ const ProfileDetailScreen = ({route}) => {
   return (
     <ScreenWraper>
       <SafeAreaView>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView
+          contentContainerStyle={{paddingBottom: vh * 20}}
+          showsVerticalScrollIndicator={false}>
           <ProfileCard
             name={`${selectedProfile.firstName} ${selectedProfile.lastName}`}
             distance={selectedProfile.distance}

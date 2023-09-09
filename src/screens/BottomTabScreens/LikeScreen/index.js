@@ -6,7 +6,7 @@ import {
   useColorScheme,
   ScrollView,
 } from 'react-native';
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
 import HomeHeader from '../../../components/HomeHeader';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -39,9 +39,32 @@ const LikeScreen = () => {
   const [text, setText] = useState();
   const dispatch = useDispatch();
   const [selectedPrompt, setSelectedPrompt] = useState();
+  const [combineData, setCombineData] = useState([]);
   const [isBlindMode, setIsBlindMode] = useState(false);
   const infoPopup = useRef();
   console.log(matches[0], 'my match');
+
+  useEffect(() => {
+    if (matches[0]?.user) {
+      combineFunction(matches[0].user);
+    }
+  }, [matches]);
+
+  const combineFunction = user => {
+    console.log(user, 'user123123');
+    if (user?.promptAnswers && user?.images?.length) {
+      let combinedData = [
+        ...user?.promptAnswers?.map(prompt => ({type: 'prompt', data: prompt})),
+        ...user?.images?.slice(1)?.map(image => ({type: 'image', data: image})),
+      ];
+      for (let i = combinedData.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [combinedData[i], combinedData[j]] = [combinedData[j], combinedData[i]];
+      }
+      setCombineData(combinedData);
+    }
+  };
+
   const HandleAccept = () => {
     console.log(selectedPrompt, 'selected prompt');
     let selectedProfile = matches[0].user;
@@ -116,6 +139,9 @@ const LikeScreen = () => {
               })}
 
               <View style={styles.line} />
+              <View style={styles.line} />
+              <View style={styles.line} />
+
               <ProfileCard
                 name={`${matches[0].user?.firstName} ${matches[0].user?.lastName}`}
                 img={
@@ -124,7 +150,30 @@ const LikeScreen = () => {
                     : images.noImage
                 }
               />
-              {matches[0]?.user?.promptAnswers?.map(item => {
+              {combineData.map(item => {
+                console.log(item);
+                return (
+                  <>
+                    {item?.type == 'prompt' ? (
+                      <QuoteCard
+                        answer={item?.data?.answer}
+                        question={item?.data?.selectedPrompt?.question}
+                        comment
+                        onPress={() => handlePromptReply(item)}
+                      />
+                    ) : (
+                      <ProfileCard
+                        img={
+                          matches[0]?.user?.images?.length > 0
+                            ? {uri: image_url + item?.data?.path}
+                            : images.noImage
+                        }
+                      />
+                    )}
+                  </>
+                );
+              })}
+              {/* {matches[0]?.user?.promptAnswers?.map(item => {
                 return (
                   <QuoteCard
                     answer={item?.answer}
@@ -133,7 +182,7 @@ const LikeScreen = () => {
                     onPress={() => handlePromptReply(item)}
                   />
                 );
-              })}
+              })} */}
             </>
           )}
         </ScrollView>
