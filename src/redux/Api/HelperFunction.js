@@ -1,6 +1,6 @@
 import {useState} from 'react';
 import {store} from '../store/index';
-import Toast from 'react-native-toast';
+import Toast from 'react-native-toast-message';
 import {
   check,
   openSettings,
@@ -27,6 +27,10 @@ export const presentToast = message => {
   //console.log('=== in  presentToast ', message);
   setTimeout(() => {
     Toast.show(message);
+    Toast.show({
+      type: 'info',
+      text1: message,
+    });
   }, 500);
 
   // EventRegister.emit(events.showToast, getMessage(message))

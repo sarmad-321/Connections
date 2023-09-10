@@ -6,6 +6,7 @@ import {Provider, useDispatch} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import MainNavigator from './src/navigations/MainNavigator';
 import {persistor, store} from './src/redux/store';
+import Toast from 'react-native-toast-message';
 
 const App = () => {
   // useEffect(() => {
@@ -27,6 +28,7 @@ const App = () => {
             backgroundColor="transparent"
           />
           <MainNavigator />
+          <Toast />
         </View>
       </PersistGate>
     </Provider>
