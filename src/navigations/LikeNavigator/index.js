@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../../screens/BottomTabScreens/HomeScreen';
 import ProfileDetailScreen from '../../screens/BottomTabScreens/ProfileDetailScreen';
 import LikeScreen from '../../screens/BottomTabScreens/LikeScreen';
+import LikeListScreen from '../../screens/BottomTabScreens/LikeListScreen';
 
 const LikeNavigator = () => {
   const LikeStack = createStackNavigator();
@@ -12,7 +13,8 @@ const LikeNavigator = () => {
     <LikeStack.Navigator
       headerMode="none"
       screenOptions={{headerShown: false}}
-      initialRouteName="Like">
+      initialRouteName="LikeList">
+      <LikeStack.Screen name="LikeList" component={LikeListScreen} />
       <LikeStack.Screen name="Like" component={LikeScreen} />
     </LikeStack.Navigator>
   );

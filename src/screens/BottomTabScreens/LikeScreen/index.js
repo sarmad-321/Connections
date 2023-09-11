@@ -31,25 +31,25 @@ import {useDispatch} from 'react-redux';
 import {showToast} from '../../../redux/Api/HelperFunction';
 import {image_url} from '../../../redux/config';
 
-const LikeScreen = () => {
+const LikeScreen = ({route}) => {
   const theme = useColorScheme();
   const styles = MyStyles();
+  const matches = route?.params?.currentUser;
   const [isEmpty, setIsEmpty] = useState(true);
-  const {matches, myPromptComment, handleReject} = useLikesController();
+  const {myPromptComment, handleReject} = useLikesController(matches);
   const [text, setText] = useState();
   const dispatch = useDispatch();
   const [selectedPrompt, setSelectedPrompt] = useState();
   const [combineData, setCombineData] = useState([]);
   const [isBlindMode, setIsBlindMode] = useState(false);
   const infoPopup = useRef();
-  console.log(matches[0], 'my match');
 
   useEffect(() => {
-    if (matches[0]?.user) {
-      combineFunction(matches[0].user);
+    if (matches?.user) {
+      combineFunction(matches.user);
     }
   }, [matches]);
-
+  console.log(myPromptComment, 'my prompt comments');
   const combineFunction = user => {
     console.log(user, 'user123123');
     if (user?.promptAnswers && user?.images?.length) {
@@ -67,13 +67,13 @@ const LikeScreen = () => {
 
   const HandleAccept = () => {
     console.log(selectedPrompt, 'selected prompt');
-    let selectedProfile = matches[0].user;
+    let selectedProfile = matches.user;
     let data = {
       targetType: 'prompt',
       targetUser: selectedProfile._id,
       text: text,
-      promptId: selectedPrompt?.selectedPrompt?._id,
-      answer: selectedPrompt.answer,
+      promptId: selectedPrompt?.data?.selectedPrompt?._id,
+      answer: selectedPrompt?.data?.answer,
     };
     console.log(data, 'data');
     dispatch(addComment(data)).then(res => {
@@ -105,7 +105,7 @@ const LikeScreen = () => {
         <ScrollView
           contentContainerStyle={{paddingBottom: vh * 10}}
           showsVerticalScrollIndicator={false}>
-          {!matches.length ? (
+          {!matches ? (
             <>
               <HomeHeader title={'Likes You'} />
               <EmptyLikes
@@ -122,9 +122,7 @@ const LikeScreen = () => {
                 color={gradientcolors}
                 isBlindMode={isBlindMode}
                 title={'All'}
-                back
                 blind
-                handleReject={handleReject}
                 blindonPress={handleBlindPress}
               />
 
@@ -143,10 +141,10 @@ const LikeScreen = () => {
               <View style={styles.line} />
 
               <ProfileCard
-                name={`${matches[0].user?.firstName} ${matches[0].user?.lastName}`}
+                name={`${matches.user?.firstName} ${matches.user?.lastName}`}
                 img={
-                  matches[0]?.user?.images?.length > 0
-                    ? {uri: image_url + matches[0]?.user?.images[0].path}
+                  matches?.user?.images?.length > 0
+                    ? {uri: image_url + matches?.user?.images[0].path}
                     : images.noImage
                 }
               />
@@ -164,7 +162,7 @@ const LikeScreen = () => {
                     ) : (
                       <ProfileCard
                         img={
-                          matches[0]?.user?.images?.length > 0
+                          matches?.user?.images?.length > 0
                             ? {uri: image_url + item?.data?.path}
                             : images.noImage
                         }
@@ -173,7 +171,7 @@ const LikeScreen = () => {
                   </>
                 );
               })}
-              {/* {matches[0]?.user?.promptAnswers?.map(item => {
+              {/* {matches?.user?.promptAnswers?.map(item => {
                 return (
                   <QuoteCard
                     answer={item?.answer}

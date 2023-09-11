@@ -1,10 +1,10 @@
-import { View, Text, Image, useColorScheme } from 'react-native';
+import {View, Text, Image, useColorScheme} from 'react-native';
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { colors, tabActiveIconStyle, tabIconStyle } from '../../utils/theme';
-import { icons } from '../../assets';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {colors, tabActiveIconStyle, tabIconStyle} from '../../utils/theme';
+import {icons} from '../../assets';
 import HomeNavigator from '../HomeNavigator';
-import MyStyles, { darkTabBar, lightTabBar } from './styles';
+import MyStyles, {darkTabBar, lightTabBar} from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import LikeNavigator from '../LikeNavigator';
 import InboxNavigator from '../InboxNavigator';
@@ -35,20 +35,20 @@ const BottomTabNavigator = () => {
         name="Home"
         component={HomeNavigator}
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({focused}) => (
             <View style={[styles.tabButton, focused && styles.focusedView]}>
               <Image
                 source={focused ? icons.home : icons.home}
                 style={
                   focused
                     ? {
-                      ...tabActiveIconStyle,
-                      tintColor: colors.dark.secondary,
-                    }
+                        ...tabActiveIconStyle,
+                        tintColor: colors.dark.secondary,
+                      }
                     : {
-                      ...tabIconStyle,
-                      tintColor: colors.light.primary,
-                    }
+                        ...tabIconStyle,
+                        tintColor: colors.light.primary,
+                      }
                 }
               />
             </View>
@@ -56,24 +56,23 @@ const BottomTabNavigator = () => {
         }}
       />
       <BottomTab.Screen
-        name="Like"
+        name="LikeNavigator"
         component={LikeNavigator}
         options={{
-
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({focused}) => (
             <View style={[styles.tabButton, focused && styles.focusedView]}>
               <Image
                 source={focused ? icons.heart : icons.heart}
                 style={
                   focused
                     ? {
-                      ...tabActiveIconStyle,
-                      tintColor: colors.dark.secondary,
-                    }
+                        ...tabActiveIconStyle,
+                        tintColor: colors.dark.secondary,
+                      }
                     : {
-                      ...tabIconStyle,
-                      tintColor: colors.light.primary,
-                    }
+                        ...tabIconStyle,
+                        tintColor: colors.light.primary,
+                      }
                 }
               />
             </View>
@@ -84,21 +83,20 @@ const BottomTabNavigator = () => {
         name="inbox"
         component={InboxNavigator}
         options={{
-
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({focused}) => (
             <View style={[styles.tabButton, focused && styles.focusedView]}>
               <Image
                 source={focused ? icons.comment : icons.comment}
                 style={
                   focused
                     ? {
-                      ...tabActiveIconStyle,
-                      tintColor: colors.dark.secondary,
-                    }
+                        ...tabActiveIconStyle,
+                        tintColor: colors.dark.secondary,
+                      }
                     : {
-                      ...tabIconStyle,
-                      tintColor: colors.light.primary,
-                    }
+                        ...tabIconStyle,
+                        tintColor: colors.light.primary,
+                      }
                 }
               />
             </View>
@@ -109,20 +107,20 @@ const BottomTabNavigator = () => {
         name="profile"
         component={ProfileNavigator}
         options={{
-          tabBarIcon: ({ focused }) => (
+          tabBarIcon: ({focused}) => (
             <View style={[styles.tabButton, focused && styles.focusedView]}>
               <Image
                 source={focused ? icons.profile : icons.profile}
                 style={
                   focused
                     ? {
-                      ...tabActiveIconStyle,
-                      tintColor: colors.dark.secondary,
-                    }
+                        ...tabActiveIconStyle,
+                        tintColor: colors.dark.secondary,
+                      }
                     : {
-                      ...tabIconStyle,
-                      tintColor: colors.light.primary,
-                    }
+                        ...tabIconStyle,
+                        tintColor: colors.light.primary,
+                      }
                 }
               />
             </View>

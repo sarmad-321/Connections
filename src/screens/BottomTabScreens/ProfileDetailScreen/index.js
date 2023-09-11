@@ -37,10 +37,9 @@ const ProfileDetailScreen = ({route}) => {
       targetType: 'prompt',
       targetUser: selectedProfile._id,
       text: text,
-      promptId: selectedPrompt._id,
+      promptId: selectedPrompt.question?._id,
       answer: selectedPrompt.answer,
     };
-    console.log(data, 'data');
     dispatch(addComment(data)).then(res => {
       console.log(res, 'Response of add comment');
       showToast(res.message);

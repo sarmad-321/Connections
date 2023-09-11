@@ -5,7 +5,7 @@ import {
   getMyPromptComments,
 } from '../../../redux/actions/homeActions';
 
-const useLikesController = () => {
+const useLikesController = currentUser => {
   const dispatch = useDispatch();
   const [matches, setMatches] = useState([]);
   const [myPromptComment, setMyPromptComment] = useState([]);
@@ -15,7 +15,7 @@ const useLikesController = () => {
     dispatch(getMyMatches()).then(res => {
       console.log(res);
       setMatches(res.matchRequests);
-      getPromptComment(res.matchRequests[0].user);
+      getPromptComment(currentUser.user);
     });
   }, []);
 
