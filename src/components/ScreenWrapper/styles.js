@@ -6,7 +6,7 @@ import {colors, fontColors} from '../../utils/theme';
 const lightStyles = StyleSheet.create({
   container: {
     flex: 1,
-    height: '100%',
+    height: vh * 100,
     paddingHorizontal: vw * 5,
     backgroundColor: colors.light.primary,
   },
@@ -16,7 +16,7 @@ const darkStyles = StyleSheet.create({
   container: {
     // flex: 1,
     height: '100%',
-    width : "100%",
+    width: '100%',
     paddingHorizontal: vw * 5,
   },
 });

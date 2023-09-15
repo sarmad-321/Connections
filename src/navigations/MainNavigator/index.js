@@ -5,6 +5,7 @@ import AuthNavigator from '../AuthNavigator';
 import BottomTabNavigator from '../BottomTabNavigator';
 import {darkTheme, lightTheme} from '../../utils/theme';
 import {useSelector} from 'react-redux';
+import ChatScreen from '../../screens/BottomTabScreens/ChatScreen';
 
 const RootStack = createStackNavigator();
 const MainNavigator = () => {
@@ -29,6 +30,7 @@ const MainNavigator = () => {
           component={BottomTabNavigator}
           options={{headerShown: false}}
         />
+        <RootStack.Screen name="Chat" component={ChatScreen} />
       </RootStack.Navigator>
     </NavigationContainer>
   );

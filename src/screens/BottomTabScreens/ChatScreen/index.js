@@ -1,12 +1,19 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
-import ScreenWraper from '../../../components/ScreenWrapper';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, {useEffect, useRef} from 'react';
 import ChatHeader from '../../../components/ChatHeader';
 import {FlatList} from 'react-native-gesture-handler';
 import styles from './styles';
 import Poppins from '../../../components/TextWrapper/Poppins';
 import useChatController from './useChatController';
+import {io} from 'socket.io-client';
+import {useSelector} from 'react-redux';
 
 const data = [
   {
@@ -79,11 +86,39 @@ const data = [
 
 const ChatScreen = () => {
   const {matches} = useChatController();
+  const socket = useRef();
+  const user = useSelector(state => state?.profileReducer?.user);
+
+  useEffect(() => {
+    startSocket();
+  }, []);
+
+  const startSocket = () => {
+    socket.current = io('http://10.1.120.123:4000');
+    socket.current.on('connect', () => {
+      console.log(socket.current.connected, 'connected ?'); // true
+      joinRoom();
+    });
+  };
+
+  const joinRoom = () => {
+    socket.current.emit('joinRoom', '15');
+    socket.current.on('message', data => {
+      console.log(data, 'data recieved from socket.');
+    });
+  };
+
+  const handleSendMessage = () => {
+    socket.current.emit('sendMessage', 'message has been sent');
+  };
 
   return (
     <View style={{flex: 1}}>
       <ChatHeader />
-      <ScreenWraper>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={Platform.OS === 'ios' ? 100 : 0} // Adjust this value as needed
+        style={styles.messagesContainer}>
         <FlatList
           showsVerticalScrollIndicator={false}
           style={styles.list}
@@ -132,7 +167,14 @@ const ChatScreen = () => {
             );
           }}
         />
-      </ScreenWraper>
+
+        <View style={styles.chatBox}>
+          <TextInput style={{width: '80%'}} placeholder="Write a message" />
+          <TouchableOpacity
+            onPress={handleSendMessage}
+            style={styles.sendContainer}></TouchableOpacity>
+        </View>
+      </KeyboardAvoidingView>
     </View>
   );
 };

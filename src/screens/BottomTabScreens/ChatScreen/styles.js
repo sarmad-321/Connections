@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import { colors } from '../../../utils/theme';
+import {colors} from '../../../utils/theme';
+import {vh, vw} from '../../../utils/units';
 
 export default styles = StyleSheet.create({
   balloon: {
@@ -27,6 +28,9 @@ export default styles = StyleSheet.create({
     fontSize: 14,
     lineHeight: 20,
   },
+  list: {
+    height: vh * 80,
+  },
   time: {
     // alignSelf: 'flex-start',
     margin: 15,
@@ -40,5 +44,29 @@ export default styles = StyleSheet.create({
     backgroundColor: '#eeeeee',
     borderRadius: 10,
     padding: 5,
+  },
+  input: {
+    width: vw * 75,
+    backgroundColor: colors.ebonyClay,
+  },
+  messagesContainer: {
+    flex: 1,
+    paddingHorizontal: vw * 3,
+    paddingBottom: vh * 2,
+  },
+  chatBox: {
+    width: vw * 90,
+    height: vh * 7,
+    borderRadius: vw * 2,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.grey,
+  },
+  sendContainer: {
+    height: vh * 5,
+    width: vh * 5,
+    borderWidth: 1,
+    borderRadius: vh * 5,
   },
 });
