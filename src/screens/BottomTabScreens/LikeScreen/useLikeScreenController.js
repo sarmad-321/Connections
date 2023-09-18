@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {
-  getMyMatches,
+  getMyRequests,
   getMyPromptComments,
 } from '../../../redux/actions/homeActions';
 
@@ -12,7 +12,7 @@ const useLikesController = currentUser => {
   const profile = useSelector(state => state?.profileReducer?.user);
 
   useEffect(() => {
-    dispatch(getMyMatches()).then(res => {
+    dispatch(getMyRequests()).then(res => {
       console.log(res);
       setMatches(res.matchRequests);
       getPromptComment(currentUser.user);

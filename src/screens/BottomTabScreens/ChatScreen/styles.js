@@ -40,6 +40,7 @@ export default styles = StyleSheet.create({
   item: {
     marginVertical: 5,
     flex: 1,
+    minWidth: vw * 40,
     // flexDirection: 'row',
     backgroundColor: '#eeeeee',
     borderRadius: 10,
@@ -52,7 +53,6 @@ export default styles = StyleSheet.create({
   messagesContainer: {
     flex: 1,
     paddingHorizontal: vw * 3,
-    paddingBottom: vh * 2,
   },
   chatBox: {
     width: vw * 90,
@@ -62,6 +62,7 @@ export default styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.grey,
+    marginBottom: vh * 2,
   },
   sendContainer: {
     height: vh * 5,

@@ -11,7 +11,7 @@ const useInboxController = () => {
 
   const fetchData = async () => {
     dispatch(getMyMatches()).then(res => {
-      setMatches(res?.matchRequests);
+      setMatches(res?.matches);
     });
   };
 

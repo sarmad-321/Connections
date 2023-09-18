@@ -27,8 +27,8 @@ const data = [
 const InboxScreen = ({navigation}) => {
   const {matches} = useInboxController();
 
-  const handlePress = (id) => {
-    navigation.navigate('Chat' , {conversationId : id});
+  const handlePress = id => {
+    navigation.navigate('Chat', {conversationId: id});
   };
   const [isEmpty, setIsEmpty] = useState(true);
   return (
@@ -55,7 +55,7 @@ const InboxScreen = ({navigation}) => {
                   message={item.message || 'Tap to start a conversation'}
                   time={item.time}
                   new={item.new}
-                  onPress={()=> handlePress(item)}
+                  onPress={() => handlePress(item?._id)}
                 />
               )}
             />

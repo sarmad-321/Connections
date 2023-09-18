@@ -1,7 +1,7 @@
 export const urls = {
   v1: `https://average-stole-fox.cyclic.app/api`,
   v2: 'http://143.198.64.59/api',
-  local: 'http://10.1.120.123:4000/api',
+  local: 'http://10.1.120.254:4000/api',
 };
 function trimApi(url) {
   if (url.endsWith('/api')) {
@@ -10,8 +10,9 @@ function trimApi(url) {
     return url;
   }
 }
+
 export const base_url = urls.local;
-export const image_url = trimApi(base_url);
+export const image_url = trimApi(urls.v2);
 export const endpoints = {
   auth: {
     signup: '/user/register',
