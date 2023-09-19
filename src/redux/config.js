@@ -1,7 +1,7 @@
 export const urls = {
   v1: `https://average-stole-fox.cyclic.app/api`,
   v2: 'http://143.198.64.59/api',
-  local: 'http://10.1.120.254:4000/api',
+  local: 'http://192.168.0.100:4000/api',
 };
 function trimApi(url) {
   if (url.endsWith('/api')) {
@@ -37,6 +37,10 @@ export const endpoints = {
     myRequest: '/date/myRequests',
     getPromptComments: '/date/promptComments',
     myMatches: '/date/myMatches',
+  },
+  chat: {
+    sendMessage: '/chat/sendMessage',
+    getAllMessages: '/chat/getConversation',
   },
   profile: {
     getProfileDetails: '/user/profile',

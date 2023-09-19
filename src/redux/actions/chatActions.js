@@ -30,3 +30,55 @@ export const getMyMatches = data => {
     }
   };
 };
+
+export const sendMessageAction = data => {
+  //console.log(data, 'userSignUpData');
+  return async dispatch => {
+    try {
+      dispatch({
+        type: types.BTN_LOADING_START,
+      });
+      const response = await post(endpoints.chat.sendMessage, data);
+      dispatch({
+        type: types.BTN_LOADING_END,
+      });
+      console.log(response, 'response');
+      return Promise.resolve(response);
+    } catch (e) {
+      dispatch({
+        type: types.BTN_LOADING_END,
+      });
+      console.log(e, 'eeee');
+      setTimeout(() => {
+        showToast(e);
+      }, 1000);
+      return Promise.reject(e);
+    }
+  };
+};
+
+export const getAllMessages = data => {
+  //console.log(data, 'userSignUpData');
+  return async dispatch => {
+    try {
+      dispatch({
+        type: types.BTN_LOADING_START,
+      });
+      const response = await get(endpoints.chat.getAllMessages, data);
+      dispatch({
+        type: types.BTN_LOADING_END,
+      });
+      console.log(response, 'response');
+      return Promise.resolve(response);
+    } catch (e) {
+      dispatch({
+        type: types.BTN_LOADING_END,
+      });
+      console.log(e, 'eeee');
+      setTimeout(() => {
+        showToast(e);
+      }, 1000);
+      return Promise.reject(e);
+    }
+  };
+};

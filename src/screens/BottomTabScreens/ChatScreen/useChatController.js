@@ -1,22 +1,68 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getMyMatches} from '../../../redux/actions/homeActions';
+import {io} from 'socket.io-client';
+import {
+  getAllMessages,
+  sendMessageAction,
+} from '../../../redux/actions/chatActions';
 
-const useChatController = () => {
+const useChatController = conversationId => {
   const dispatch = useDispatch();
-  const [matches, setMatches] = useState();
+  const [message, setMessage] = useState();
+  const [convo, setConvo] = useState([]);
+  const socket = useRef();
+  const user = useSelector(state => state?.profileReducer?.user);
+
   useEffect(() => {
-    fetchData();
+    startSocket();
+    getPreviousConvo();
+    return () => {
+      socket.current.disconnect();
+    };
   }, []);
 
-  const fetchData = async () => {
-    dispatch(getMyMatches()).then(res => {
-      setMatches(res?.matchRequests);
+  const getPreviousConvo = () => {
+    dispatch(getAllMessages({conversationId})).then(res => {
+      console.log(res, 'response of conversation');
+      setConvo([...convo, ...res?.messages]);
+    });
+  };
+
+  const startSocket = () => {
+    socket.current = io('http://192.168.0.100:4000');
+    socket.current.on('connect', () => {
+      console.log(socket.current.connected, 'connected ?'); // true
+      joinRoom();
+    });
+  };
+
+  const joinRoom = () => {
+    console.log(conversationId, 'convo id');
+    socket.current.emit('joinRoom', conversationId);
+    socket.current.on('message', data => {
+      console.log(data, 'data recieved from socket.');
+      setConvo(prev => [...prev, data]);
+    });
+  };
+  const handleSendMessage = () => {
+    let data = {
+      conversationId: conversationId,
+      sender: user?._id,
+      message: message,
+      createdAt: new Date(),
+    };
+    setMessage('');
+    socket.current.emit('sendMessage', data);
+    dispatch(sendMessageAction(data)).then(res => {
+      console.log(res, 'response of message');
     });
   };
 
   return {
-    matches,
+    message,
+    convo,
+    setMessage,
+    handleSendMessage,
   };
 };
 
