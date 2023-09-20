@@ -1,9 +1,11 @@
-import { vh } from './units';
+import {vh} from './units';
 
 export const colors = {
   grey: '#858585',
   greyText: 'rgba(15, 15, 15, 0.8)',
   blackheaderbutton: '#202020',
+  shadow: '#4b4b4b17',
+  chatBox: '#265dc72e',
   offwhite: 'rgba(255, 255, 255, 0.8)',
   transparentShade: '#00000066',
   dark: {
@@ -25,6 +27,8 @@ export const darkTheme = {
     grey: '#858585',
     greyText: 'rgba(15, 15, 15, 0.8)',
     blackheaderbutton: '#202020',
+    shadow: '#4b4b4b17',
+
     offwhite: 'rgba(255, 255, 255, 0.8)',
     transparentShade: '#00000066',
     primary: 'black',
@@ -37,15 +41,16 @@ export const darkTheme = {
       primary: '#FFFFFF',
       secondary: 'rgba(255, 255, 255, 0.8)',
       link: '#55A7E6',
-    }
-  }
-}
+    },
+  },
+};
 
 export const lightTheme = {
   colors: {
     grey: '#858585',
     greyText: 'rgba(15, 15, 15, 0.8)',
     blackheaderbutton: '#202020',
+    shadow: '#4b4b4b17',
     offwhite: 'rgba(255, 255, 255, 0.8)',
     transparentShade: '#00000066',
     primary: 'white',
@@ -58,9 +63,9 @@ export const lightTheme = {
       primary: 'black',
       secondary: 'rgba(15, 15, 15, 0.8)',
       link: '#55A7E6',
-    }
-  }
-}
+    },
+  },
+};
 
 export const tabActiveIconStyle = {
   // marginTop: vh,

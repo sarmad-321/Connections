@@ -11,6 +11,7 @@ export const icons = {
   target: require('./icons/target.png'),
   library: require('./icons/library.png'),
   camera: require('./icons/camera.png'),
+  microphone: require('./icons/microphone.png'),
   plus: require('./icons/plus.png'),
   info: require('./icons/info.png'),
   cross: require('./icons/cross.png'),

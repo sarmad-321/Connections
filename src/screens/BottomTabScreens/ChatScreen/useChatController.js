@@ -12,10 +12,12 @@ const useChatController = conversationId => {
   const [convo, setConvo] = useState([]);
   const socket = useRef();
   const user = useSelector(state => state?.profileReducer?.user);
-
+  const [flag, setFlag] = useState(true);
   useEffect(() => {
     startSocket();
-    getPreviousConvo();
+    if (flag) {
+      getPreviousConvo();
+    }
     return () => {
       socket.current.disconnect();
     };
@@ -25,11 +27,12 @@ const useChatController = conversationId => {
     dispatch(getAllMessages({conversationId})).then(res => {
       console.log(res, 'response of conversation');
       setConvo([...convo, ...res?.messages]);
+      setFlag(false);
     });
   };
 
   const startSocket = () => {
-    socket.current = io('http://192.168.0.100:4000');
+    socket.current = io('http://143.198.64.59');
     socket.current.on('connect', () => {
       console.log(socket.current.connected, 'connected ?'); // true
       joinRoom();

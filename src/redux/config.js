@@ -11,7 +11,7 @@ function trimApi(url) {
   }
 }
 
-export const base_url = urls.local;
+export const base_url = urls.v2;
 export const image_url = trimApi(urls.v2);
 export const endpoints = {
   auth: {

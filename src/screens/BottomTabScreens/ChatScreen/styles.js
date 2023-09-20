@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {colors} from '../../../utils/theme';
+import {colors, appShadow} from '../../../utils/theme';
 import {vh, vw} from '../../../utils/units';
 
 export default styles = StyleSheet.create({
@@ -30,6 +30,7 @@ export default styles = StyleSheet.create({
   },
   list: {
     height: vh * 80,
+    paddingHorizontal: vw * 3,
   },
   time: {
     // alignSelf: 'flex-start',
@@ -52,22 +53,43 @@ export default styles = StyleSheet.create({
   },
   messagesContainer: {
     flex: 1,
-    paddingHorizontal: vw * 3,
+    // paddingHorizontal: vw * 3,
   },
   chatBox: {
-    width: vw * 90,
-    height: vh * 7,
-    borderRadius: vw * 2,
+    width: vw * 100,
+    height: vh * 10,
+    // borderRadius: vw * 2,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.grey,
-    marginBottom: vh * 2,
+    justifyContent: 'space-between',
+    backgroundColor: colors.primary,
+    paddingHorizontal: vw * 4,
+    borderTopWidth: vh * 0.5,
+    borderColor: colors.shadow,
+    paddingVertical: vh * 2,
+    // ...appShadow,
+    // marginBottom: vh * 2,
   },
   sendContainer: {
     height: vh * 5,
     width: vh * 5,
     borderWidth: 1,
     borderRadius: vh * 5,
+    marginRight: vw * 2,
+  },
+  chatInput: {
+    width: '70%',
+    backgroundColor: colors.chatBox,
+    borderRadius: vw * 2,
+  },
+  icon: {
+    width: vh * 3,
+    height: vh * 3,
+    resizeMode: 'contain',
+  },
+  btnContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

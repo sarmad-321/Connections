@@ -51,6 +51,7 @@ const LoginScreen = ({navigation, route}) => {
           <Animated.View entering={FadeInDown.duration(500)}>
             <InputField
               onChangeText={setPassword}
+              autoCapitalize="none"
               secureTextEntry={true}
               label="Enter Password"
             />
