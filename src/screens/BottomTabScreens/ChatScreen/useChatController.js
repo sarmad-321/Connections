@@ -5,6 +5,7 @@ import {
   getAllMessages,
   sendMessageAction,
 } from '../../../redux/actions/chatActions';
+import ImagePicker from 'react-native-image-crop-picker';
 
 const useChatController = conversationId => {
   const dispatch = useDispatch();
@@ -44,9 +45,38 @@ const useChatController = conversationId => {
     socket.current.emit('joinRoom', conversationId);
     socket.current.on('message', data => {
       console.log(data, 'data recieved from socket.');
-      setConvo(prev => [...prev, data]);
+      if (data.sender !== user?._id) {
+        setConvo(prev => [...prev, data]);
+      }
     });
   };
+
+  const HandleGallery = id => {
+    ImagePicker.openPicker({
+      width: 400,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+      let data = {
+        name: `image${new Date()}`,
+        type: image.mime,
+        uri: image.path,
+      };
+      let chatData = {
+        conversationId: conversationId,
+        sender: user?._id,
+        message: message,
+        createdAt: new Date(),
+        type: 'image',
+        image: {
+          url: image.path,
+        },
+      };
+      senderHandler(chatData);
+    });
+  };
+
   const handleSendMessage = () => {
     let data = {
       conversationId: conversationId,
@@ -54,11 +84,17 @@ const useChatController = conversationId => {
       message: message,
       createdAt: new Date(),
     };
+    senderHandler(data);
+  };
+
+  const senderHandler = data => {
     setMessage('');
+    setConvo(prev => [...prev, data]);
+
     socket.current.emit('sendMessage', data);
-    dispatch(sendMessageAction(data)).then(res => {
-      console.log(res, 'response of message');
-    });
+    // dispatch(sendMessageAction(data)).then(res => {
+    //   console.log(res, 'response of message');
+    // });
   };
 
   return {
@@ -66,6 +102,7 @@ const useChatController = conversationId => {
     convo,
     setMessage,
     handleSendMessage,
+    HandleGallery,
   };
 };
 

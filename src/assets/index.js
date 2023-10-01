@@ -26,6 +26,7 @@ export const icons = {
   profile: require('./icons/profile.png'),
   blindbutton: require('./icons/blindbutton.png'),
   edit: require('./icons/edit.png'),
+  gallery: require('./icons/gallery.png'),
 };
 
 export const images = {

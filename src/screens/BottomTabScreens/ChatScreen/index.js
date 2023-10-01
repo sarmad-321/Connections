@@ -14,7 +14,7 @@ import styles from './styles';
 import Poppins from '../../../components/TextWrapper/Poppins';
 import useChatController from './useChatController';
 import {useSelector} from 'react-redux';
-import {vh} from '../../../utils/units';
+import {vh, vw} from '../../../utils/units';
 import {image_url} from '../../../redux/config';
 import moment from 'moment';
 import {icons} from '../../../assets';
@@ -23,7 +23,7 @@ const ChatScreen = ({route}) => {
   const conversationId = route?.params?.conversationId;
   const user = useSelector(state => state?.profileReducer?.user);
   const scrollRef = useRef();
-  const {convo, handleSendMessage, setMessage, message} =
+  const {convo, handleSendMessage, setMessage, HandleGallery, message} =
     useChatController(conversationId);
 
   return (
@@ -50,25 +50,35 @@ const ChatScreen = ({route}) => {
               item?.sender !== user?._id ? styles.itemIn : styles.itemOut;
             return (
               <View style={[styles.item, itemStyle]}>
-                <View style={[styles.balloon]}>
-                  <Text
-                    style={
-                      item?.sender == user?._id
-                        ? styles.itemsender
-                        : styles.itemreceiver
-                    }>
-                    {item.message}
-                  </Text>
-                </View>
+                {item.type == 'text' && (
+                  <>
+                    <View style={[styles.balloon]}>
+                      <Text
+                        style={
+                          item?.sender == user?._id
+                            ? styles.itemsender
+                            : styles.itemreceiver
+                        }>
+                        {item.message}
+                      </Text>
+                    </View>
 
-                <Poppins
-                  style={{
-                    color: 'white',
-                    textAlign: 'right',
-                    paddingHorizontal: 10,
-                  }}>
-                  {moment(item.createdAt).format('hh:mm')}
-                </Poppins>
+                    <Poppins
+                      style={{
+                        color: 'white',
+                        textAlign: 'right',
+                        paddingHorizontal: 10,
+                      }}>
+                      {moment(item.createdAt).format('hh:mm')}
+                    </Poppins>
+                  </>
+                )}
+                {item.type == 'image' && (
+                  <Image
+                    source={{uri: item?.image?.url}}
+                    style={{width: vw * 40, height: vh * 20}}
+                  />
+                )}
               </View>
             );
           }}
@@ -85,7 +95,10 @@ const ChatScreen = ({route}) => {
             <TouchableOpacity
               onPress={handleSendMessage}
               style={styles.sendContainer}></TouchableOpacity>
-            <Image source={icons.microphone} style={styles.icon} />
+            {/* <Image source={icons.microphone} style={styles.icon} /> */}
+            <TouchableOpacity onPress={HandleGallery}>
+              <Image source={icons.gallery} style={styles.icon} />
+            </TouchableOpacity>
           </View>
         </View>
       </KeyboardAvoidingView>
