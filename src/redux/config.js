@@ -1,8 +1,9 @@
 export const urls = {
   v1: `https://average-stole-fox.cyclic.app/api`,
   v2: 'http://143.198.64.59/api',
-  local: 'http://192.168.0.100:4000/api',
+  local: 'http://10.1.123.157:4000/api',
 };
+
 function trimApi(url) {
   if (url.endsWith('/api')) {
     return url.slice(0, -3); // Remove the last 3 characters ("api")
@@ -11,8 +12,8 @@ function trimApi(url) {
   }
 }
 
-export const base_url = urls.v2;
-export const image_url = trimApi(urls.v2);
+export const base_url = urls.local;
+export const image_url = trimApi(urls.local);
 export const endpoints = {
   auth: {
     signup: '/user/register',
@@ -45,10 +46,11 @@ export const endpoints = {
   profile: {
     getProfileDetails: '/user/profile',
     createMyProfile: '',
-    createPatientProfile: '/',
+    updateProfile: '/user/editProfile',
   },
   general: {
     uploadImages: '/image/upload/',
+    chatImageUpload: '/image/chatUpload',
   },
 };
 

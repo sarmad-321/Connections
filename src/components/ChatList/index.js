@@ -1,10 +1,11 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import FranklinMedium from '../TextWrapper/FranklinMedium';
 import Poppins from '../TextWrapper/Poppins';
-import { images } from '../../assets';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {images} from '../../assets';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 import MyStyles from './styles';
+import {image_url} from '../../redux/config';
 
 const ChatList = props => {
   const styles = MyStyles();
@@ -20,7 +21,14 @@ const ChatList = props => {
       style={styles.card}>
       <View style={styles.leftSection}>
         <View style={styles.imgContainer}>
-          <Image source={images.profileDummy} style={styles.img} />
+          <Image
+            source={
+              props?.pic
+                ? {uri: image_url + props.pic?.url}
+                : images.profileDummy
+            }
+            style={styles.img}
+          />
         </View>
       </View>
       <View style={styles.midSection}>

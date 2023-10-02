@@ -6,6 +6,7 @@ import {
   sendMessageAction,
 } from '../../../redux/actions/chatActions';
 import ImagePicker from 'react-native-image-crop-picker';
+import {chatImageUpload} from '../../../redux/actions/authActions';
 
 const useChatController = conversationId => {
   const dispatch = useDispatch();
@@ -63,17 +64,24 @@ const useChatController = conversationId => {
         type: image.mime,
         uri: image.path,
       };
-      let chatData = {
-        conversationId: conversationId,
-        sender: user?._id,
-        message: message,
-        createdAt: new Date(),
-        type: 'image',
-        image: {
-          url: image.path,
-        },
-      };
-      senderHandler(chatData);
+      let uploadImage = [{images: data}];
+
+      dispatch(chatImageUpload(uploadImage)).then(res => {
+        console.log(res, 'response of uploaded images');
+        const imageResponse = res.images[0];
+        let chatData = {
+          conversationId: conversationId,
+          sender: user?._id,
+          message: message,
+          createdAt: new Date(),
+          type: 'image',
+          image: {
+            url: imageResponse.uri,
+            id: imageResponse._id,
+          },
+        };
+        senderHandler(chatData);
+      });
     });
   };
 
@@ -82,6 +90,7 @@ const useChatController = conversationId => {
       conversationId: conversationId,
       sender: user?._id,
       message: message,
+      type: 'text',
       createdAt: new Date(),
     };
     senderHandler(data);
@@ -92,9 +101,9 @@ const useChatController = conversationId => {
     setConvo(prev => [...prev, data]);
 
     socket.current.emit('sendMessage', data);
-    // dispatch(sendMessageAction(data)).then(res => {
-    //   console.log(res, 'response of message');
-    // });
+    dispatch(sendMessageAction(data)).then(res => {
+      console.log(res, 'response of message');
+    });
   };
 
   return {

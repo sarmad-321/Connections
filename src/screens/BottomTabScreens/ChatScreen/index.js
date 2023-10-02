@@ -21,6 +21,7 @@ import {icons} from '../../../assets';
 
 const ChatScreen = ({route}) => {
   const conversationId = route?.params?.conversationId;
+  const userObject = route?.params?.userObject;
   const user = useSelector(state => state?.profileReducer?.user);
   const scrollRef = useRef();
   const {convo, handleSendMessage, setMessage, HandleGallery, message} =
@@ -28,7 +29,7 @@ const ChatScreen = ({route}) => {
 
   return (
     <View style={{flex: 1}}>
-      <ChatHeader />
+      <ChatHeader userObject={userObject} />
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={Platform.OS === 'ios' ? vh * 2 : 0} // Adjust this value as needed
@@ -75,7 +76,7 @@ const ChatScreen = ({route}) => {
                 )}
                 {item.type == 'image' && (
                   <Image
-                    source={{uri: item?.image?.url}}
+                    source={{uri: image_url + item?.image?.url}}
                     style={{width: vw * 40, height: vh * 20}}
                   />
                 )}

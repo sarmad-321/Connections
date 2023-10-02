@@ -45,10 +45,10 @@ export const updateMyProfile = data => {
         type: types.BTN_LOADING_START,
       });
       const response = await post(endpoints.profile.updateProfile, data, false);
-      dispatch({
-        type: types.GET_PROFILE_DETAILS,
-        payload: response.user,
-      });
+      // dispatch({
+      //   type: types.GET_PROFILE_DETAILS,
+      //   payload: response.user,
+      // });
 
       dispatch({
         type: types.BTN_LOADING_END,

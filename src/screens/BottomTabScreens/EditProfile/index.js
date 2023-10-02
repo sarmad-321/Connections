@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View, useColorScheme} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {
@@ -17,16 +17,25 @@ import MainButton from '../../../components/Buttons/MainButton';
 import MyStyles from './styles';
 import RangePicker from '../../../components/RangePicker';
 import RadioButtonRN from 'radio-buttons-react-native';
-import {useSelector} from 'react-redux';
+import ImagePicker from 'react-native-image-crop-picker';
+import {useDispatch, useSelector} from 'react-redux';
+import {calculateAge} from '../../../utils/helperFunction';
+import {uploadImages} from '../../../redux/actions/authActions';
+import {
+  getProfileDetails,
+  updateMyProfile,
+} from '../../../redux/actions/profileActions';
 
 const EditProfile = () => {
   const theme = useColorScheme();
   const profile = useSelector(state => state?.profileReducer?.user);
-
+  const [updatedImage, setUpdatedImage] = useState();
+  const dispatch = useDispatch();
+  const [profileImageId, setProfileImageId] = useState(
+    profile.profilePicture?._id,
+  );
   const styles = MyStyles();
-  const HandlePress = () => {
-    console.log('test');
-  };
+
   const exercise = [
     {
       label: 'Active',
@@ -63,12 +72,52 @@ const EditProfile = () => {
       label: `Frequently`,
     },
   ];
+
+  const onEditImagePress = () => {
+    ImagePicker.openPicker({
+      width: 400,
+      height: 400,
+      cropping: true,
+    }).then(image => {
+      console.log(image);
+      let data = {
+        name: `image${new Date()}`,
+        type: image.mime,
+        uri: image.path,
+      };
+      let uploadImage = [{images: data}];
+      let profileImageData = {
+        profilePicture: {
+          url: image.path,
+        },
+      };
+      setUpdatedImage(profileImageData);
+      dispatch(uploadImages(uploadImage, profile._id)).then(res => {
+        const imageId = res.images[0];
+        setProfileImageId(imageId);
+      });
+    });
+  };
+
+  const onUpdateProfile = () => {
+    let data = {
+      profilePicture: profileImageId,
+    };
+    dispatch(updateMyProfile(data)).then(res => {
+      console.log(res, 'response of my profile');
+      dispatch(getProfileDetails());
+    });
+  };
+
   return (
     <ScreenWraper>
       <SafeAreaView>
         <ScrollView showsVerticalScrollIndicator={false}>
           <HomeHeader title={'My Profile'} />
-          <ProfilePic />
+          <ProfilePic
+            profile={updatedImage || profile}
+            onEditImagePress={onEditImagePress}
+          />
 
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>
@@ -81,13 +130,16 @@ const EditProfile = () => {
             <FranklinMedium style={styles.h1}>Mobile Number</FranklinMedium>
             <InputField type="numeric" label="+9* ***********" />
           </View>
-          <View style={styles.verticalpad}>
+          <View pointerEvents="none" style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Email</FranklinMedium>
             <InputField type="email-address" label={profile?.email} />
           </View>
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Age</FranklinMedium>
-            <InputField type="numeric" label={profile?.dateOfBirth} />
+            <InputField
+              type="numeric"
+              label={String(calculateAge(profile?.dateOfBirth))}
+            />
           </View>
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Location</FranklinMedium>
@@ -139,7 +191,7 @@ const EditProfile = () => {
               selectedBtn={e => console.log(e)}
             />
           </View>
-          <MainButton onPress={HandlePress}>Update</MainButton>
+          <MainButton onPress={onUpdateProfile}>Update</MainButton>
           <View style={styles.gap}></View>
         </ScrollView>
       </SafeAreaView>

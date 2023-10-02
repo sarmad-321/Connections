@@ -49,36 +49,10 @@ const ProfileScreen = ({navigation, route}) => {
         <ScrollView showsVerticalScrollIndicator={false}>
           <HomeHeader title={'My Profile'} />
           <ProfilePic
+            profile={profile}
             firstName={profile?.firstName}
             lastName={profile?.lastName}
           />
-          {/* <View style={styles.rosesContainer}>
-            <View style={styles.row}>
-              <FranklinMedium style={styles.h1}>No. of Roses 🌹</FranklinMedium>
-              <FranklinMedium style={styles.h1blue}>( 10 )</FranklinMedium>
-            </View>
-            <View style={styles.row}>
-              <FranklinMedium style={styles.h1}>No. of Hearts ❤</FranklinMedium>
-              <FranklinMedium style={styles.h1blue}>( 10 )</FranklinMedium>
-            </View>
-          </View> */}
-          {/* <TouchableOpacity style={styles.buybutton}>
-            <Poppins style={styles.buyMore}>Buy More</Poppins>
-          </TouchableOpacity>
-          <View style={styles.verticalpad}>
-            <FranklinMedium style={styles.h1}>About Yourself</FranklinMedium>
-            <Poppins style={styles.h2}>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </Poppins>
-          </View> */}
-          {/* <View style={styles.verticalpad}>
-            <FranklinMedium style={styles.h1}>
-              Interest & Hobbies
-            </FranklinMedium>
-            <Poppins style={styles.h2}>Swimming</Poppins>
-            <Poppins style={styles.h2}>Dancing</Poppins>
-          </View> */}
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Blind Date</FranklinMedium>
             <View style={{alignItems: 'flex-start'}}>

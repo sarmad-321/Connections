@@ -3,6 +3,7 @@ import * as types from '../types';
 import {post, get} from '../Api/index';
 import {log, showToast} from '../Api/HelperFunction';
 import axios from 'axios';
+import {store} from '../store/index';
 
 // import {console.log} from '../Api/HelperFunction';
 
@@ -417,12 +418,6 @@ export const uploadImages = (data, userId) => {
           type: types.LOADING_START,
         });
 
-        // const response = await post(
-        //   endpoints.general.uploadImages + userId,
-        //   data,
-        //   true,
-        // );
-
         const formData = jsonToFormData(data);
 
         const response = await fetch(
@@ -449,6 +444,49 @@ export const uploadImages = (data, userId) => {
         showToast(e);
         reject(e);
         console.log(e);
+
+        return Promise.reject(e);
+      }
+    });
+  };
+};
+
+export const chatImageUpload = data => {
+  return async dispatch => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        dispatch({
+          type: types.LOADING_START,
+        });
+        const result = store.getState();
+
+        const formData = jsonToFormData(data);
+
+        const response = await fetch(
+          base_url + endpoints.general.chatImageUpload,
+          {
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'multipart/form-data',
+              Authorization: 'Bearer ' + result.authReducer?.token,
+            },
+            method: 'POST',
+            body: formData,
+          },
+        ).then(res => res.json());
+        console.log(response, 'response');
+        dispatch({
+          type: types.LOADING_END,
+        });
+        resolve(response);
+        return Promise.resolve(response);
+      } catch (e) {
+        dispatch({
+          type: types.LOADING_END,
+        });
+        showToast(e);
+        reject(e);
+        console.log(e, 'error in action');
 
         return Promise.reject(e);
       }

@@ -27,8 +27,8 @@ const data = [
 const InboxScreen = ({navigation}) => {
   const {matches} = useInboxController();
 
-  const handlePress = id => {
-    navigation.navigate('Chat', {conversationId: id});
+  const handlePress = (id, userObject) => {
+    navigation.navigate('Chat', {conversationId: id, userObject});
   };
   const [isEmpty, setIsEmpty] = useState(true);
   return (
@@ -52,10 +52,11 @@ const InboxScreen = ({navigation}) => {
               renderItem={({item}) => (
                 <ChatList
                   name={`${item.user?.firstName} ${item.user?.lastName}`}
-                  message={item.message || 'Tap to start a conversation'}
+                  message={item.lastMessage || 'Tap to start a conversation'}
                   time={item.time}
+                  pic={item?.user?.profilePicture}
                   new={item.new}
-                  onPress={() => handlePress(item?._id)}
+                  onPress={() => handlePress(item?._id, item.user)}
                 />
               )}
             />
