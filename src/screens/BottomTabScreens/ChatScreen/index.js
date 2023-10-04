@@ -24,8 +24,15 @@ const ChatScreen = ({route}) => {
   const userObject = route?.params?.userObject;
   const user = useSelector(state => state?.profileReducer?.user);
   const scrollRef = useRef();
-  const {convo, handleSendMessage, setMessage, HandleGallery, message} =
-    useChatController(conversationId);
+  const {
+    convo,
+    handleSendMessage,
+    handleStartRecording,
+    handleStopRecording,
+    setMessage,
+    HandleGallery,
+    message,
+  } = useChatController(conversationId);
 
   return (
     <View style={{flex: 1}}>
@@ -92,13 +99,23 @@ const ChatScreen = ({route}) => {
             value={message}
             placeholder="Write a message"
           />
-          <View style={styles.btnContainer}>
+          {/* <View style={styles.btnContainer}>
             <TouchableOpacity
               onPress={handleSendMessage}
               style={styles.sendContainer}></TouchableOpacity>
-            {/* <Image source={icons.microphone} style={styles.icon} /> */}
+
             <TouchableOpacity onPress={HandleGallery}>
               <Image source={icons.gallery} style={styles.icon} />
+            </TouchableOpacity>
+          </View> */}
+          <View style={styles.btnContainer}>
+            <TouchableOpacity
+              onPress={handleStartRecording}
+              style={styles.sendContainer}>
+              {/* <Image source={icons.microphone} style={styles.icon} /> */}
+            </TouchableOpacity>
+            <TouchableOpacity onPress={handleStopRecording}>
+              <Image source={icons.microphone} style={styles.icon} />
             </TouchableOpacity>
           </View>
         </View>

@@ -1,4 +1,5 @@
 import {useEffect, useRef, useState} from 'react';
+import {PermissionsAndroid} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {io} from 'socket.io-client';
 import {
@@ -7,6 +8,8 @@ import {
 } from '../../../redux/actions/chatActions';
 import ImagePicker from 'react-native-image-crop-picker';
 import {chatImageUpload} from '../../../redux/actions/authActions';
+import AudioRecorderPlayer from 'react-native-audio-recorder-player';
+const audioRecorderPlayer = new AudioRecorderPlayer();
 
 const useChatController = conversationId => {
   const dispatch = useDispatch();
@@ -14,9 +17,12 @@ const useChatController = conversationId => {
   const [convo, setConvo] = useState([]);
   const socket = useRef();
   const user = useSelector(state => state?.profileReducer?.user);
+  const [recordingStarted, setRecordingStarted] = useState(false);
   const [flag, setFlag] = useState(true);
+  const [recordingData, setRecordingData] = useState();
   useEffect(() => {
     startSocket();
+    requstAudioPermissions();
     if (flag) {
       getPreviousConvo();
     }
@@ -24,6 +30,37 @@ const useChatController = conversationId => {
       socket.current.disconnect();
     };
   }, []);
+
+  const requstAudioPermissions = async () => {
+    if (Platform.OS === 'android') {
+      try {
+        const grants = await PermissionsAndroid.requestMultiple([
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+          PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+        ]);
+
+        console.log('write external stroage', grants);
+
+        if (
+          grants['android.permission.WRITE_EXTERNAL_STORAGE'] ===
+            PermissionsAndroid.RESULTS.GRANTED &&
+          grants['android.permission.READ_EXTERNAL_STORAGE'] ===
+            PermissionsAndroid.RESULTS.GRANTED &&
+          grants['android.permission.RECORD_AUDIO'] ===
+            PermissionsAndroid.RESULTS.GRANTED
+        ) {
+          console.log('Permissions granted');
+        } else {
+          console.log('All required permissions not granted');
+          return;
+        }
+      } catch (err) {
+        console.warn(err);
+        return;
+      }
+    }
+  };
 
   const getPreviousConvo = () => {
     dispatch(getAllMessages({conversationId})).then(res => {
@@ -106,12 +143,41 @@ const useChatController = conversationId => {
     });
   };
 
+  const handleStartRecording = async () => {
+    setRecordingStarted(true);
+    if (!recordingStarted) {
+      const result = await audioRecorderPlayer.startRecorder();
+      // audioRecorderPlayer.addRecordBackListener(e => {
+      //   setRecordingData({
+      //     recordSecs: e.currentPosition,
+      //     recordTime: audioRecorderPlayer.mmssss(Math.floor(e.currentPosition)),
+      //   });
+      //   return;
+      // });
+      console.log(result, 'recording start');
+    }
+  };
+  console.log(recordingData, 'recording data');
+  const handleStopRecording = async () => {
+    setRecordingStarted(false);
+    if (recordingStarted) {
+      const result = await audioRecorderPlayer.stopRecorder();
+      // audioRecorderPlayer.removeRecordBackListener();
+      // setRecordingData({
+      //   recordSecs: 0,
+      // });
+      console.log(result, 'recording stop');
+    }
+  };
+
   return {
     message,
     convo,
     setMessage,
     handleSendMessage,
     HandleGallery,
+    handleStartRecording,
+    handleStopRecording,
   };
 };
 
