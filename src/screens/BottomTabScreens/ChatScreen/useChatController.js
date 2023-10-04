@@ -167,7 +167,22 @@ const useChatController = conversationId => {
       //   recordSecs: 0,
       // });
       console.log(result, 'recording stop');
+      onStartPlay();
     }
+  };
+
+  const onStartPlay = async () => {
+    console.log('onStartPlay');
+    const msg = await audioRecorderPlayer.startPlayer();
+    console.log(msg, 'message on start');
+    setTimeout(() => {
+      onStopPlay();
+    }, 6000);
+  };
+
+  const onStopPlay = async () => {
+    console.log('onStopPlay');
+    audioRecorderPlayer.stopPlayer();
   };
 
   return {
