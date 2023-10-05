@@ -461,7 +461,7 @@ export const chatImageUpload = data => {
         const result = store.getState();
 
         const formData = jsonToFormData(data);
-
+        console.log(formData, 'formdata');
         const response = await fetch(
           base_url + endpoints.general.chatImageUpload,
           {

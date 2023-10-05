@@ -27,6 +27,7 @@ export const icons = {
   blindbutton: require('./icons/blindbutton.png'),
   edit: require('./icons/edit.png'),
   gallery: require('./icons/gallery.png'),
+  send: require('./icons/send.png'),
 };
 
 export const images = {

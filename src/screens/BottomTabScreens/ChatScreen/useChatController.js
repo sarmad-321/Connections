@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from 'react';
-import {PermissionsAndroid} from 'react-native';
+import {PermissionsAndroid, Platform} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {io} from 'socket.io-client';
 import {
@@ -8,12 +8,21 @@ import {
 } from '../../../redux/actions/chatActions';
 import ImagePicker from 'react-native-image-crop-picker';
 import {chatImageUpload} from '../../../redux/actions/authActions';
-import AudioRecorderPlayer from 'react-native-audio-recorder-player';
+import AudioRecorderPlayer, {
+  AVEncoderAudioQualityIOSType,
+  AVEncodingOption,
+  AVModeIOSOption,
+  AudioEncoderAndroidType,
+  AudioSourceAndroidType,
+} from 'react-native-audio-recorder-player';
+import RNFetchBlob from 'rn-fetch-blob';
+import * as RNFS from 'react-native-fs';
+
 const audioRecorderPlayer = new AudioRecorderPlayer();
 
 const useChatController = conversationId => {
   const dispatch = useDispatch();
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState('');
   const [convo, setConvo] = useState([]);
   const socket = useRef();
   const user = useSelector(state => state?.profileReducer?.user);
@@ -143,18 +152,32 @@ const useChatController = conversationId => {
     });
   };
 
-  const handleStartRecording = async () => {
+  const handleRecording = async () => {
+    const dirs = RNFetchBlob.fs.dirs;
+    const path = Platform.select({
+      ios: 'hello.m4a',
+      android: `${dirs.CacheDir}/hello.wav`,
+    });
+
+    const audioSet = {
+      AudioEncoderAndroid: AudioEncoderAndroidType.AAC,
+      AudioSourceAndroid: AudioSourceAndroidType.MIC,
+      AVModeIOS: AVModeIOSOption.measurement,
+      AVEncoderAudioQualityKeyIOS: AVEncoderAudioQualityIOSType.high,
+      AVNumberOfChannelsKeyIOS: 2,
+      AVFormatIDKeyIOS: AVEncodingOption.aac,
+    };
+    const meteringEnabled = false;
+
     setRecordingStarted(true);
     if (!recordingStarted) {
-      const result = await audioRecorderPlayer.startRecorder();
-      // audioRecorderPlayer.addRecordBackListener(e => {
-      //   setRecordingData({
-      //     recordSecs: e.currentPosition,
-      //     recordTime: audioRecorderPlayer.mmssss(Math.floor(e.currentPosition)),
-      //   });
-      //   return;
-      // });
-      console.log(result, 'recording start');
+      const result = await audioRecorderPlayer.startRecorder(
+        path,
+        audioSet,
+        meteringEnabled,
+      );
+    } else {
+      handleStopRecording();
     }
   };
   console.log(recordingData, 'recording data');
@@ -162,12 +185,24 @@ const useChatController = conversationId => {
     setRecordingStarted(false);
     if (recordingStarted) {
       const result = await audioRecorderPlayer.stopRecorder();
-      // audioRecorderPlayer.removeRecordBackListener();
-      // setRecordingData({
-      //   recordSecs: 0,
+      let recordingUrl = result;
+      console.log(recordingUrl);
+      let data = {
+        name: `hello.mp3`,
+        type: Platform.OS == 'android' ? 'audio/mpeg' : 'audio/m4a',
+        uri: recordingUrl,
+      };
+      let uploadImage = [{images: data}];
+      RNFS.readFile(recordingUrl, 'base64') // r is the path to the .wav file on the phone
+        .then(data => {
+          console.log(data, 'base64 data');
+        });
+      // dispatch(chatImageUpload(uploadImage)).then(res => {
+      //   const voiceId = res.images[0];
+      //   console.log(voiceId, 'voice id');
       // });
       console.log(result, 'recording stop');
-      onStartPlay();
+      // onStartPlay();
     }
   };
 
@@ -191,8 +226,7 @@ const useChatController = conversationId => {
     setMessage,
     handleSendMessage,
     HandleGallery,
-    handleStartRecording,
-    handleStopRecording,
+    handleRecording,
   };
 };
 

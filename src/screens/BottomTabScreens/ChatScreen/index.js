@@ -18,6 +18,7 @@ import {vh, vw} from '../../../utils/units';
 import {image_url} from '../../../redux/config';
 import moment from 'moment';
 import {icons} from '../../../assets';
+import Animated, {BounceIn, FlipInEasyY} from 'react-native-reanimated';
 
 const ChatScreen = ({route}) => {
   const conversationId = route?.params?.conversationId;
@@ -27,7 +28,7 @@ const ChatScreen = ({route}) => {
   const {
     convo,
     handleSendMessage,
-    handleStartRecording,
+    handleRecording,
     handleStopRecording,
     setMessage,
     HandleGallery,
@@ -93,30 +94,39 @@ const ChatScreen = ({route}) => {
         />
 
         <View style={styles.chatBox}>
-          <TextInput
-            onChangeText={event => setMessage(event)}
-            style={styles.chatInput}
-            value={message}
-            placeholder="Write a message"
-          />
-          {/* <View style={styles.btnContainer}>
-            <TouchableOpacity
-              onPress={handleSendMessage}
-              style={styles.sendContainer}></TouchableOpacity>
-
+          <View style={styles.chatContainer}>
+            <TextInput
+              onChangeText={event => setMessage(event)}
+              style={styles.chatInput}
+              value={message}
+              placeholder="Write a message"
+            />
             <TouchableOpacity onPress={HandleGallery}>
               <Image source={icons.gallery} style={styles.icon} />
             </TouchableOpacity>
-          </View> */}
+          </View>
+
           <View style={styles.btnContainer}>
             <TouchableOpacity
-              onPress={handleStartRecording}
+              onPress={message?.length ? handleSendMessage : handleRecording}
               style={styles.sendContainer}>
-              {/* <Image source={icons.microphone} style={styles.icon} /> */}
+              {message.length ? (
+                <Image
+                  entering={BounceIn.duration(500)}
+                  source={icons.send}
+                  style={styles.icon}
+                />
+              ) : (
+                <Image
+                  entering={BounceIn.duration(500)}
+                  source={icons.microphone}
+                  style={styles.icon}
+                />
+              )}
             </TouchableOpacity>
-            <TouchableOpacity onPress={handleStopRecording}>
+            {/* <TouchableOpacity onPress={handleStopRecording}>
               <Image source={icons.microphone} style={styles.icon} />
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
         </View>
       </KeyboardAvoidingView>
