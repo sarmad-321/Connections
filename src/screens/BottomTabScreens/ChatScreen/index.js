@@ -10,7 +10,6 @@ import {
 import React, {useEffect, useRef, useState} from 'react';
 import ChatHeader from '../../../components/ChatHeader';
 import {FlatList} from 'react-native-gesture-handler';
-import styles from './styles';
 import Poppins from '../../../components/TextWrapper/Poppins';
 import useChatController from './useChatController';
 import {useSelector} from 'react-redux';
@@ -19,11 +18,18 @@ import {image_url} from '../../../redux/config';
 import moment from 'moment';
 import {icons} from '../../../assets';
 import Animated, {BounceIn, FlipInEasyY} from 'react-native-reanimated';
+import ImageView from 'react-native-image-viewing';
+import MyStyles from './styles';
 
 const ChatScreen = ({route}) => {
   const conversationId = route?.params?.conversationId;
+  const styles = MyStyles();
+
   const userObject = route?.params?.userObject;
   const user = useSelector(state => state?.profileReducer?.user);
+  const [images, setImages] = useState({uri: ''});
+  const [visible, setIsVisible] = useState(false);
+
   const scrollRef = useRef();
   const {
     convo,
@@ -34,6 +40,16 @@ const ChatScreen = ({route}) => {
     HandleGallery,
     message,
   } = useChatController(conversationId);
+
+  const handleImagePress = url => {
+    const data = [
+      {
+        uri: url,
+      },
+    ];
+    setImages(data);
+    setIsVisible(true);
+  };
 
   return (
     <View style={{flex: 1}}>
@@ -83,10 +99,16 @@ const ChatScreen = ({route}) => {
                   </>
                 )}
                 {item.type == 'image' && (
-                  <Image
-                    source={{uri: image_url + item?.image?.url}}
-                    style={{width: vw * 40, height: vh * 20}}
-                  />
+                  <TouchableOpacity
+                    activeOpacity={0.3}
+                    onPress={() =>
+                      handleImagePress(image_url + item?.image?.url)
+                    }>
+                    <Image
+                      source={{uri: image_url + item?.image?.url}}
+                      style={{width: vw * 40, height: vh * 20}}
+                    />
+                  </TouchableOpacity>
                 )}
               </View>
             );
@@ -102,7 +124,10 @@ const ChatScreen = ({route}) => {
               placeholder="Write a message"
             />
             <TouchableOpacity onPress={HandleGallery}>
-              <Image source={icons.gallery} style={styles.icon} />
+              <Image
+                source={icons.gallery}
+                style={[styles.icon, {tintColor: 'black'}]}
+              />
             </TouchableOpacity>
           </View>
 
@@ -129,6 +154,13 @@ const ChatScreen = ({route}) => {
             </TouchableOpacity> */}
           </View>
         </View>
+
+        <ImageView
+          images={images}
+          imageIndex={0}
+          visible={visible}
+          onRequestClose={() => setIsVisible(false)}
+        />
       </KeyboardAvoidingView>
     </View>
   );

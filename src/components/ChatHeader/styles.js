@@ -1,8 +1,8 @@
-import { StyleSheet, Text, useColorScheme, View } from 'react-native';
+import {StyleSheet, Text, useColorScheme, View} from 'react-native';
 import React from 'react';
-import { vh } from '../../utils/units';
-import { colors } from '../../utils/theme';
-import { useTheme } from '@react-navigation/native';
+import {vh} from '../../utils/units';
+import {colors} from '../../utils/theme';
+import {useTheme} from '@react-navigation/native';
 
 // const darkStyles = StyleSheet.create({
 //   container: {
@@ -129,7 +129,7 @@ import { useTheme } from '@react-navigation/native';
 //   }
 // };
 const MyStyles = () => {
-  const { colors } = useTheme();
+  const {colors} = useTheme();
 
   const styles = StyleSheet.create({
     container: {
@@ -139,7 +139,7 @@ const MyStyles = () => {
       backgroundColor: colors.primary,
       // marginBottom: vh * 1,
       alignItems: 'center',
-      shadowColor: "#000",
+      shadowColor: '#000',
       shadowOffset: {
         width: 0,
         height: 3,
@@ -174,6 +174,7 @@ const MyStyles = () => {
       resizeMode: 'contain',
       width: '100%',
       height: '70%',
+      tintColor: colors.border,
     },
     backContainer: {
       height: vh * 6,
@@ -193,10 +194,8 @@ const MyStyles = () => {
       color: colors.grey,
       fontSize: vh * 1.4,
     },
-
   });
   return styles;
 };
-
 
 export default MyStyles;
