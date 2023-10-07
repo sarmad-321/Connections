@@ -13,7 +13,7 @@ function trimApi(url) {
 }
 
 export const base_url = urls.local;
-export const image_url = trimApi(urls.local);
+export const image_url = trimApi(base_url);
 export const endpoints = {
   auth: {
     signup: '/user/register',

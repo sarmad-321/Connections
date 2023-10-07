@@ -6,13 +6,17 @@ import FranklinMedium from '../TextWrapper/FranklinMedium';
 import Poppins from '../TextWrapper/Poppins';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import MyStyles from './styles';
+import {useNavigation} from '@react-navigation/native';
 
 const ChatHeader = ({userObject}) => {
   const styles = MyStyles();
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <SafeAreaView style={{flexDirection: 'row'}}>
-        <TouchableOpacity style={styles.backContainer}>
+        <TouchableOpacity
+          onPress={() => navigation.pop()}
+          style={styles.backContainer}>
           <Image source={icons.back} style={styles.backimg} />
         </TouchableOpacity>
         <View>

@@ -9,6 +9,7 @@ import ChatList from '../../../components/ChatList';
 import {FlatList} from 'react-native-gesture-handler';
 import useChatController from '../ChatScreen/useChatController';
 import useInboxController from './useInboxController';
+import moment from 'moment';
 const data = [
   {
     name: 'Sarmad',
@@ -53,9 +54,9 @@ const InboxScreen = ({navigation}) => {
                 <ChatList
                   name={`${item.user?.firstName} ${item.user?.lastName}`}
                   message={item.lastMessage || 'Tap to start a conversation'}
-                  time={item.time}
+                  time={moment(item?.updatedAt).format('hh:mm A')}
                   pic={item?.user?.profilePicture}
-                  new={item.new}
+                  new={true}
                   onPress={() => handlePress(item?._id, item.user)}
                 />
               )}
