@@ -25,7 +25,7 @@ import {
   getProfileDetails,
   updateMyProfile,
 } from '../../../redux/actions/profileActions';
-
+import path from 'path';
 const EditProfile = () => {
   const theme = useColorScheme();
   const profile = useSelector(state => state?.profileReducer?.user);
@@ -80,8 +80,19 @@ const EditProfile = () => {
       cropping: true,
     }).then(image => {
       console.log(image);
+      const filePath = image.path;
+
+      // Split the file path by "/" to get the filename
+      const pathParts = filePath.split('/');
+      const filename = pathParts[pathParts.length - 1];
+
+      // Split the filename by "." to get the file extension
+      const filenameParts = filename.split('.');
+      const fileExtension = filenameParts[filenameParts.length - 1];
+
+      // Split the filename by "." to get the file extension
       let data = {
-        name: `image${new Date()}`,
+        name: `image.${fileExtension}`,
         type: image.mime,
         uri: image.path,
       };
@@ -116,6 +127,7 @@ const EditProfile = () => {
           <HomeHeader title={'My Profile'} />
           <ProfilePic
             profile={updatedImage || profile}
+            imageUrl={updatedImage ? false : true}
             onEditImagePress={onEditImagePress}
           />
 

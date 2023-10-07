@@ -1,7 +1,7 @@
 export const urls = {
   v1: `https://average-stole-fox.cyclic.app/api`,
   v2: 'http://143.198.64.59/api',
-  local: 'http://10.1.125.87:4000/api',
+  local: 'http://192.168.0.102:4000/api',
 };
 
 function trimApi(url) {

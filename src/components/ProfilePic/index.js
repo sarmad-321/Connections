@@ -7,6 +7,18 @@ import {image_url} from '../../redux/config';
 
 const ProfilePic = props => {
   const styles = MyStyles();
+
+  const calculateUrl = () => {
+    let url = '';
+    if (props.imageUrl) {
+      console.log(true);
+      url = image_url + props?.profile?.profilePicture.url;
+    } else {
+      url = props?.profile?.profilePicture.url;
+    }
+    return url;
+  };
+
   return (
     <View>
       <View style={styles.container}>
@@ -14,7 +26,9 @@ const ProfilePic = props => {
           <Image
             source={
               props?.profile?.profilePicture
-                ? {uri: image_url + props?.profile?.profilePicture.url}
+                ? {
+                    uri: calculateUrl(),
+                  }
                 : images.profileDummy
             }
             style={styles.img}

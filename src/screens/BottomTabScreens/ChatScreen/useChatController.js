@@ -156,7 +156,7 @@ const useChatController = conversationId => {
     const dirs = RNFetchBlob.fs.dirs;
     const path = Platform.select({
       ios: 'hello.m4a',
-      android: `${dirs.CacheDir}/hello.wav`,
+      android: `${dirs.CacheDir}/hello.mp3`,
     });
 
     const audioSet = {
@@ -180,7 +180,6 @@ const useChatController = conversationId => {
       handleStopRecording();
     }
   };
-  console.log(recordingData, 'recording data');
   const handleStopRecording = async () => {
     setRecordingStarted(false);
     if (recordingStarted) {
@@ -193,22 +192,22 @@ const useChatController = conversationId => {
         uri: recordingUrl,
       };
       let uploadImage = [{images: data}];
-      RNFS.readFile(recordingUrl, 'base64') // r is the path to the .wav file on the phone
-        .then(data => {
-          console.log(data, 'base64 data');
-        });
-      // dispatch(chatImageUpload(uploadImage)).then(res => {
-      //   const voiceId = res.images[0];
-      //   console.log(voiceId, 'voice id');
-      // });
+      // RNFS.readFile(recordingUrl, 'base64')
+      //   .then(data => {
+      //     console.log(data, 'base64 data');
+      //   });
+      dispatch(chatImageUpload(uploadImage)).then(res => {
+        const voiceId = res.images[0];
+        console.log(voiceId, 'voice id');
+      });
       console.log(result, 'recording stop');
-      // onStartPlay();
+      onStartPlay(result);
     }
   };
 
-  const onStartPlay = async () => {
+  const onStartPlay = async url => {
     console.log('onStartPlay');
-    const msg = await audioRecorderPlayer.startPlayer();
+    const msg = await audioRecorderPlayer.startPlayer(url);
     console.log(msg, 'message on start');
     setTimeout(() => {
       onStopPlay();
