@@ -11,7 +11,8 @@ const MyStyles = () => {
     balloon: {
       maxWidth: '90%',
       paddingVertical: '1%',
-      paddingHorizontal: '3%',
+      paddingBottom: vh * 3,
+      paddingHorizontal: vw * 1,
       borderRadius: 20,
     },
     itemsender: {

@@ -20,6 +20,7 @@ import {icons} from '../../../assets';
 import Animated, {BounceIn, FlipInEasyY} from 'react-native-reanimated';
 import ImageView from 'react-native-image-viewing';
 import MyStyles from './styles';
+import AbhayaLibre from '../../../components/TextWrapper/AbhayaLibre';
 
 const ChatScreen = ({route}) => {
   const conversationId = route?.params?.conversationId;
@@ -35,9 +36,10 @@ const ChatScreen = ({route}) => {
     convo,
     handleSendMessage,
     handleRecording,
-    handleStopRecording,
+    recordingStarted,
     setMessage,
     HandleGallery,
+    handleVoicePress,
     message,
   } = useChatController(conversationId);
 
@@ -49,6 +51,20 @@ const ChatScreen = ({route}) => {
     ];
     setImages(data);
     setIsVisible(true);
+  };
+
+  const DateComponent = ({createdAt}) => {
+    return (
+      <Poppins
+        style={{
+          color: 'white',
+          position: 'absolute',
+          right: 2,
+          bottom: 2,
+        }}>
+        {createdAt}
+      </Poppins>
+    );
   };
 
   return (
@@ -91,10 +107,11 @@ const ChatScreen = ({route}) => {
                     <Poppins
                       style={{
                         color: 'white',
-                        textAlign: 'right',
-                        paddingHorizontal: 10,
+                        position: 'absolute',
+                        right: 4,
+                        bottom: 2,
                       }}>
-                      {moment(item.createdAt).format('hh:mm')}
+                      {moment(item.createdAt).format('hh:mm A')}
                     </Poppins>
                   </>
                 )}
@@ -108,6 +125,34 @@ const ChatScreen = ({route}) => {
                       source={{uri: image_url + item?.image?.url}}
                       style={{width: vw * 40, height: vh * 20}}
                     />
+                    <Poppins
+                      style={{
+                        color: 'white',
+                        position: 'absolute',
+                        right: 2,
+                        bottom: 2,
+                      }}>
+                      {moment(item.createdAt).format('hh:mm A')}
+                    </Poppins>
+                  </TouchableOpacity>
+                )}
+                {item.type == 'voice' && (
+                  <TouchableOpacity
+                    activeOpacity={0.3}
+                    onPress={() =>
+                      handleVoicePress(image_url + item?.voice?.url)
+                    }>
+                    <Image
+                      source={icons.voiceMessage}
+                      style={{
+                        width: vw * 15,
+                        height: vh * 5,
+                        resizeMode: 'contain',
+                      }}
+                    />
+                    <DateComponent
+                      createdAt={moment(item.createdAt).format('hh:mm A')}
+                    />
                   </TouchableOpacity>
                 )}
               </View>
@@ -116,39 +161,57 @@ const ChatScreen = ({route}) => {
         />
 
         <View style={styles.chatBox}>
-          <View style={styles.chatContainer}>
-            <TextInput
-              onChangeText={event => setMessage(event)}
-              style={styles.chatInput}
-              value={message}
-              placeholder="Write a message"
-            />
-            <TouchableOpacity onPress={HandleGallery}>
-              <Image
-                source={icons.gallery}
-                style={[styles.icon, {tintColor: 'black'}]}
+          {recordingStarted ? (
+            <View style={styles.chatContainer}>
+              <AbhayaLibre>Recording in progress...</AbhayaLibre>
+            </View>
+          ) : (
+            <View style={styles.chatContainer}>
+              <TextInput
+                onChangeText={event => setMessage(event)}
+                style={styles.chatInput}
+                value={message}
+                placeholder="Write a message"
               />
-            </TouchableOpacity>
-          </View>
+              <TouchableOpacity onPress={HandleGallery}>
+                <Image
+                  source={icons.gallery}
+                  style={[styles.icon, {tintColor: 'black'}]}
+                />
+              </TouchableOpacity>
+            </View>
+          )}
 
           <View style={styles.btnContainer}>
-            <TouchableOpacity
-              onPress={message?.length ? handleSendMessage : handleRecording}
-              style={styles.sendContainer}>
-              {message.length ? (
+            {recordingStarted ? (
+              <TouchableOpacity
+                onPress={handleRecording}
+                style={styles.sendContainer}>
                 <Image
                   entering={BounceIn.duration(500)}
                   source={icons.send}
                   style={styles.icon}
                 />
-              ) : (
-                <Image
-                  entering={BounceIn.duration(500)}
-                  source={icons.microphone}
-                  style={styles.icon}
-                />
-              )}
-            </TouchableOpacity>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                onPress={message?.length ? handleSendMessage : handleRecording}
+                style={styles.sendContainer}>
+                {message.length ? (
+                  <Image
+                    entering={BounceIn.duration(500)}
+                    source={icons.send}
+                    style={styles.icon}
+                  />
+                ) : (
+                  <Image
+                    entering={BounceIn.duration(500)}
+                    source={icons.microphone}
+                    style={styles.icon}
+                  />
+                )}
+              </TouchableOpacity>
+            )}
             {/* <TouchableOpacity onPress={handleStopRecording}>
               <Image source={icons.microphone} style={styles.icon} />
             </TouchableOpacity> */}

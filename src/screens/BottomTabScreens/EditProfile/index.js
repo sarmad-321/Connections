@@ -19,14 +19,14 @@ import RangePicker from '../../../components/RangePicker';
 import RadioButtonRN from 'radio-buttons-react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {useDispatch, useSelector} from 'react-redux';
-import {calculateAge} from '../../../utils/helperFunction';
+import {calculateAge, getFileExtension} from '../../../utils/helperFunction';
 import {uploadImages} from '../../../redux/actions/authActions';
 import {
   getProfileDetails,
   updateMyProfile,
 } from '../../../redux/actions/profileActions';
 import path from 'path';
-const EditProfile = () => {
+const EditProfile = ({navigation}) => {
   const theme = useColorScheme();
   const profile = useSelector(state => state?.profileReducer?.user);
   const [updatedImage, setUpdatedImage] = useState();
@@ -82,14 +82,7 @@ const EditProfile = () => {
       console.log(image);
       const filePath = image.path;
 
-      // Split the file path by "/" to get the filename
-      const pathParts = filePath.split('/');
-      const filename = pathParts[pathParts.length - 1];
-
-      // Split the filename by "." to get the file extension
-      const filenameParts = filename.split('.');
-      const fileExtension = filenameParts[filenameParts.length - 1];
-
+      const fileExtension = getFileExtension(filePath);
       // Split the filename by "." to get the file extension
       let data = {
         name: `image.${fileExtension}`,
@@ -117,6 +110,7 @@ const EditProfile = () => {
     dispatch(updateMyProfile(data)).then(res => {
       console.log(res, 'response of my profile');
       dispatch(getProfileDetails());
+      navigation.goBack();
     });
   };
 

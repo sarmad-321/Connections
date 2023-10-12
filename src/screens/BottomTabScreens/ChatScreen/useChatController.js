@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from 'react';
-import {PermissionsAndroid, Platform} from 'react-native';
+import {PermissionsAndroid, Platform, LayoutAnimation} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {io} from 'socket.io-client';
 import {
@@ -17,6 +17,7 @@ import AudioRecorderPlayer, {
 } from 'react-native-audio-recorder-player';
 import RNFetchBlob from 'rn-fetch-blob';
 import * as RNFS from 'react-native-fs';
+import {getFileExtension} from '../../../utils/helperFunction';
 
 const audioRecorderPlayer = new AudioRecorderPlayer();
 
@@ -105,8 +106,11 @@ const useChatController = conversationId => {
       cropping: true,
     }).then(image => {
       console.log(image);
+      const filePath = image.path;
+
+      const fileExtension = getFileExtension(filePath);
       let data = {
-        name: `image${new Date()}`,
+        name: `image.${fileExtension}`,
         type: image.mime,
         uri: image.path,
       };
@@ -170,6 +174,8 @@ const useChatController = conversationId => {
     const meteringEnabled = false;
 
     setRecordingStarted(true);
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.linear);
+
     if (!recordingStarted) {
       const result = await audioRecorderPlayer.startRecorder(
         path,
@@ -197,8 +203,19 @@ const useChatController = conversationId => {
       //     console.log(data, 'base64 data');
       //   });
       dispatch(chatImageUpload(uploadImage)).then(res => {
-        const voiceId = res.images[0];
-        console.log(voiceId, 'voice id');
+        const voiceResponse = res.images[0];
+        let chatData = {
+          conversationId: conversationId,
+          sender: user?._id,
+          message: message,
+          createdAt: new Date(),
+          type: 'voice',
+          voice: {
+            url: voiceResponse.uri,
+            id: voiceResponse._id,
+          },
+        };
+        senderHandler(chatData);
       });
       console.log(result, 'recording stop');
       onStartPlay(result);
@@ -219,6 +236,10 @@ const useChatController = conversationId => {
     audioRecorderPlayer.stopPlayer();
   };
 
+  const handleVoicePress = async url => {
+    const msg = await audioRecorderPlayer.startPlayer(url);
+  };
+
   return {
     message,
     convo,
@@ -226,6 +247,8 @@ const useChatController = conversationId => {
     handleSendMessage,
     HandleGallery,
     handleRecording,
+    recordingStarted,
+    handleVoicePress,
   };
 };
 

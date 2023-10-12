@@ -50,6 +50,7 @@ const ProfileScreen = ({navigation, route}) => {
           <HomeHeader title={'My Profile'} />
           <ProfilePic
             profile={profile}
+            imageUrl={true}
             firstName={profile?.firstName}
             lastName={profile?.lastName}
           />
