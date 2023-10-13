@@ -7,6 +7,7 @@ import Poppins from '../TextWrapper/Poppins';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import MyStyles from './styles';
 import {useNavigation} from '@react-navigation/native';
+import {image_url} from '../../redux/config';
 
 const ChatHeader = ({userObject}) => {
   const styles = MyStyles();
@@ -21,7 +22,16 @@ const ChatHeader = ({userObject}) => {
         </TouchableOpacity>
         <View>
           <View style={styles.imgContainer}>
-            <Image source={images.profileDummy} style={styles.img} />
+            <Image
+              source={
+                userObject?.profilePicture?.url
+                  ? {
+                      uri: image_url + userObject?.profilePicture?.url,
+                    }
+                  : images.profileDummy
+              }
+              style={styles.img}
+            />
           </View>
           <View style={styles.dot}></View>
         </View>

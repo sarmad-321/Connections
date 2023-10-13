@@ -109,6 +109,20 @@ const MyStyles = () => {
       justifyContent: 'center',
       alignItems: 'center',
     },
+    recordingIcon: {
+      width: vw * 15,
+      height: vh * 5,
+      resizeMode: 'contain',
+      tintColor: 'white',
+    },
+    slider_style: {
+      height: '70%',
+      width: '100%',
+    },
+    thumbStyle: {
+      width: vh * 1.5,
+      height: vh * 1.5,
+    },
   });
   return styles;
 };

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   Image,
+  Keyboard,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import ChatHeader from '../../../components/ChatHeader';
@@ -21,6 +22,8 @@ import Animated, {BounceIn, FlipInEasyY} from 'react-native-reanimated';
 import ImageView from 'react-native-image-viewing';
 import MyStyles from './styles';
 import AbhayaLibre from '../../../components/TextWrapper/AbhayaLibre';
+import {Slider} from '@miblanchard/react-native-slider';
+import AudioProgress from '../../../components/AudioProgress';
 
 const ChatScreen = ({route}) => {
   const conversationId = route?.params?.conversationId;
@@ -30,16 +33,21 @@ const ChatScreen = ({route}) => {
   const user = useSelector(state => state?.profileReducer?.user);
   const [images, setImages] = useState({uri: ''});
   const [visible, setIsVisible] = useState(false);
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
 
+  const audioDuration = 30;
   const scrollRef = useRef();
+
   const {
     convo,
     handleSendMessage,
     handleRecording,
     recordingStarted,
     setMessage,
+    onStopPlay,
     HandleGallery,
     handleVoicePress,
+    recordingTime,
     message,
   } = useChatController(conversationId);
 
@@ -51,6 +59,32 @@ const ChatScreen = ({route}) => {
     ];
     setImages(data);
     setIsVisible(true);
+  };
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      () => {
+        setTimeout(() => {
+          scrollListToEnd();
+        }, 50);
+      },
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      'keyboardDidHide',
+      () => {
+        setKeyboardVisible(false); // or some other action
+      },
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
+
+  const scrollListToEnd = () => {
+    scrollRef.current.scrollToOffset({offset: 0, animated: true});
   };
 
   const DateComponent = ({createdAt}) => {
@@ -77,12 +111,11 @@ const ChatScreen = ({route}) => {
         <FlatList
           showsVerticalScrollIndicator={false}
           ref={scrollRef}
-          onContentSizeChange={() =>
-            scrollRef.current.scrollToEnd({animated: true})
-          }
+          onContentSizeChange={scrollListToEnd}
           style={styles.list}
           ListEmptyComponent={() => <Poppins>No Recent Messages</Poppins>}
           data={convo}
+          inverted
           keyExtractor={item => {
             return item.id;
           }}
@@ -137,23 +170,23 @@ const ChatScreen = ({route}) => {
                   </TouchableOpacity>
                 )}
                 {item.type == 'voice' && (
-                  <TouchableOpacity
-                    activeOpacity={0.3}
-                    onPress={() =>
-                      handleVoicePress(image_url + item?.voice?.url)
-                    }>
-                    <Image
-                      source={icons.voiceMessage}
-                      style={{
-                        width: vw * 15,
-                        height: vh * 5,
-                        resizeMode: 'contain',
-                      }}
+                  <View
+                    style={{
+                      paddingVertical: vh * 1.5,
+                      width: vw * 60,
+                      paddingHorizontal: vw * 3,
+                    }}>
+                    <AudioProgress
+                      onStartVoice={() =>
+                        handleVoicePress(image_url + item?.voice?.url)
+                      }
+                      onStopPlay={onStopPlay}
+                      duration={item.voiceDuration}
                     />
                     <DateComponent
                       createdAt={moment(item.createdAt).format('hh:mm A')}
                     />
-                  </TouchableOpacity>
+                  </View>
                 )}
               </View>
             );
@@ -164,6 +197,7 @@ const ChatScreen = ({route}) => {
           {recordingStarted ? (
             <View style={styles.chatContainer}>
               <AbhayaLibre>Recording in progress...</AbhayaLibre>
+              <AbhayaLibre>{recordingTime}</AbhayaLibre>
             </View>
           ) : (
             <View style={styles.chatContainer}>
@@ -212,9 +246,6 @@ const ChatScreen = ({route}) => {
                 )}
               </TouchableOpacity>
             )}
-            {/* <TouchableOpacity onPress={handleStopRecording}>
-              <Image source={icons.microphone} style={styles.icon} />
-            </TouchableOpacity> */}
           </View>
         </View>
 

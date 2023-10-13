@@ -29,7 +29,8 @@ const useChatController = conversationId => {
   const user = useSelector(state => state?.profileReducer?.user);
   const [recordingStarted, setRecordingStarted] = useState(false);
   const [flag, setFlag] = useState(true);
-  const [recordingData, setRecordingData] = useState();
+  const [recordingTime, setRecodingTime] = useState('00:00');
+  const [totalSeconds, setTotalSeconds] = useState();
   useEffect(() => {
     startSocket();
     requstAudioPermissions();
@@ -94,7 +95,7 @@ const useChatController = conversationId => {
     socket.current.on('message', data => {
       console.log(data, 'data recieved from socket.');
       if (data.sender !== user?._id) {
-        setConvo(prev => [...prev, data]);
+        setConvo(prev => [data, ...prev]);
       }
     });
   };
@@ -148,7 +149,7 @@ const useChatController = conversationId => {
 
   const senderHandler = data => {
     setMessage('');
-    setConvo(prev => [...prev, data]);
+    setConvo(prev => [data, ...prev]);
 
     socket.current.emit('sendMessage', data);
     dispatch(sendMessageAction(data)).then(res => {
@@ -182,12 +183,21 @@ const useChatController = conversationId => {
         audioSet,
         meteringEnabled,
       );
+      audioRecorderPlayer.addRecordBackListener(e => {
+        const timeInMilliseconds = e.currentPosition;
+        const totalSeconds = Math.floor(timeInMilliseconds / 1000);
+        const formattedTime = audioRecorderPlayer.mmss(totalSeconds);
+        setTotalSeconds(totalSeconds);
+        setRecodingTime(formattedTime);
+      });
     } else {
       handleStopRecording();
     }
   };
   const handleStopRecording = async () => {
     setRecordingStarted(false);
+    setRecodingTime('00:00');
+    audioRecorderPlayer.removeRecordBackListener();
     if (recordingStarted) {
       const result = await audioRecorderPlayer.stopRecorder();
       let recordingUrl = result;
@@ -198,10 +208,7 @@ const useChatController = conversationId => {
         uri: recordingUrl,
       };
       let uploadImage = [{images: data}];
-      // RNFS.readFile(recordingUrl, 'base64')
-      //   .then(data => {
-      //     console.log(data, 'base64 data');
-      //   });
+
       dispatch(chatImageUpload(uploadImage)).then(res => {
         const voiceResponse = res.images[0];
         let chatData = {
@@ -213,6 +220,7 @@ const useChatController = conversationId => {
           voice: {
             url: voiceResponse.uri,
             id: voiceResponse._id,
+            duration: totalSeconds,
           },
         };
         senderHandler(chatData);
@@ -224,6 +232,8 @@ const useChatController = conversationId => {
 
   const onStartPlay = async url => {
     console.log('onStartPlay');
+    await audioRecorderPlayer.stopPlayer();
+
     const msg = await audioRecorderPlayer.startPlayer(url);
     console.log(msg, 'message on start');
     setTimeout(() => {
@@ -237,7 +247,13 @@ const useChatController = conversationId => {
   };
 
   const handleVoicePress = async url => {
+    console.log(url, 'url to play');
     const msg = await audioRecorderPlayer.startPlayer(url);
+    audioRecorderPlayer.addPlayBackListener(e => {
+      if (e.currentPosition == e.duration) {
+        onStopPlay();
+      }
+    });
   };
 
   return {
@@ -248,7 +264,9 @@ const useChatController = conversationId => {
     HandleGallery,
     handleRecording,
     recordingStarted,
+    onStopPlay,
     handleVoicePress,
+    recordingTime,
   };
 };
 

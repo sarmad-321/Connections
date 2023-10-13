@@ -29,6 +29,8 @@ export const icons = {
   gallery: require('./icons/gallery.png'),
   send: require('./icons/send.png'),
   voiceMessage: require('./icons/voice-note.png'),
+  playButton: require('./icons/play-button.png'),
+  stopButton: require('./icons/stop-button.png'),
 };
 
 export const images = {
