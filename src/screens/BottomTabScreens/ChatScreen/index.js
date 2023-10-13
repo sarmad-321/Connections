@@ -177,11 +177,12 @@ const ChatScreen = ({route}) => {
                       paddingHorizontal: vw * 3,
                     }}>
                     <AudioProgress
-                      onStartVoice={() =>
-                        handleVoicePress(image_url + item?.voice?.url)
-                      }
+                      // onStartVoice={() =>
+                      //   handleVoicePress(image_url + item?.voice?.url)
+                      // }
+                      url={image_url + item?.voice?.url}
                       onStopPlay={onStopPlay}
-                      duration={item.voiceDuration}
+                      duration={5}
                     />
                     <DateComponent
                       createdAt={moment(item.createdAt).format('hh:mm A')}

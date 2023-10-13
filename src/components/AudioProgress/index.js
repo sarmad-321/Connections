@@ -4,39 +4,57 @@ import {Slider} from '@miblanchard/react-native-slider';
 import MyStyles from './styles';
 import {icons} from '../../assets';
 import {vh, vw} from '../../utils/units';
+import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 let interval;
+const audioRecorderPlayer = new AudioRecorderPlayer();
 
-const AudioProgress = ({duration, onStartVoice, onStopPlay}) => {
+const AudioProgress = ({duration, url}) => {
   const [currentTime, setCurrentTime] = useState(0); // State to track the current time in seconds
   const [isPlaying, setIsPlaying] = useState(false); // State to track whether audio is playing
-
   const styles = MyStyles();
-
+  console.log(currentTime, 'current time');
   useEffect(() => {
-    if (isPlaying) {
-      interval = setInterval(() => {
-        setCurrentTime(prevTime => {
-          const newTime = prevTime + 0.5; // Simulated 0.5-second progress
-          if (newTime >= duration) {
-            clearInterval(interval);
-            setCurrentTime(0);
-            setIsPlaying(false);
-            return duration;
-          }
-          return newTime;
-        });
-      }, 500);
+    return () => clearInterval(interval);
+  }, []);
 
-      return () => clearInterval(interval);
-    }
-  }, [isPlaying]);
+  const startTimer = () => {
+    interval = setInterval(() => {
+      console.log('number');
+      setCurrentTime(prevTime => {
+        const newTime = prevTime + 0.5; // Simulated 0.5-second progress
+        if (newTime >= duration) {
+          clearInterval(interval);
+          setIsPlaying(false);
+          return 0;
+        }
+        return newTime;
+      });
+    }, 500);
+  };
+
+  const handleVoicePress = async () => {
+    console.log(url, 'url to play');
+    const msg = await audioRecorderPlayer.startPlayer(url);
+    setIsPlaying(true);
+    startTimer();
+    audioRecorderPlayer.addPlayBackListener(e => {
+      if (e.currentPosition == e.duration) {
+        onStopPlay();
+      }
+    });
+  };
+
+  const onStopPlay = async () => {
+    console.log('onStopPlay');
+    audioRecorderPlayer.stopPlayer();
+    setIsPlaying(false);
+  };
 
   const handlePlayPauseToggle = () => {
     if (!isPlaying) {
-      onStartVoice();
-      setIsPlaying(true);
+      handleVoicePress();
     } else {
-      onStopPlay();
+      // onStopPlay();
       setCurrentTime(0);
       setIsPlaying(false);
 
