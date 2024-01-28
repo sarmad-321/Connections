@@ -20,10 +20,19 @@ const useLoginController = type => {
           ? {email: email, password: password}
           : {phone: phone, password: password};
       dispatch(userLogin(loginData)).then(res => {
-        if (res == 200) {
-          navigation.navigate('BottomTabNavigator', {
-            screen: 'Home',
+        console.log(res.user?.personalityAnswers, 'data api');
+        if (res?.user && !res.user?.personalityAnswers) {
+          const searchCriteria =
+            type === 'Email' ? {email, type: 'email'} : {phone, type: 'phone'};
+          navigation.navigate('SignUp', {
+            value: searchCriteria,
+            user: res.user,
           });
+        }
+        if (res == 200) {
+          // navigation.navigate('BottomTabNavigator', {
+          //   screen: 'Home',
+          // });
         }
       });
     } else {

@@ -21,6 +21,7 @@ import PassStep from './PassStep';
 
 const SignUpScreen = ({navigation, route}) => {
   const LoginMethod = route.params?.value;
+  const user = route.params?.user;
   console.log(LoginMethod, 'login method parameter');
   const ref = useRef(PagerView);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -45,14 +46,14 @@ const SignUpScreen = ({navigation, route}) => {
     handleQuestions,
     handleContinue,
     setLocation,
-  } = useRegisterController(LoginMethod, ref, currentIndex);
+  } = useRegisterController(LoginMethod, ref, currentIndex, user);
 
   return (
     <ScreenWraper>
       <PagerView
         scrollEnabled={false}
         style={{flex: 0.9}}
-        initialPage={0}
+        initialPage={user ? 6 : 0}
         ref={ref}
         onPageSelected={onPageSelected}>
         <NameStep firstName={setFirstName} lastName={setLastName} key="1" />

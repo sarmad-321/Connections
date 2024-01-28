@@ -9,7 +9,7 @@ import {
 } from '../../../redux/actions/authActions';
 import {showToast} from '../../../redux/Api/HelperFunction';
 
-const useRegisterController = (LoginMethod, ref, currentIndex) => {
+const useRegisterController = (LoginMethod, ref, currentIndex, user) => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState(LoginMethod.email);
   const [phone, setPhone] = useState(LoginMethod.phone);
@@ -17,6 +17,8 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
   const [preference, setPreference] = useState('Any');
+  const [gender, setGender] = useState();
+
   const [isBlindDate, setIsBlindDate] = useState('');
   const [promptList, setPromptList] = useState([]);
   const [uploadedImages, setUploadedImages] = useState();
@@ -26,6 +28,12 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
   const [date, setDate] = useState('');
   const [userId, setUserId] = useState();
   const navigation = useNavigation();
+
+  useEffect(() => {
+    if (user) {
+      setUserId(user._id);
+    }
+  }, [user]);
 
   const handleDateSelection = newDate => {
     console.log(newDate);
@@ -38,8 +46,9 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
     setImages(value);
     setIsBlindDate(value2);
   };
-  const handleItem = item => {
-    setPreference(item);
+  const handleItem = (gender, preference) => {
+    setGender(gender.value);
+    setPreference(preference.value);
   };
   const handleQuestions = item => {
     setExtraQuestions(item);
@@ -122,7 +131,7 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
       latitude: location.location.lat,
       longitude: location.location.lng,
       address: location.formatted_address,
-      gender: 'Male',
+      gender: gender,
       promptAnswers: filteredPrompt,
       genderPreference: preference,
       isBlindDate: isBlindDate.blindDating,
@@ -145,8 +154,13 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
       },
     };
     dispatch(completeProfile(data)).then(res => {
-      console.log(res, 'complete profile');
-      navigation.navigate('Welcome');
+      console.log(res?.token, 'complete profile');
+      if (res?.token) {
+        navigation.replace('BottomTabNavigator', {
+          screen: 'Home',
+        });
+      }
+      // navigation.navigate('Welcome');
     });
     console.log(data);
   };
@@ -181,6 +195,7 @@ const useRegisterController = (LoginMethod, ref, currentIndex) => {
     handleImages,
     setPrompt,
     handleContinue,
+    setGender,
   };
 };
 

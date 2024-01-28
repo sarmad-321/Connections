@@ -338,6 +338,16 @@ export const completeProfile = data => {
         dispatch({
           type: types.LOADING_END,
         });
+        dispatch({
+          type: types.LOGIN,
+          payload: {
+            token: response?.token,
+          },
+        });
+        dispatch({
+          type: types.GET_PROFILE_DETAILS,
+          payload: response?.user,
+        });
         resolve(response);
         return Promise.resolve(response);
       } catch (e) {

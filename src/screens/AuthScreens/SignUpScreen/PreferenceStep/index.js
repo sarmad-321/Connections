@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View, useColorScheme} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Question from '../../../../components/Question';
 import SelectButton from '../../../../components/Buttons/SelectButton';
@@ -7,32 +7,67 @@ import {FlatList} from 'react-native-gesture-handler';
 import {vh, vw} from '../../../../utils/units';
 import MyStyles from './styles';
 
-let data = ['Men', 'Women', 'Everyone'];
-
+let GenderData = [
+  {label: 'Male', value: 'Male'},
+  {label: 'Female', value: 'Female'},
+];
+let PreferenceData = [
+  {label: 'Men', value: 'Male'},
+  {label: 'Women', value: 'Female'},
+  {label: 'Everyone', value: 'All'},
+];
 const PreferenceStep = ({handleItem}) => {
   const styles = MyStyles();
 
-  const [selected, setSelected] = useState();
-  const HandlePress = item => {
-    // console.log(item);
-    setSelected(item);
-    handleItem(item);
-  };
+  const [genderSelected, setGenderSelected] = useState({});
+  const [preferenceSelected, setPreferenceSelected] = useState({});
+
+  useEffect(() => {
+    handleItem(genderSelected, preferenceSelected);
+  }, [genderSelected, preferenceSelected]);
   return (
     <SafeAreaView>
-      <Question step={'04'} text={`Who Do You Want To Date?`} />
+      <Question step={'04'} text={`What is your gender?`} />
       <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-        {data.map(item => {
+        {GenderData.map(item => {
           return (
             <SelectButton
               selectedGradient={
-                selected == item ? styles.selectedGradient : styles.gradient
+                genderSelected.value == item.value
+                  ? styles.selectedGradient
+                  : styles.gradient
               }
-              textStyles={selected == item ? styles.selectedText : {}}
+              textStyles={
+                genderSelected?.value == item.value ? styles.selectedText : {}
+              }
               onPress={() => {
-                HandlePress(item);
+                setGenderSelected(item);
               }}
-              text={item}
+              text={item.label}
+            />
+          );
+        })}
+      </View>
+
+      <Question text={`Who Do You Want To Date?`} />
+      <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+        {PreferenceData.map(item => {
+          return (
+            <SelectButton
+              selectedGradient={
+                preferenceSelected.value == item.value
+                  ? styles.selectedGradient
+                  : styles.gradient
+              }
+              textStyles={
+                preferenceSelected?.value == item.value
+                  ? styles.selectedText
+                  : {}
+              }
+              onPress={() => {
+                setPreferenceSelected(item);
+              }}
+              text={item.label}
             />
           );
         })}
