@@ -5,13 +5,13 @@ import {colors} from '../../utils/theme';
 import MyStyles from './styles';
 import {useTheme} from '@react-navigation/native';
 
-const RadioButton = ({label, options, onChange}) => {
-  const [selectedKey, setSelectedKey] = useState(false);
+const RadioButton = ({label, options, onChange, defaultValue}) => {
+  const [selectedKey, setSelectedKey] = useState(defaultValue);
   const styles = MyStyles();
   const {colors} = useTheme();
 
   const handlePress = item => {
-    setSelectedKey(item.label);
+    setSelectedKey(item.value);
     onChange(item.value);
   };
 
@@ -27,9 +27,9 @@ const RadioButton = ({label, options, onChange}) => {
             <View
               style={[
                 styles.radioBox,
-                selectedKey == item.label && {borderColor: colors.secondary},
+                selectedKey == item.value && {borderColor: colors.secondary},
               ]}>
-              {selectedKey == item.label && <View style={styles.innerCircle} />}
+              {selectedKey == item.value && <View style={styles.innerCircle} />}
             </View>
             <FranklinMedium style={styles.h2}>{item.label}</FranklinMedium>
           </TouchableOpacity>

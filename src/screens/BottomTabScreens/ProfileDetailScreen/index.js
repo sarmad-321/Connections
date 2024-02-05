@@ -89,39 +89,7 @@ const ProfileDetailScreen = ({route}) => {
             }
             // onPress={HandlePress}
           />
-          {/* <FlatList
-            data={prompt}
-            showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({item, index}) => (
-              <>
-                <QuoteCard
-                  item={selectedProfile}
-                  index={index}
-                  question={item?.selectedPrompt.question}
-                  answer={item?.answer}
-                  onPress={() => HandlePress(item)}
-                  comment
-                />
-              </>
-            )}
-          />
 
-          <FlatList
-            data={selectedProfile.images}
-            showsVerticalScrollIndicator={false}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({item, index}) => (
-              <>
-                <ProfileCard
-                  img={{
-                    uri: image_url + item.path,
-                  }}
-                  // onPress={HandlePress}
-                />
-              </>
-            )}
-          /> */}
           {combineData.map((item, index) => {
             console.log(item);
             return (

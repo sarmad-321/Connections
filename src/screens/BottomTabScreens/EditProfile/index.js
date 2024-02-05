@@ -26,53 +26,47 @@ import {
   updateMyProfile,
 } from '../../../redux/actions/profileActions';
 import path from 'path';
+import RadioButton from '../../../components/RadioButton';
 const EditProfile = ({navigation}) => {
   const theme = useColorScheme();
   const profile = useSelector(state => state?.profileReducer?.user);
   const [updatedImage, setUpdatedImage] = useState();
+
+  const [relationship, setRelationShip] = useState();
+  const [exercise, setExercise] = useState();
+  const [drink, setDrink] = useState();
+  const [movies, setMovies] = useState();
+  const [videoGames, setVideoGames] = useState();
   const dispatch = useDispatch();
   const [profileImageId, setProfileImageId] = useState(
     profile.profilePicture?._id,
   );
   const styles = MyStyles();
 
-  const exercise = [
+  const data = [
     {
-      label: 'Active',
+      label: 'Yes',
+      value: true,
     },
     {
-      label: 'Sometimes',
-    },
-    {
-      label: 'Almost never',
-    },
-  ];
-  const education = [
-    {
-      label: 'Undergraduate degree',
-    },
-    {
-      label: 'Postgraduate',
-    },
-    {
-      label: `Master's`,
-    },
-    {
-      label: `Other`,
+      label: 'No',
+      value: false,
     },
   ];
-  const drink = [
+  const relationshipStatus = [
     {
-      label: 'Socially',
+      label: 'Single',
+      value: 'Single',
     },
     {
-      label: 'Never',
+      label: 'Married',
+      value: 'Married',
     },
     {
-      label: `Frequently`,
+      label: `Divorced`,
+      value: 'Divorced',
     },
   ];
-
   const onEditImagePress = () => {
     ImagePicker.openPicker({
       width: 400,
@@ -122,24 +116,11 @@ const EditProfile = ({navigation}) => {
           <ProfilePic
             profile={updatedImage || profile}
             imageUrl={updatedImage ? false : true}
+            firstName={profile.firstName}
+            lastName={profile?.lastName}
             onEditImagePress={onEditImagePress}
           />
 
-          <View style={styles.verticalpad}>
-            <FranklinMedium style={styles.h1}>
-              Interest & Hobbies
-            </FranklinMedium>
-            <InputField label={'Swimming'} />
-          </View>
-
-          <View style={styles.verticalpad}>
-            <FranklinMedium style={styles.h1}>Mobile Number</FranklinMedium>
-            <InputField type="numeric" label="+9* ***********" />
-          </View>
-          <View pointerEvents="none" style={styles.verticalpad}>
-            <FranklinMedium style={styles.h1}>Email</FranklinMedium>
-            <InputField type="email-address" label={profile?.email} />
-          </View>
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Age</FranklinMedium>
             <InputField
@@ -151,52 +132,50 @@ const EditProfile = ({navigation}) => {
             <FranklinMedium style={styles.h1}>Location</FranklinMedium>
             <InputField
               multi
-              label="Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry."
+              editable={false}
+              value={profile?.location?.address}
             />
             {/* <Poppins style={styles.h2}>
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry.
             </Poppins> */}
           </View>
-          <View style={styles.verticalpad}>
+          {/* <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Height</FranklinMedium>
             <RangePicker />
-          </View>
-          <View style={styles.verticalpad}>
-            <FranklinMedium style={styles.h1}>Do They Exercise?</FranklinMedium>
-            <RadioButtonRN
-              box={false}
-              textStyle={theme == 'dark' ? {color: 'white'} : null}
-              circleSize={10}
-              activeColor={colors.light.secondary}
-              data={exercise}
-              selectedBtn={e => console.log(e)}
-            />
-          </View>
-          <View style={styles.verticalpad}>
-            <FranklinMedium style={styles.h1}>Education</FranklinMedium>
-            <RadioButtonRN
-              box={false}
-              textStyle={theme == 'dark' ? {color: 'white'} : null}
-              circleSize={10}
-              activeColor={colors.light.secondary}
-              data={education}
-              selectedBtn={e => console.log(e)}
-            />
-            <InputField multi label="Write Other" />
-          </View>
-          <View style={styles.verticalpad}>
-            <FranklinMedium style={styles.h1}>Do They drink?</FranklinMedium>
-            <RadioButtonRN
-              box={false}
-              textStyle={theme == 'dark' ? {color: 'white'} : null}
-              circleSize={10}
-              activeColor={colors.light.secondary}
-              data={drink}
-              selectedBtn={e => console.log(e)}
-            />
-          </View>
+          </View> */}
+
+          <RadioButton
+            options={relationshipStatus}
+            label={'Relationship Status'}
+            defaultValue={profile?.personalitySchema.personality.relationStatus}
+            onChange={value => setRelationShip(value)}
+          />
+          <RadioButton
+            options={data}
+            label={'Do You Exercise'}
+            defaultValue={profile?.personalitySchema.personality.relationStatus}
+            onChange={value => setExercise(value)}
+          />
+          <RadioButton
+            options={data}
+            label={'Do You Drink'}
+            defaultValue={profile?.personalitySchema.personality.drink}
+            onChange={value => setDrink(value)}
+          />
+          <RadioButton
+            options={data}
+            label={'Do You Watch Movies'}
+            defaultValue={profile?.personalitySchema.personality.watchMovies}
+            onChange={value => setMovies(value)}
+          />
+          <RadioButton
+            options={data}
+            label={'Do You Play Video Games'}
+            defaultValue={profile?.personalitySchema.personality.playVideoGames}
+            onChange={value => setVideoGames(value)}
+          />
+
           <MainButton onPress={onUpdateProfile}>Update</MainButton>
           <View style={styles.gap}></View>
         </ScrollView>

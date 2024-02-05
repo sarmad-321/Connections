@@ -17,9 +17,9 @@ const LoginScreen = ({navigation, route}) => {
     phone,
     handleContinue,
     handlePhoneChange,
-    setEmail,
     setPassword,
     alreadyExist,
+    onEmailChange,
   } = useLoginController(receivedData);
   const loading = useSelector(state => state.commonReducer.btnLoader);
 
@@ -35,7 +35,7 @@ const LoginScreen = ({navigation, route}) => {
         />
         {receivedData == 'Email' ? (
           <InputField
-            onChangeText={setEmail}
+            onChangeText={onEmailChange}
             type="email-address"
             label="Enter Your Email Address"
           />

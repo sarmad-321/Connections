@@ -54,6 +54,13 @@ const useLoginController = type => {
     }
   };
 
+  const onEmailChange = text => {
+    if (alreadyExist) {
+      setAlreadyExist(false);
+    }
+    setEmail(text);
+  };
+
   const handlePhoneChange = text => {
     if (text.length > 2) {
       setPhone(text);
@@ -62,10 +69,10 @@ const useLoginController = type => {
   return {
     phone,
     handleContinue,
-    setEmail,
     setPassword,
     handlePhoneChange,
     alreadyExist,
+    onEmailChange,
   };
 };
 

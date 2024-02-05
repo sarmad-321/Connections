@@ -6,7 +6,7 @@ import {useFocusEffect} from '@react-navigation/native';
 const useInboxController = () => {
   const dispatch = useDispatch();
   const [matches, setMatches] = useState([]);
-
+  console.log(JSON.stringify(matches));
   useFocusEffect(
     useCallback(() => {
       fetchData();

@@ -34,7 +34,7 @@ export const icons = {
 };
 
 export const images = {
-  profileDummy: require('./images/profileDummy.png'),
+  profileDummy: require('./images/user.png'),
   map: require('./images/map.png'),
   likes: require('./images/likes.png'),
   inbox: require('./images/emptyInbox.png'),
