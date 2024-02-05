@@ -49,7 +49,7 @@ const LikeScreen = ({route}) => {
       combineFunction(matches.user);
     }
   }, [matches]);
-  console.log(myPromptComment, 'my prompt comments');
+  console.log(JSON.stringify(myPromptComment), 'my prompt comments');
   const combineFunction = user => {
     console.log(user, 'user123123');
     if (user?.promptAnswers && user?.images?.length) {
@@ -137,8 +137,8 @@ const LikeScreen = ({route}) => {
               })}
 
               <View style={styles.line} />
-              <View style={styles.line} />
-              <View style={styles.line} />
+              {/* <View style={styles.line} />
+              <View style={styles.line} /> */}
 
               <ProfileCard
                 name={`${matches.user?.firstName} ${matches.user?.lastName}`}

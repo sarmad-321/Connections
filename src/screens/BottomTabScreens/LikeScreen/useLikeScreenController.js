@@ -10,18 +10,19 @@ const useLikesController = currentUser => {
   const [matches, setMatches] = useState([]);
   const [myPromptComment, setMyPromptComment] = useState([]);
   const profile = useSelector(state => state?.profileReducer?.user);
-
   useEffect(() => {
     dispatch(getMyRequests()).then(res => {
       console.log(res);
       setMatches(res.matchRequests);
-      getPromptComment(currentUser.user);
+      if (currentUser) {
+        getPromptComment(currentUser.user);
+      }
     });
   }, []);
 
   const getPromptComment = user => {
+    console.log(user, 'user from params');
     dispatch(getMyPromptComments({user: user._id})).then(res => {
-      console.log(res, 'response of get comments');
       setMyPromptComment(res.comments);
     });
   };

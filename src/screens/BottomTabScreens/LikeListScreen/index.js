@@ -6,8 +6,11 @@ import ListProfileCard from '../../../components/ListProfileCard';
 import {images} from '../../../assets';
 import HomeHeader from '../../../components/HomeHeader';
 import MyStyles from './styles';
+import {useSelector} from 'react-redux';
 
 const LikeListScreen = ({navigation}) => {
+  const profile = useSelector(state => state?.profileReducer?.user);
+
   const {matches} = useLikesController();
   const styles = MyStyles();
 
@@ -29,9 +32,9 @@ const LikeListScreen = ({navigation}) => {
               <ListProfileCard
                 index={index}
                 img={
-                  item?.images?.length
+                  item?.user?.images?.length
                     ? {
-                        uri: image_url + item?.images[0].path,
+                        uri: image_url + item?.user?.images[0].path,
                       }
                     : images.noImage
                 }

@@ -29,10 +29,11 @@ const useLoginController = type => {
             user: res.user,
           });
         }
-        if (res == 200) {
-          // navigation.navigate('BottomTabNavigator', {
-          //   screen: 'Home',
-          // });
+
+        if (res?.user && res.user?.personalityAnswers) {
+          navigation.navigate('BottomTabNavigator', {
+            screen: 'Home',
+          });
         }
       });
     } else {

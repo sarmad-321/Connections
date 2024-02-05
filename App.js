@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {StatusBar, StyleSheet, View, useColorScheme} from 'react-native';
 // import AnimatedSplash from 'react-native-animated-splash';
-import SplashScreen from 'react-native-splash-screen';
 import {Provider, useDispatch} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import MainNavigator from './src/navigations/MainNavigator';
@@ -12,11 +11,7 @@ const App = () => {
   // useEffect(() => {
   //   AnimatedSplash.hide();
   // }, []);
-  useEffect(() => {
-    setTimeout(() => {
-      SplashScreen.hide();
-    }, 2000);
-  }, []);
+
   const theme = useColorScheme();
   return (
     <Provider store={store}>

@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import ProfileCard from '../../../components/ProfileCard';
@@ -26,6 +26,28 @@ const ProfileDetailScreen = ({route}) => {
   const infoPopup = useRef();
   const [text, setText] = useState();
   const [selectedPrompt, setSelectedPrompt] = useState();
+  const [combineData, setCombineData] = useState([]);
+
+  useEffect(() => {
+    if (selectedProfile) {
+      combineFunction(selectedProfile);
+    }
+  }, [selectedProfile]);
+
+  const combineFunction = user => {
+    console.log(user, 'user123123');
+    if (user?.promptAnswers && user?.images?.length) {
+      let combinedData = [
+        ...user?.promptAnswers?.map(prompt => ({type: 'prompt', data: prompt})),
+        ...user?.images?.slice(1)?.map(image => ({type: 'image', data: image})),
+      ];
+      for (let i = combinedData.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [combinedData[i], combinedData[j]] = [combinedData[j], combinedData[i]];
+      }
+      setCombineData(combinedData);
+    }
+  };
 
   const HandlePress = item => {
     setSelectedPrompt(item);
@@ -33,13 +55,15 @@ const ProfileDetailScreen = ({route}) => {
   };
   const HandleAccept = () => {
     console.log(text);
+    console.log(selectedPrompt, 'selected prompt');
     let data = {
       targetType: 'prompt',
       targetUser: selectedProfile._id,
       text: text,
-      promptId: selectedPrompt.question?._id,
-      answer: selectedPrompt.answer,
+      promptId: selectedPrompt.data?.selectedPrompt?._id,
+      answer: selectedPrompt.data?.answer,
     };
+    console.log(data, 'data');
     dispatch(addComment(data)).then(res => {
       console.log(res, 'Response of add comment');
       showToast(res.message);
@@ -65,7 +89,7 @@ const ProfileDetailScreen = ({route}) => {
             }
             // onPress={HandlePress}
           />
-          <FlatList
+          {/* <FlatList
             data={prompt}
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
@@ -97,7 +121,30 @@ const ProfileDetailScreen = ({route}) => {
                 />
               </>
             )}
-          />
+          /> */}
+          {combineData.map((item, index) => {
+            console.log(item);
+            return (
+              <>
+                {item?.type == 'prompt' ? (
+                  <QuoteCard
+                    item={selectedProfile}
+                    index={index}
+                    question={item?.data?.selectedPrompt?.question}
+                    answer={item?.data?.answer}
+                    onPress={() => HandlePress(item)}
+                    comment
+                  />
+                ) : (
+                  <ProfileCard
+                    img={{
+                      uri: image_url + item.data?.path,
+                    }}
+                  />
+                )}
+              </>
+            );
+          })}
 
           <CommentPopup
             text={setText}

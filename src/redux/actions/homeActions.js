@@ -106,6 +106,7 @@ export const getMyPromptComments = data => {
         type: types.BTN_LOADING_START,
       });
       const response = await get(endpoints.home.getPromptComments, data);
+      console.log(response, 'rsponse of comments');
       dispatch({
         type: types.BTN_LOADING_END,
       });

@@ -1,7 +1,7 @@
-import { StyleSheet, useColorScheme } from 'react-native';
-import { vh } from '../../utils/units';
-import { colors } from '../../utils/theme';
-import { useTheme } from '@react-navigation/native';
+import {StyleSheet, useColorScheme} from 'react-native';
+import {vh} from '../../utils/units';
+import {colors} from '../../utils/theme';
+import {useTheme} from '@react-navigation/native';
 export const lightGradient = [colors.light.primary, colors.light.primary];
 export const darkGradient = ['#5B5B5B', '#2E2E2E'];
 // const lightStyles = StyleSheet.create({
@@ -102,7 +102,7 @@ export const darkGradient = ['#5B5B5B', '#2E2E2E'];
 //   }
 // };
 const MyStyles = () => {
-  const { colors } = useTheme();
+  const {colors} = useTheme();
 
   const styles = StyleSheet.create({
     row: {
@@ -114,6 +114,7 @@ const MyStyles = () => {
       width: '100%',
       flexDirection: 'row',
       justifyContent: 'space-between',
+      paddingHorizontal: '5%',
     },
     bottomshadow: {
       overflow: 'hidden',
@@ -135,7 +136,7 @@ const MyStyles = () => {
       alignItems: 'center',
       justifyContent: 'center',
       shadowColor: '#000',
-      shadowOffset: { width: 1, height: 1 },
+      shadowOffset: {width: 1, height: 1},
       shadowOpacity: 0.4,
       shadowRadius: 3,
       elevation: 6,
