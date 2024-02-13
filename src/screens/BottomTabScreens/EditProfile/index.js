@@ -46,6 +46,7 @@ const EditProfile = ({navigation}) => {
   );
   const styles = MyStyles();
   const [personality, setPersonality] = useState();
+  const [blindDate, setBlindDate] = useState();
   console.log(personality, 'Personality');
 
   const data = [
@@ -74,8 +75,16 @@ const EditProfile = ({navigation}) => {
   ];
 
   useEffect(() => {
-    setPersonality(profile?.personalitySchema.personality);
+    if (profile?.personalitySchema.personality) {
+      setPersonality(profile?.personalitySchema.personality);
+    }
   }, [profile?.personalitySchema.personality]);
+
+  useEffect(() => {
+    if (profile?.isBlindDate) {
+      setBlindDate(profile?.isBlindDate);
+    }
+  }, [profile?.isBlindDate]);
 
   const onEditImagePress = () => {
     ImagePicker.openPicker({
@@ -110,6 +119,7 @@ const EditProfile = ({navigation}) => {
   const onUpdateProfile = () => {
     let data = {
       profilePicture: profileImageId,
+      isBlindDate: blindDate,
     };
     let personalityData = {
       personality,
@@ -135,6 +145,18 @@ const EditProfile = ({navigation}) => {
             lastName={profile?.lastName}
             onEditImagePress={onEditImagePress}
           />
+          <View style={styles.verticalpad}>
+            <FranklinMedium style={styles.h1}>Blind Date</FranklinMedium>
+            <View style={{alignItems: 'flex-start'}}>
+              <Switch
+                trackColor={{false: '#767577', true: '#81b0ff'}}
+                thumbColor={colors.light.secondary}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={() => setBlindDate(!blindDate)}
+                value={blindDate}
+              />
+            </View>
+          </View>
 
           <View style={styles.verticalpad}>
             <FranklinMedium style={styles.h1}>Age</FranklinMedium>

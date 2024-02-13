@@ -50,17 +50,43 @@ const LikeScreen = ({route}) => {
     }
   }, [matches]);
   console.log(JSON.stringify(myPromptComment), 'my prompt comments');
+  // const combineFunction = user => {
+  //   console.log(user, 'user123123');
+  //   if (user?.promptAnswers && user?.images?.length) {
+  //     let combinedData = [
+  //       ...user?.promptAnswers?.map(prompt => ({type: 'prompt', data: prompt})),
+  //       ...user?.images?.slice(1)?.map(image => ({type: 'image', data: image})),
+  //     ];
+  //     for (let i = combinedData.length - 1; i > 0; i--) {
+  //       const j = Math.floor(Math.random() * (i + 1));
+  //       [combinedData[i], combinedData[j]] = [combinedData[j], combinedData[i]];
+  //     }
+  //     setCombineData(combinedData);
+  //   }
+  // };
+
   const combineFunction = user => {
     console.log(user, 'user123123');
-    if (user?.promptAnswers && user?.images?.length) {
-      let combinedData = [
-        ...user?.promptAnswers?.map(prompt => ({type: 'prompt', data: prompt})),
-        ...user?.images?.slice(1)?.map(image => ({type: 'image', data: image})),
-      ];
+    if (user?.promptAnswers) {
+      let combinedData = user.promptAnswers.map(prompt => ({
+        type: 'prompt',
+        data: prompt,
+      }));
+
+      // Check if user is on a blind date
+      if (!user.isBlindDate && user.images?.length) {
+        combinedData = [
+          ...combinedData,
+          ...user.images.slice(1).map(image => ({type: 'image', data: image})),
+        ];
+      }
+
+      // Shuffle the combined data
       for (let i = combinedData.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [combinedData[i], combinedData[j]] = [combinedData[j], combinedData[i]];
       }
+
       setCombineData(combinedData);
     }
   };
@@ -122,7 +148,7 @@ const LikeScreen = ({route}) => {
                 color={gradientcolors}
                 isBlindMode={isBlindMode}
                 title={'All'}
-                blind
+                blind={matches?.user?.isBlindDate}
                 blindonPress={handleBlindPress}
               />
 
@@ -140,14 +166,16 @@ const LikeScreen = ({route}) => {
               {/* <View style={styles.line} />
               <View style={styles.line} /> */}
 
-              <ProfileCard
-                name={`${matches.user?.firstName} ${matches.user?.lastName}`}
-                img={
-                  matches?.user?.images?.length > 0
-                    ? {uri: image_url + matches?.user?.images[0].path}
-                    : images.noImage
-                }
-              />
+              {!matches.user?.isBlindDate ? (
+                <ProfileCard
+                  name={`${matches.user?.firstName} ${matches.user?.lastName}`}
+                  img={
+                    matches?.user?.images?.length > 0
+                      ? {uri: image_url + matches?.user?.images[0].path}
+                      : images.noImage
+                  }
+                />
+              ) : null}
               {combineData.map(item => {
                 console.log(item);
                 return (

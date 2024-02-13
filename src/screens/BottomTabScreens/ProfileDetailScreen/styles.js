@@ -25,4 +25,15 @@ export default styles = StyleSheet.create({
   iconContainer: {
     alignSelf: 'flex-end',
   },
+  blindContainer: {
+    height: vh * 8,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+  },
+  blindIcon: {
+    height: vh * 5,
+    width: vh * 5,
+    resizeMode: 'contain',
+    tintColor: 'black',
+  },
 });

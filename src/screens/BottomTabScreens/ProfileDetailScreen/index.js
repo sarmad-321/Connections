@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {useState, useRef, useEffect} from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -17,7 +17,7 @@ import {useDispatch} from 'react-redux';
 import {showToast} from '../../../redux/Api/HelperFunction';
 import {image_url} from '../../../redux/config';
 import {vh} from '../../../utils/units';
-import {images} from '../../../assets';
+import {icons, images} from '../../../assets';
 
 const ProfileDetailScreen = ({route}) => {
   const selectedProfile = route.params?.item;
@@ -34,13 +34,37 @@ const ProfileDetailScreen = ({route}) => {
     }
   }, [selectedProfile]);
 
+  // const combineFunction = user => {
+  //   console.log(user, 'user123123');
+  //   if (user?.promptAnswers && user?.images?.length) {
+  //     let combinedData = [
+  //       ...user?.promptAnswers?.map(prompt => ({type: 'prompt', data: prompt})),
+  //       ...user?.images?.slice(1)?.map(image => ({type: 'image', data: image})),
+  //     ];
+  //     for (let i = combinedData.length - 1; i > 0; i--) {
+  //       const j = Math.floor(Math.random() * (i + 1));
+  //       [combinedData[i], combinedData[j]] = [combinedData[j], combinedData[i]];
+  //     }
+  //     setCombineData(combinedData);
+  //   }
+  // };
+
   const combineFunction = user => {
     console.log(user, 'user123123');
-    if (user?.promptAnswers && user?.images?.length) {
-      let combinedData = [
-        ...user?.promptAnswers?.map(prompt => ({type: 'prompt', data: prompt})),
-        ...user?.images?.slice(1)?.map(image => ({type: 'image', data: image})),
-      ];
+    if (user?.promptAnswers) {
+      let combinedData = user.promptAnswers.map(prompt => ({
+        type: 'prompt',
+        data: prompt,
+      }));
+
+      // Check if user is on a blind date
+      if (!user.isBlindDate && user.images?.length) {
+        combinedData = [
+          ...combinedData,
+          ...user.images.slice(1).map(image => ({type: 'image', data: image})),
+        ];
+      }
+
       for (let i = combinedData.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [combinedData[i], combinedData[j]] = [combinedData[j], combinedData[i]];
@@ -48,7 +72,6 @@ const ProfileDetailScreen = ({route}) => {
       setCombineData(combinedData);
     }
   };
-
   const HandlePress = item => {
     setSelectedPrompt(item);
     infoPopup.current.show();
@@ -77,18 +100,24 @@ const ProfileDetailScreen = ({route}) => {
         <ScrollView
           contentContainerStyle={{paddingBottom: vh * 20}}
           showsVerticalScrollIndicator={false}>
-          <ProfileCard
-            name={`${selectedProfile.firstName} ${selectedProfile.lastName}`}
-            distance={selectedProfile.distance}
-            img={
-              selectedProfile?.images?.length
-                ? {
-                    uri: image_url + selectedProfile?.images[0].path,
-                  }
-                : images.noImage
-            }
-            // onPress={HandlePress}
-          />
+          {!selectedProfile?.isBlindDate ? (
+            <ProfileCard
+              name={`${selectedProfile.firstName} ${selectedProfile.lastName}`}
+              distance={selectedProfile.distance}
+              img={
+                selectedProfile?.images?.length
+                  ? {
+                      uri: image_url + selectedProfile?.images[0].path,
+                    }
+                  : images.noImage
+              }
+              // onPress={HandlePress}
+            />
+          ) : (
+            <View style={styles.blindContainer}>
+              <Image source={icons.blindbutton} style={styles.blindIcon} />
+            </View>
+          )}
 
           {combineData.map((item, index) => {
             console.log(item);

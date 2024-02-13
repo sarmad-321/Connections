@@ -17,7 +17,18 @@ const LikeListScreen = ({navigation}) => {
   const HandlePress = item => {
     navigation.navigate('Like', {currentUser: item});
   };
+  const getImage = item => {
+    if (item.isBlindDate) {
+      return images.anonProfile;
+    }
+    if (item?.images?.length) {
+      return {
+        uri: image_url + item?.images[0].path,
+      };
+    }
 
+    return images.noImage;
+  };
   return (
     <View style={{paddingTop: '15%'}}>
       <HomeHeader title={'Likes You'} />
@@ -31,13 +42,7 @@ const LikeListScreen = ({navigation}) => {
               activeOpacity={0.8}>
               <ListProfileCard
                 index={index}
-                img={
-                  item?.user?.images?.length
-                    ? {
-                        uri: image_url + item?.user?.images[0].path,
-                      }
-                    : images.noImage
-                }
+                img={getImage(item.user)}
                 name={item.user.firstName}
                 age={item.user?.age}
                 city={item?.user?.location?.address}

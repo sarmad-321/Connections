@@ -24,8 +24,22 @@ const HomeScreen = ({navigation}) => {
 
   const {data, profile} = useHomeController();
   const HandlePress = item => {
-    navigation.navigate('Profile', {isBlind: item.anon, item: item});
+    navigation.navigate('Profile', {isBlind: item.isBlindDate, item: item});
   };
+
+  const getImage = item => {
+    if (item.isBlindDate) {
+      return images.anonProfile;
+    }
+    if (item?.images?.length) {
+      return {
+        uri: image_url + item?.images[0].path,
+      };
+    }
+
+    return images.noImage;
+  };
+
   return (
     <ScreenWraper>
       <SafeAreaView>
@@ -43,13 +57,7 @@ const HomeScreen = ({navigation}) => {
                 activeOpacity={0.8}>
                 <ListProfileCard
                   index={index}
-                  img={
-                    item?.images?.length
-                      ? {
-                          uri: image_url + item?.images[0].path,
-                        }
-                      : images.noImage
-                  }
+                  img={getImage(item)}
                   name={item.firstName}
                   age={item.age}
                   city={'California'}

@@ -14,6 +14,7 @@ const ListProfileCard = props => {
   return (
     <Animated.View entering={SlideInLeft.duration((props.index + 1) * 300)}>
       <ImageBackground style={styles.imageContainer} source={props?.img}>
+        <Image style={styles.blind} source={icons.blindbutton} />
         <LinearGradient style={styles.fill} colors={gradient}>
           <View style={styles.margin}>
             <View style={styles.detailContainer}>
