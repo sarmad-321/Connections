@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View, useColorScheme} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ScreenWraper from '../../../components/ScreenWrapper';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {
@@ -20,7 +20,10 @@ import RadioButtonRN from 'radio-buttons-react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import {useDispatch, useSelector} from 'react-redux';
 import {calculateAge, getFileExtension} from '../../../utils/helperFunction';
-import {uploadImages} from '../../../redux/actions/authActions';
+import {
+  completeProfile,
+  uploadImages,
+} from '../../../redux/actions/authActions';
 import {
   getProfileDetails,
   updateMyProfile,
@@ -42,6 +45,8 @@ const EditProfile = ({navigation}) => {
     profile.profilePicture?._id,
   );
   const styles = MyStyles();
+  const [personality, setPersonality] = useState();
+  console.log(personality, 'Personality');
 
   const data = [
     {
@@ -67,6 +72,11 @@ const EditProfile = ({navigation}) => {
       value: 'Divorced',
     },
   ];
+
+  useEffect(() => {
+    setPersonality(profile?.personalitySchema.personality);
+  }, [profile?.personalitySchema.personality]);
+
   const onEditImagePress = () => {
     ImagePicker.openPicker({
       width: 400,
@@ -101,6 +111,11 @@ const EditProfile = ({navigation}) => {
     let data = {
       profilePicture: profileImageId,
     };
+    let personalityData = {
+      personality,
+      user: profile._id,
+    };
+    dispatch(completeProfile(personalityData));
     dispatch(updateMyProfile(data)).then(res => {
       console.log(res, 'response of my profile');
       dispatch(getProfileDetails());
@@ -149,31 +164,39 @@ const EditProfile = ({navigation}) => {
             options={relationshipStatus}
             label={'Relationship Status'}
             defaultValue={profile?.personalitySchema.personality.relationStatus}
-            onChange={value => setRelationShip(value)}
+            onChange={value =>
+              setPersonality({...personality, relationStatus: value})
+            }
           />
           <RadioButton
             options={data}
             label={'Do You Exercise'}
             defaultValue={profile?.personalitySchema.personality.relationStatus}
-            onChange={value => setExercise(value)}
+            onChange={value =>
+              setPersonality({...personality, exercise: value})
+            }
           />
           <RadioButton
             options={data}
             label={'Do You Drink'}
             defaultValue={profile?.personalitySchema.personality.drink}
-            onChange={value => setDrink(value)}
+            onChange={value => setPersonality({...personality, drink: value})}
           />
           <RadioButton
             options={data}
             label={'Do You Watch Movies'}
             defaultValue={profile?.personalitySchema.personality.watchMovies}
-            onChange={value => setMovies(value)}
+            onChange={value =>
+              setPersonality({...personality, watchMovies: value})
+            }
           />
           <RadioButton
             options={data}
             label={'Do You Play Video Games'}
             defaultValue={profile?.personalitySchema.personality.playVideoGames}
-            onChange={value => setVideoGames(value)}
+            onChange={value =>
+              setPersonality({...personality, playVideoGames: value})
+            }
           />
 
           <MainButton onPress={onUpdateProfile}>Update</MainButton>
